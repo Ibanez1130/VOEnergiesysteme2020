@@ -20,7 +20,6 @@ albedo = 0.2; % lt. Blabensteiner2011 - bei unbekannter Umgebung
 
 %% Berechnung des Sonnenazimutal- und Höhenwinkels mittels der zur Verfügung gestellten Funktion SonnenstandTST
 [sAzimut,sHoehenwinkel] = SonnenstandTST(sLaengengrad,sBreitengrad,time);
-sAzimut2 = 4;
 
 %% Funktion: Eges = Jahreserzeugung(...) aufrufen. Funktion muss zuvor erstellt werden.
 
@@ -32,7 +31,6 @@ sAzimut2 = 4;
 
 %%
 
-%hallo leute
 
 %% Aufgabe 1.2.b und 1.2.c
 
