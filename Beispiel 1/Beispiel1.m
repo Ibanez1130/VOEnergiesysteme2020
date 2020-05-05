@@ -1,5 +1,5 @@
 % Code Umgebung vorbereiten
-close all;                          % Schließt alle Fenster
+close all;                          % Schlieï¿½t alle Fenster
 clear all;                          % Leert Workspace
 clc                                 % Leert Command Window
 
@@ -8,7 +8,7 @@ Parameter
 load Strahlung
 load time
 
-%% [Azimut, Höhenwinkel] = SonnenstandSTS(...)  
+%% [Azimut, Hï¿½henwinkel] = SonnenstandSTS(...)  
 
 
 
@@ -28,7 +28,7 @@ load time
 
 
 
-%% Diagramm für Strahlungsanteile: plotStrahlungsanteile(...)
+%% Diagramm fï¿½r Strahlungsanteile: plotStrahlungsanteile(...)
 
 
 
