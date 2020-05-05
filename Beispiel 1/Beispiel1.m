@@ -47,7 +47,6 @@ gDiffus = Strahlung.DiffusHoriz;
 %%
 
 
-
 %% Aufgabe 1.2.b und 1.2.c
 
 
