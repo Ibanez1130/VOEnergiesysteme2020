@@ -31,7 +31,7 @@ albedo = 0.2; % lt. Blabensteiner2011 - bei unbekannter Umgebung
 
 %%
 
-
+%hallo leute
 
 %% Aufgabe 1.2.b und 1.2.c
 
