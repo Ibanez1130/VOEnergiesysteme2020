@@ -32,7 +32,7 @@ sAzimut2 = 4;
 
 %%
 
-
+%hallo leute
 
 %% Aufgabe 1.2.b und 1.2.c
 
