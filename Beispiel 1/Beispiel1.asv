@@ -24,50 +24,21 @@ albedo = 0.2; % lt. Blabensteiner2011 - bei unbekannter Umgebung
 %% Berechnung des Sonnenazimutal- und Höhenwinkels mittels der zur Verfügung gestellten Funktion SonnenstandTST
 [sAzimut,sHoehenwinkel] = SonnenstandTST(sLaengengrad,sBreitengrad,time);
 
-%% Berechnung des Ertrags einer horizontalen PV-Anlage
-%Ich glaub nicht dass das gefragt war
-%Gesamtstrahlung
-gHoriz = Strahlung.DirectHoriz + Strahlung.DiffusHoriz;
-gHoriz(sHoehenwinkel < 5) = 0; %Strahlung bei Hoehenwinkel unter 5° wird nicht berücksichtigt
-
-%Ertrag der horizontalen PV-Anlage in 15min Intervallen
-eHoriz = gHoriz .* pvGroesse .* pvWirkungsgrad .* pvVerluste .*0.25;
-
 %% Berechnung der gesamten Strahlungsenergie auf eine geneigte Fläche (1.1b)
 % Moduleinfallswinkel bei einer Südausrichtung von 180°
 pvModuleinfallswinkel = acosd(-cosd(sHoehenwinkel).*sind(pvHoehenwinkel).*cosd(sAzimut - pvAzimut - 180)+sind(sHoehenwinkel).*cosd(pvHoehenwinkel));
 
-%% Funktion zur Jahreserzeugung
-function Eges = Jahreserzeugung (pvAzimut, pvHoehenwinkel, pvGroesse, sLaengengrad, sBreitengrad, pvWirkungsgrade, strahlung, time)
-%Azimut und Hoehenwinkel des Standorts
-[sAzimut,sHoehenwinkel] = SonnenstandTST(sLaengengrad,sBreitengrad,time);
-
-% Moduleinfallswinkel bei einer Südausrichtung von 180°
-pvModuleinfallswinkel = acosd(-cosd(sHoehenwinkel).*sind(pvHoehenwinkel).*cosd(sAzimut - pvAzimut - 180)+sind(sHoehenwinkel).*cosd(pvHoehenwinkel));
-
-%Direkte Strahlung auf geneigter Fläche (Blabensteiner (3.21))
-DirectGen = Strahlung.DirectHoriz.*max(0, (cosd(pvModuleinfallswinkel)./sind(sHoehenwinkel)));
-
-%Reflektierte Strahlung auf geneigte Fläche (Blabensteiner (3.22))
-ReflectedGen = Strahlung.Reflected.*albedo.*(1-cosd(pvHoehenwinkel))./2;
-
-%Diffuse Strahlung auf geneigter Fläche (Blabensteiner (3.23))
-DiffusGen = Strahlung.DiffusHoriz.*(1+cosd(pvHoehenwinkel))./2;
-
-%Gesamtstrahlung
-GesGen = DirectGen + ReflectedGen + DiffusGen;
-GesGen(sHoehenwinkel < 5) = 0;  %Strahlung bei Hoehenwinkel unter 5° wird nicht berücksichtigt
-
-%Ertrag in 15min Intervallen
-Eges = GesGen.*0.25.*pvGroesse.*pvWirkungsgrade;
-
-end
 
 %% Funktion: Eges = Jahreserzeugung(...) aufrufen. Funktion muss zuvor erstellt werden.
+Eges = Jahreserzeugung(pvAzimut, pvHoehenwinkel, pvGroesse, sLaengengrad, sBreitengrad, pvWirkungsgrad, pvVerluste, Strahlung, time);
 
+%Berechnung der Vollal
 
 %% Darstellung mittels plot(Eges)
-
+plot(Eges)
+xlabel("Zeit in Vierteltunden")
+ylabel("Gesamtertrag in Wh")
+axis([0 35040 0 inf])
 
 
 %%
