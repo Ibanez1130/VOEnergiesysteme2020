@@ -39,7 +39,7 @@ T = sum(Eges)/(pvGroesse.*1000);
 figure('Name', 'Gesamtertrag (1.1.b)', 'NumberTitle', 'Off')
 plot(Eges)
 xlabel("Zeit in Vierteltunden")
-ylabel("Gesamtertrag in Wh")
+ylabel("Gesamtertrag in Wh/15min")
 axis([0 35040 0 inf])
 
 
@@ -55,10 +55,20 @@ axis([0 35040 0 inf])
 
 %% Aufgabe 1.2.b und 1.2.c
 
+%Aufgabe 1.2.b
+Emon = zeros(1,12);
+for monat=1:12
+    Emon(monat) = sum(Eges(time.Monat == monat));
+end   
+figure('Name', 'Monatliche Erträge (1.2.b)', 'NumberTitle', 'Off')
+bar(Emon)
+xlabel("Monat")
+ylabel("Ertrag in Wh/Monat")
+close all
 
 
 %% Diagramm f�r Strahlungsanteile: plotStrahlungsanteile(...)
-
+plotStrahlungsanteile(pvAzimut, pvHoehenwinkel, sLaengengrad, sBreitengrad, Strahlung, time)
 
 
 %% Aufgabe 1.2.e
