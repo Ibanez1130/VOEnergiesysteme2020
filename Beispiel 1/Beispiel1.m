@@ -24,21 +24,13 @@ albedo = 0.2; % lt. Blabensteiner2011 - bei unbekannter Umgebung
 %% Berechnung des Sonnenazimutal- und Höhenwinkels mittels der zur Verfügung gestellten Funktion SonnenstandTST
 [sAzimut,sHoehenwinkel] = SonnenstandTST(sLaengengrad,sBreitengrad,time);
 
-%% Berechnung des Ertrags einer horizontalen PV-Anlage
-gHoriz = Strahlung.DirectHoriz + Strahlung.DiffusHoriz;
-
-eHoriz = gHoriz .* pvGroesse .* pvWirkungsgrad .* pvVerluste
-
 %% Berechnung der gesamten Strahlungsenergie auf eine geneigte Fläche (1.1b)
 % Moduleinfallswinkel bei einer Südausrichtung von 180°
 pvModuleinfallswinkel = acosd(-cosd(sHoehenwinkel).*sind(pvHoehenwinkel).*cosd(sAzimut - pvAzimut - 180)+sind(sHoehenwinkel).*cosd(pvHoehenwinkel));
 
-gDirekt = Strahlung.DirectHoriz;
-gDiffus = Strahlung.DiffusHoriz;
 
 %% Funktion: Eges = Jahreserzeugung(...) aufrufen. Funktion muss zuvor erstellt werden.
-
-
+Eges = Jahreserzeugung(pvAzimut, pvHoehenwinkel, pvGroesse, sLaengengrad, sBreitengrad, pvWirkungsgrad, pvVerluste, Strahlung, time);
 
 %% Darstellung mittels plot(Eges)
 
