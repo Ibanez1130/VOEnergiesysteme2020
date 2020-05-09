@@ -30,7 +30,7 @@ pvModuleinfallswinkel = acosd(-cosd(sHoehenwinkel).*sind(pvHoehenwinkel).*cosd(s
 
 
 %% Funktion: Eges = Jahreserzeugung(...) aufrufen. Funktion muss zuvor erstellt werden.
-Eges = Jahreserzeugung(pvAzimut, pvHoehenwinkel, pvGroesse, sLaengengrad, sBreitengrad, pvWirkungsgrad, pvVerluste, Strahlung, time);
+Eges = Jahreserzeugung(pvHoehenwinkel, pvGroesse, pvWirkungsgrad, pvVerluste, pvModuleinfallswinkel, sHoehenwinkel, Strahlung);
 
 %Berechnung der Vollaststunden
 T = sum(Eges)/(pvGroesse.*1000);
@@ -66,6 +66,18 @@ xlabel("Monat")
 ylabel("Ertrag in Wh/Monat")
 close all
 
+% Aufgabe 1.2.c
+Etag = zeros(1,365);
+for tag=1:365
+    Etag(tag) = sum(Eges(time.Tag == tag));
+end
+% 5 Tage mit der maximalen PV-Erzeugung:
+[maxPV,I] = maxk(Etag,5);
+maxDates = I+datetime(Strahlung.Year(1),1,0);
+
+% 5 Tage mit der minimalen PV-Erzeugung:
+[minPV,J] = mink(Etag,5);
+minDates = J+datetime(Strahlung.Year(1),1,0);
 
 %% Diagramm f�r Strahlungsanteile: plotStrahlungsanteile(...)
 plotStrahlungsanteile(pvAzimut, pvHoehenwinkel, sLaengengrad, sBreitengrad, Strahlung, time)

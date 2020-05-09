@@ -1,13 +1,8 @@
-function Eges = Jahreserzeugung (pvAzimut, pvHoehenwinkel, pvGroesse, sLaengengrad, sBreitengrad, pvWirkungsgrad, pvVerluste, Strahlung, time)
-%%Berechnet die viertelstündlichen Erträge der Anlage
-%Azimut und Hoehenwinkel des Standorts
-[sAzimut,sHoehenwinkel] = SonnenstandTST(sLaengengrad,sBreitengrad,time);
+%Berechnet die viertelstündlichen Erträge der Anlage
+function Eges = Jahreserzeugung (pvHoehenwinkel, pvGroesse, pvWirkungsgrad, pvVerluste, pvModuleinfallswinkel, sHoehenwinkel, Strahlung)
 
 %Flaeche des PV-Moduls
 pvFlaeche = pvGroesse./pvWirkungsgrad;
-
-% Moduleinfallswinkel bei einer Südausrichtung von 180°
-pvModuleinfallswinkel = acosd(-cosd(sHoehenwinkel).*sind(pvHoehenwinkel).*cosd(sAzimut - pvAzimut - 180)+sind(sHoehenwinkel).*cosd(pvHoehenwinkel));
 
 %Direkte Strahlung auf geneigter Fläche (Blabensteiner (3.21))
 DirectGen = Strahlung.DirectHoriz.*max(0, (cosd(pvModuleinfallswinkel)./sind(sHoehenwinkel)));
