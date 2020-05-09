@@ -82,5 +82,30 @@ minDates = J+datetime(Strahlung.Year(1),1,0);
 %% Diagramm f�r Strahlungsanteile: plotStrahlungsanteile(...)
 plotStrahlungsanteile(pvAzimut, pvHoehenwinkel, sLaengengrad, sBreitengrad, Strahlung, time)
 
-
 %% Aufgabe 1.2.e
+% Juni
+% Die Daten aus Eges auf den Monat Juni beschränken
+Ejuni = Eges(time.Monat == 6);
+% Zusammenfassen der Viertelstunden-Werte zu jeweils einem Stundenwert.
+% "Jeder Stundenwert besteht aus der Summe von vier Viertelstundenwerten."
+EJuniStunden = sum(reshape(Ejuni,4,720));
+% Umformen der 1x720 Matrix in eine 24 x 30 Matrix.
+EJuniTage = reshape(EJuniStunden,24,30);
+
+boxplot(EJuniTage)
+xlabel('Tage (Juni 2005)')
+ylabel('Ertrag in Watt')
+title('Ertrag pro Stunde - Juni')
+
+% Dezember
+% Die Schritte für Dezember sind die selben wie für Juni.
+% Ein Unterschied ist, dass Dezember 31 Tage hat und daher die Anzahl der
+% Stunden und Tage unterschiedlich sind.
+Edezember = Eges(time.Monat == 12);
+EDezemberStunden = sum(reshape(Edezember,4,744));
+EDezemberTage = reshape(EDezemberStunden,24,31);
+
+boxplot(EJuniTage)
+xlabel('Tage (Dezember 2005)')
+ylabel('Ertrag in Watt')
+title('Ertrag pro Stunde - Dezember')
