@@ -2,6 +2,13 @@
 \contentsline {section}{\numberline {1}Aufgabenstellung}{3}% 
 \contentsline {subsection}{\numberline {1.1}Aufgabe 1.1}{3}% 
 \contentsline {subsection}{\numberline {1.2}Aufgabe 1.2}{4}% 
-\contentsline {section}{\numberline {2}Berechnungen}{5}% 
+\contentsline {section}{\numberline {2}Berechnungen - Aufgabe 1.1}{5}% 
 \contentsline {subsection}{\numberline {2.1}Beschreibung der Winkel}{5}% 
 \contentsline {subsection}{\numberline {2.2}Berechnung des Moduleinfallswinkels $\Theta _{gen}$}{6}% 
+\contentsline {subsection}{\numberline {2.3}Berechnung der Strahlungsanteile auf eine geneigte Fläche}{6}% 
+\contentsline {subsubsection}{\numberline {2.3.1}Direkte Strahlung}{7}% 
+\contentsline {subsubsection}{\numberline {2.3.2}Diffuse Strahlung}{7}% 
+\contentsline {subsubsection}{\numberline {2.3.3}Reflektierte Strahlung}{7}% 
+\contentsline {subsection}{\numberline {2.4}Berechnung der gesamten Strahlung auf eine geneigte Fläche}{8}% 
+\contentsline {subsection}{\numberline {2.5}Berechnung des Ertrags}{8}% 
+\contentsline {section}{\numberline {3}Berechnungen - Aufgabe 1.2}{9}% 

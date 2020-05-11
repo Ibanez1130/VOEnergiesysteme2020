@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7200 64-bit) (preloaded format=pdflatex 2019.10.21)  10 MAY 2020 17:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7200 64-bit) (preloaded format=pdflatex 2019.10.21)  11 MAY 2020 18:12
 entering extended mode
 **./Protokoll.tex
 (Protokoll.tex
@@ -241,511 +241,61 @@ File: pppdftex.def 2019/09/21 v0.5n Pdfpages driver for pdfTeX (AM)
 \c@AM@survey=\count100
 \AM@templatesizebox=\box28
 )
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\l
-ongtable.sty"
-Package: longtable 2019/02/06 v4.12 Multi-page Table package (DPC)
-\LTleft=\skip55
-\LTright=\skip56
-\LTpre=\skip57
-\LTpost=\skip58
-\LTchunksize=\count101
-\LTcapwidth=\dimen125
-\LT@head=\box29
-\LT@firsthead=\box30
-\LT@foot=\box31
-\LT@lastfoot=\box32
-\LT@cols=\count102
-\LT@rows=\count103
-\c@LT@tables=\count104
-\c@LT@chunks=\count105
-\LT@p@ftn=\toks20
+("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listing
+s\listings.sty"
+\lst@mode=\count101
+\lst@gtempboxa=\box29
+\lst@token=\toks20
+\lst@length=\count102
+\lst@currlwidth=\dimen125
+\lst@column=\count103
+\lst@pos=\count104
+\lst@lostspace=\dimen126
+\lst@width=\dimen127
+\lst@newlines=\count105
+\lst@lineno=\count106
+\lst@maxwidth=\dimen128
+
+("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listing
+s\lstmisc.sty"
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+\c@lstnumber=\count107
+\lst@skipnumbers=\count108
+\lst@framebox=\box30
 )
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/multiro
-w\multirow.sty"
-Package: multirow 2019/05/31 v2.5 Span multiple rows of a table
-\multirow@colwidth=\skip59
-\multirow@cntb=\count106
-\multirow@dima=\skip60
-\bigstrutjot=\dimen126
-)
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgfplot
-s\pgfplots.sty"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots\pgfplots.revision.tex")
-Package: pgfplots 2018/03/28 v1.16 Data Visualization (1.16)
-
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/fro
-ntendlayer\tikz.sty"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/bas
-iclayer\pgf.sty"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/uti
-lities\pgfrcs.sty"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/u
-tilities\pgfutil-common.tex"
-\pgfutil@everybye=\toks21
-\pgfutil@tempdima=\dimen127
-\pgfutil@tempdimb=\dimen128
-
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/u
-tilities\pgfutil-common-lists.tex"))
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/u
-tilities\pgfutil-latex.def"
-\pgfutil@abb=\box33
-
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/ms\ever
-yshi.sty"
-Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listing
+s\listings.cfg"
+File: listings.cfg 2020/03/24 1.8d listings configuration
 ))
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/u
-tilities\pgfrcs.code.tex"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf\p
-gf.revision.tex")
-Package: pgfrcs 2019/08/03 v3.1.4b (3.1.4b)
-))
-Package: pgf 2019/08/03 v3.1.4b (3.1.4b)
+Package: listings 2020/03/24 1.8d (Carsten Heinz)
 
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/bas
-iclayer\pgfcore.sty"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/sys
-temlayer\pgfsys.sty"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/s
-ystemlayer\pgfsys.code.tex"
-Package: pgfsys 2019/08/03 v3.1.4b (3.1.4b)
-
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/u
-tilities\pgfkeys.code.tex"
-\pgfkeys@pathtoks=\toks22
-\pgfkeys@temptoks=\toks23
-
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/u
-tilities\pgfkeysfiltered.code.tex"
-\pgfkeys@tmptoks=\toks24
-))
-\pgf@x=\dimen129
-\pgf@y=\dimen130
-\pgf@xa=\dimen131
-\pgf@ya=\dimen132
-\pgf@xb=\dimen133
-\pgf@yb=\dimen134
-\pgf@xc=\dimen135
-\pgf@yc=\dimen136
-\pgf@xd=\dimen137
-\pgf@yd=\dimen138
-\w@pgf@writea=\write3
-\r@pgf@reada=\read1
-\c@pgf@counta=\count107
-\c@pgf@countb=\count108
-\c@pgf@countc=\count109
-\c@pgf@countd=\count110
-\t@pgf@toka=\toks25
-\t@pgf@tokb=\toks26
-\t@pgf@tokc=\toks27
-\pgf@sys@id@count=\count111
-
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/s
-ystemlayer\pgf.cfg"
-File: pgf.cfg 2019/08/03 v3.1.4b (3.1.4b)
-)
-Driver file for pgf: pgfsys-pdftex.def
-
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/s
-ystemlayer\pgfsys-pdftex.def"
-File: pgfsys-pdftex.def 2019/08/03 v3.1.4b (3.1.4b)
-
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/s
-ystemlayer\pgfsys-common-pdf.def"
-File: pgfsys-common-pdf.def 2019/08/03 v3.1.4b (3.1.4b)
-)))
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/s
-ystemlayer\pgfsyssoftpath.code.tex"
-File: pgfsyssoftpath.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-\pgfsyssoftpath@smallbuffer@items=\count112
-\pgfsyssoftpath@bigbuffer@items=\count113
-)
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/s
-ystemlayer\pgfsysprotocol.code.tex"
-File: pgfsysprotocol.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-))
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/b
-asiclayer\pgfcore.code.tex"
-Package: pgfcore 2019/08/03 v3.1.4b (3.1.4b)
-
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/m
-ath\pgfmath.code.tex"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/m
-ath\pgfmathcalc.code.tex"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/m
-ath\pgfmathutil.code.tex")
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/m
-ath\pgfmathparser.code.tex"
-\pgfmath@dimen=\dimen139
-\pgfmath@count=\count114
-\pgfmath@box=\box34
-\pgfmath@toks=\toks28
-\pgfmath@stack@operand=\toks29
-\pgfmath@stack@operation=\toks30
-)
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/m
-ath\pgfmathfunctions.code.tex"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/m
-ath\pgfmathfunctions.basic.code.tex")
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/m
-ath\pgfmathfunctions.trigonometric.code.tex")
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/m
-ath\pgfmathfunctions.random.code.tex")
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/m
-ath\pgfmathfunctions.comparison.code.tex")
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/m
-ath\pgfmathfunctions.base.code.tex")
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/m
-ath\pgfmathfunctions.round.code.tex")
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/m
-ath\pgfmathfunctions.misc.code.tex")
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/m
-ath\pgfmathfunctions.integerarithmetics.code.tex")))
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/m
-ath\pgfmathfloat.code.tex"
-\c@pgfmathroundto@lastzeros=\count115
-))
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/m
-ath\pgfint.code.tex")
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/b
-asiclayer\pgfcorepoints.code.tex"
-File: pgfcorepoints.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-\pgf@picminx=\dimen140
-\pgf@picmaxx=\dimen141
-\pgf@picminy=\dimen142
-\pgf@picmaxy=\dimen143
-\pgf@pathminx=\dimen144
-\pgf@pathmaxx=\dimen145
-\pgf@pathminy=\dimen146
-\pgf@pathmaxy=\dimen147
-\pgf@xx=\dimen148
-\pgf@xy=\dimen149
-\pgf@yx=\dimen150
-\pgf@yy=\dimen151
-\pgf@zx=\dimen152
-\pgf@zy=\dimen153
-)
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/b
-asiclayer\pgfcorepathconstruct.code.tex"
-File: pgfcorepathconstruct.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-\pgf@path@lastx=\dimen154
-\pgf@path@lasty=\dimen155
-)
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/b
-asiclayer\pgfcorepathusage.code.tex"
-File: pgfcorepathusage.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-\pgf@shorten@end@additional=\dimen156
-\pgf@shorten@start@additional=\dimen157
-)
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/b
-asiclayer\pgfcorescopes.code.tex"
-File: pgfcorescopes.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-\pgfpic=\box35
-\pgf@hbox=\box36
-\pgf@layerbox@main=\box37
-\pgf@picture@serial@count=\count116
-)
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/b
-asiclayer\pgfcoregraphicstate.code.tex"
-File: pgfcoregraphicstate.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-\pgflinewidth=\dimen158
-)
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/b
-asiclayer\pgfcoretransformations.code.tex"
-File: pgfcoretransformations.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-\pgf@pt@x=\dimen159
-\pgf@pt@y=\dimen160
-\pgf@pt@temp=\dimen161
-)
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/b
-asiclayer\pgfcorequick.code.tex"
-File: pgfcorequick.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-)
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/b
-asiclayer\pgfcoreobjects.code.tex"
-File: pgfcoreobjects.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-)
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/b
-asiclayer\pgfcorepathprocessing.code.tex"
-File: pgfcorepathprocessing.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-)
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/b
-asiclayer\pgfcorearrows.code.tex"
-File: pgfcorearrows.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-\pgfarrowsep=\dimen162
-)
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/b
-asiclayer\pgfcoreshade.code.tex"
-File: pgfcoreshade.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-\pgf@max=\dimen163
-\pgf@sys@shading@range@num=\count117
-\pgf@shadingcount=\count118
-)
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/b
-asiclayer\pgfcoreimage.code.tex"
-File: pgfcoreimage.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/b
-asiclayer\pgfcoreexternal.code.tex"
-File: pgfcoreexternal.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-\pgfexternal@startupbox=\box38
-))
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/b
-asiclayer\pgfcorelayers.code.tex"
-File: pgfcorelayers.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-)
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/b
-asiclayer\pgfcoretransparency.code.tex"
-File: pgfcoretransparency.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-)
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/b
-asiclayer\pgfcorepatterns.code.tex"
-File: pgfcorepatterns.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-)
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/b
-asiclayer\pgfcorerdf.code.tex"
-File: pgfcorerdf.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-)))
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/m
-odules\pgfmoduleshapes.code.tex"
-File: pgfmoduleshapes.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-\pgfnodeparttextbox=\box39
-)
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/m
-odules\pgfmoduleplot.code.tex"
-File: pgfmoduleplot.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-)
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/com
-patibility\pgfcomp-version-0-65.sty"
-Package: pgfcomp-version-0-65 2019/08/03 v3.1.4b (3.1.4b)
-\pgf@nodesepstart=\dimen164
-\pgf@nodesepend=\dimen165
-)
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/com
-patibility\pgfcomp-version-1-18.sty"
-Package: pgfcomp-version-1-18 2019/08/03 v3.1.4b (3.1.4b)
-))
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/uti
-lities\pgffor.sty"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/uti
-lities\pgfkeys.sty"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/u
-tilities\pgfkeys.code.tex"))
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgf/mat
-h\pgfmath.sty"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/m
-ath\pgfmath.code.tex"))
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/u
-tilities\pgffor.code.tex"
-Package: pgffor 2019/08/03 v3.1.4b (3.1.4b)
-
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/m
-ath\pgfmath.code.tex")
-\pgffor@iter=\dimen166
-\pgffor@skip=\dimen167
-\pgffor@stack=\toks31
-\pgffor@toks=\toks32
-))
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/f
-rontendlayer/tikz\tikz.code.tex"
-Package: tikz 2019/08/03 v3.1.4b (3.1.4b)
-
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/l
-ibraries\pgflibraryplothandlers.code.tex"
-File: pgflibraryplothandlers.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-\pgf@plot@mark@count=\count119
-\pgfplotmarksize=\dimen168
-)
-\tikz@lastx=\dimen169
-\tikz@lasty=\dimen170
-\tikz@lastxsaved=\dimen171
-\tikz@lastysaved=\dimen172
-\tikz@lastmovetox=\dimen173
-\tikz@lastmovetoy=\dimen174
-\tikzleveldistance=\dimen175
-\tikzsiblingdistance=\dimen176
-\tikz@figbox=\box40
-\tikz@figbox@bg=\box41
-\tikz@tempbox=\box42
-\tikz@tempbox@bg=\box43
-\tikztreelevel=\count120
-\tikznumberofchildren=\count121
-\tikznumberofcurrentchild=\count122
-\tikz@fig@count=\count123
-
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/m
-odules\pgfmodulematrix.code.tex"
-File: pgfmodulematrix.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-\pgfmatrixcurrentrow=\count124
-\pgfmatrixcurrentcolumn=\count125
-\pgf@matrix@numberofcolumns=\count126
-)
-\tikz@expandcount=\count127
-
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/f
-rontendlayer/tikz/libraries\tikzlibrarytopaths.code.tex"
-File: tikzlibrarytopaths.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-)))
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots\pgfplots.code.tex"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots\pgfplotscore.code.tex"
-\t@pgfplots@toka=\toks33
-\t@pgfplots@tokb=\toks34
-\t@pgfplots@tokc=\toks35
-\pgfplots@tmpa=\dimen177
-\c@pgfplots@coordindex=\count128
-\c@pgfplots@scanlineindex=\count129
-
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots/sys\pgfplotssysgeneric.code.tex"))
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots/libs\pgfplotslibrary.code.tex")
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots/oldpgfcompatib\pgfplotsoldpgfsupp_loader.code.tex"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/l
-ibraries\pgflibraryfpu.code.tex"))
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots/util\pgfplotsutil.code.tex"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots/liststructure\pgfplotsliststructure.code.tex")
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots/liststructure\pgfplotsliststructureext.code.tex")
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots/liststructure\pgfplotsarray.code.tex"
-\c@pgfplotsarray@tmp=\count130
-)
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots/liststructure\pgfplotsmatrix.code.tex")
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots/numtable\pgfplotstableshared.code.tex"
-\c@pgfplotstable@counta=\count131
-\t@pgfplotstable@a=\toks36
-)
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots/liststructure\pgfplotsdeque.code.tex")
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots/util\pgfplotsbinary.code.tex"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots/util\pgfplotsbinary.data.code.tex"))
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots/util\pgfplotsutil.verb.code.tex")
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots/libs\pgflibrarypgfplots.surfshading.code.tex"
-\c@pgfplotslibrarysurf@no=\count132
-
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots/sys\pgflibrarypgfplots.surfshading.pgfsys-pdftex.def")))
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots/util\pgfplotscolormap.code.tex"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots/util\pgfplotscolor.code.tex"))
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots\pgfplotsstackedplots.code.tex")
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots\pgfplotsplothandlers.code.tex"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots\pgfplotsmeshplothandler.code.tex"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots\pgfplotsmeshplotimage.code.tex")))
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots\pgfplots.scaling.code.tex")
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots\pgfplotscoordprocessing.code.tex")
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots\pgfplots.errorbars.code.tex")
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots\pgfplots.markers.code.tex")
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots\pgfplotsticks.code.tex")
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots\pgfplots.paths.code.tex")
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/f
-rontendlayer/tikz/libraries\tikzlibrarydecorations.code.tex"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/m
-odules\pgfmoduledecorations.code.tex"
-\pgfdecoratedcompleteddistance=\dimen178
-\pgfdecoratedremainingdistance=\dimen179
-\pgfdecoratedinputsegmentcompleteddistance=\dimen180
-\pgfdecoratedinputsegmentremainingdistance=\dimen181
-\pgf@decorate@distancetomove=\dimen182
-\pgf@decorate@repeatstate=\count133
-\pgfdecorationsegmentamplitude=\dimen183
-\pgfdecorationsegmentlength=\dimen184
-)
-\tikz@lib@dec@box=\box44
-)
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/f
-rontendlayer/tikz/libraries\tikzlibrarydecorations.pathmorphing.code.tex"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/l
-ibraries/decorations\pgflibrarydecorations.pathmorphing.code.tex"))
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/f
-rontendlayer/tikz/libraries\tikzlibrarydecorations.pathreplacing.code.tex"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/l
-ibraries/decorations\pgflibrarydecorations.pathreplacing.code.tex"))
-\pgfplots@numplots=\count134
-\pgfplots@xmin@reg=\dimen185
-\pgfplots@xmax@reg=\dimen186
-\pgfplots@ymin@reg=\dimen187
-\pgfplots@ymax@reg=\dimen188
-\pgfplots@zmin@reg=\dimen189
-\pgfplots@zmax@reg=\dimen190
-)
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/f
-rontendlayer/tikz/libraries\tikzlibraryplotmarks.code.tex"
-File: tikzlibraryplotmarks.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgf/l
-ibraries\pgflibraryplotmarks.code.tex"
-File: pgflibraryplotmarks.code.tex 2019/08/03 v3.1.4b (3.1.4b)
-)))
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/pgfplot
-s\pgfplotstable.sty"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots\pgfplots.revision.tex")
-Package: pgfplotstable 2018/03/28 v1.16 Table typesetting and Pretty-printing (
-1.16)
-
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots/numtable\pgfplotstable.code.tex"
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/generic/pgfpl
-ots/numtable\pgfplotstable.coltype.code.tex"))
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\a
-rray.sty"
-Package: array 2019/08/31 v2.4l Tabular extension package (FMi)
-\col@sep=\dimen191
-\ar@mcellbox=\box45
-\extrarowheight=\dimen192
-\NC@list=\toks37
-\extratabsurround=\skip61
-\backup@length=\skip62
-\ar@cellbox=\box46
-))
 ("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/float\f
 loat.sty"
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count135
-\float@exts=\toks38
-\float@box=\box47
-\@float@everytoks=\toks39
-\@floatcapt=\box48
+\c@float@type=\count109
+\float@exts=\toks21
+\float@box=\box31
+\@float@everytoks=\toks22
+\@floatcapt=\box32
+)
+("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/listing
+s\lstlang1.sty"
+File: lstlang1.sty 2020/03/24 1.8d listings language file
 ) (Protokoll.aux)
 \openout1 = `Protokoll.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -785,17 +335,17 @@ LaTeX Font Info:    ... okay on input line 19.
 ("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/
 mkii\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count136
-\scratchdimen=\dimen193
-\scratchbox=\box49
-\nofMPsegments=\count137
-\nofMParguments=\count138
-\everyMPshowfont=\toks40
-\MPscratchCnt=\count139
-\MPscratchDim=\dimen194
-\MPnumerator=\count140
-\makeMPintoPDFobject=\count141
-\everyMPtoPDFconversion=\toks41
+\scratchcounter=\count110
+\scratchdimen=\dimen129
+\scratchbox=\box33
+\nofMPsegments=\count111
+\nofMParguments=\count112
+\everyMPshowfont=\toks23
+\MPscratchCnt=\count113
+\MPscratchDim=\dimen130
+\MPnumerator=\count114
+\makeMPintoPDFobject=\count115
+\everyMPtoPDFconversion=\toks24
 )
 ("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdie
 k\epstopdf-base.sty"
@@ -844,14 +394,9 @@ G,.JBIG2,.JB2,.eps]
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
-Package caption Info: longtable package is loaded.
-
-("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption
-\ltcaption.sty"
-Package: ltcaption 2018/08/26 v1.4a longtable captions (AR)
-)
+Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\AtBeginShipoutBox=\box50
+\AtBeginShipoutBox=\box34
 
 ("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdie
 k\pdflscape.sty"
@@ -862,49 +407,44 @@ s\lscape.sty"
 Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
-) ABD: EveryShipout initializing macros
-
-Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
-ick labels; missing features). Consider writing \pgfplotsset{compat=1.16} into 
-your preamble.
- on input line 19.
-
-<Protokoll_titlepage.pdf, id=4, 597.50829pt x 845.0471pt>
+)
+\c@lstlisting=\count116
+<Protokoll_titlepage.pdf, id=1, 597.50829pt x 845.0471pt>
 File: Protokoll_titlepage.pdf Graphic file (type pdf)
 <use Protokoll_titlepage.pdf>
-Package pdftex.def Info: Protokoll_titlepage.pdf  used on input line 20.
+Package pdftex.def Info: Protokoll_titlepage.pdf  used on input line 32.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: Protokoll_titlepage.pdf Graphic file (type pdf)
 <use Protokoll_titlepage.pdf>
-Package pdftex.def Info: Protokoll_titlepage.pdf  used on input line 20.
+Package pdftex.def Info: Protokoll_titlepage.pdf  used on input line 32.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-<Protokoll_titlepage.pdf, id=7, page=1, 597.50829pt x 845.0471pt>
+<Protokoll_titlepage.pdf, id=4, page=1, 597.50829pt x 845.0471pt>
 File: Protokoll_titlepage.pdf Graphic file (type pdf)
 <use Protokoll_titlepage.pdf, page 1>
-Package pdftex.def Info: Protokoll_titlepage.pdf , page1 used on input line 20.
+Package pdftex.def Info: Protokoll_titlepage.pdf , page1 used on input line 32.
 
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: Protokoll_titlepage.pdf Graphic file (type pdf)
 <use Protokoll_titlepage.pdf, page 1>
-Package pdftex.def Info: Protokoll_titlepage.pdf , page1 used on input line 20.
+Package pdftex.def Info: Protokoll_titlepage.pdf , page1 used on input line 32.
 
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: Protokoll_titlepage.pdf Graphic file (type pdf)
 <use Protokoll_titlepage.pdf, page 1>
-Package pdftex.def Info: Protokoll_titlepage.pdf , page1 used on input line 20.
+Package pdftex.def Info: Protokoll_titlepage.pdf , page1 used on input line 32.
 
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: Protokoll_titlepage.pdf Graphic file (type pdf)
 <use Protokoll_titlepage.pdf, page 1>
-Package pdftex.def Info: Protokoll_titlepage.pdf , page1 used on input line 20.
+Package pdftex.def Info: Protokoll_titlepage.pdf , page1 used on input line 32.
 
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
 File: Protokoll_titlepage.pdf Graphic file (type pdf)
 <use Protokoll_titlepage.pdf, page 1>
-Package pdftex.def Info: Protokoll_titlepage.pdf , page1 used on input line 20.
+Package pdftex.def Info: Protokoll_titlepage.pdf , page1 used on input line 32.
 
 (pdftex.def)             Requested size: 597.53416pt x 845.08372pt.
-[1
+ [1
 
  <./Protokoll_titlepage.pdf{C:/Users/Konstantin Kobel/AppData/Local/MiKTeX/2.9/
 pdftex/config/pdftex.map}>] (Protokoll.toc
@@ -915,8 +455,8 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 3.
 )
-\tf@toc=\write4
-\openout4 = `Protokoll.toc'.
+\tf@toc=\write3
+\openout3 = `Protokoll.toc'.
 
 
 
@@ -926,67 +466,84 @@ We now make it that large for the rest of the document.
 This may cause the page layout to be inconsistent, however.
 
 [2]
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 3
-1.
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 4
+3.
 
 ("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\om
 scmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 31.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 43.
 
-Overfull \hbox (3.15392pt too wide) in paragraph at lines 43--44
+Overfull \hbox (3.15392pt too wide) in paragraph at lines 55--56
 []\OT1/cmr/m/n/12 Standardtestbedingungen zur Be-stim-mung des Mo-dul-wir-kungs
 -gra-des bzw. der Nenn-
  []
 
 [3]
-Overfull \hbox (6.48306pt too wide) in paragraph at lines 66--67
+Overfull \hbox (6.48306pt too wide) in paragraph at lines 78--79
 []\OT1/cmr/m/n/12 Ermitteln Sie je-weils die 5 Ta-ge mit der mi-ni-ma-len und d
 er ma-xi-ma-len PV-Erzeugung.
  []
 
 
-Overfull \hbox (44.71686pt too wide) in paragraph at lines 67--68
+Overfull \hbox (44.71686pt too wide) in paragraph at lines 79--80
 \OT1/cmr/m/n/12 Strah-lung an je-dem der 365 Ta-ge dar (ver-wen-den Sie da-zu d
 as Fi-le $\OML/cmm/m/it/12 plotStrahlungsanteile:m$\OT1/cmr/m/n/12 ). 
  []
 
 [4]
-<img/Winkel.png, id=70, 466.40227pt x 315.90186pt>
+<img/Winkel.png, id=67, 466.40227pt x 315.90186pt>
 File: img/Winkel.png Graphic file (type png)
 <use img/Winkel.png>
-Package pdftex.def Info: img/Winkel.png  used on input line 80.
+Package pdftex.def Info: img/Winkel.png  used on input line 92.
 (pdftex.def)             Requested size: 341.43306pt x 231.2668pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 92.
+(Font)              <14.4> on input line 104.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 92.
- [5 <./img/Winkel.png (PNG copy)>] [6] (Protokoll.aux) ) 
+(Font)              <7> on input line 104.
+ [5 <./img/Winkel.png (PNG copy)>] [6] [7]
+Overfull \hbox (2.05368pt too wide) in paragraph at lines 157--157
+[]\OT1/cmr/bx/n/14.4 Berechnung der ge-sam-ten Strah-lung auf ei-ne ge-neig-te 
+Fl[]ache 
+ []
+
+LaTeX Font Info:    Trying to load font information for OML+cmr on input line 1
+70.
+
+("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\om
+lcmr.fd"
+File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 170.
+ [8] [9] (Protokoll.aux) ) 
 Here is how much of TeX's memory you used:
- 25618 strings out of 492452
- 656819 string characters out of 3114924
- 847294 words of memory out of 3000000
- 29522 multiletter control sequences out of 15000+200000
+ 7557 strings out of 492452
+ 112707 string characters out of 3114924
+ 393878 words of memory out of 3000000
+ 11808 multiletter control sequences out of 15000+200000
  8509 words of font info for 30 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,18n,98p,734b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/Konstantin Ko
-bel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+ 46i,18n,46p,503b,1575s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/Konstantin Kobel/AppData/Local/Programs/MiK
+TeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Konstantin Kobel/Ap
+pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/
+Users/Konstantin Kobel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmmi10.pfb><C:/Users/Konstantin Kobel/AppData/Local/Programs/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Konstantin Kobel/AppData/
+Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/Ko
+nstantin Kobel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
+/cmmi8.pfb><C:/Users/Konstantin Kobel/AppData/Local/Programs/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmr12.pfb><C:/Users/Konstantin Kobel/AppData/Local/Prog
+rams/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Konstantin Ko
+bel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 ><C:/Users/Konstantin Kobel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmcsc10.pfb><C:/Users/Konstantin Kobel/AppData/Local/Programs/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Konstantin Kobel/Ap
-pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/U
-sers/Konstantin Kobel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
-onts/cm/cmmi8.pfb><C:/Users/Konstantin Kobel/AppData/Local/Programs/MiKTeX 2.9/
-fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Konstantin Kobel/AppData/Loc
-al/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Kons
-tantin Kobel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-msy8.pfb>
-Output written on Protokoll.pdf (6 pages, 1293666 bytes).
+c/amsfonts/cm/cmsy8.pfb>
+Output written on Protokoll.pdf (9 pages, 1322707 bytes).
 PDF statistics:
- 101 PDF objects out of 1000 (max. 8388607)
+ 117 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 38 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

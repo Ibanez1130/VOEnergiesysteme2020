@@ -6,15 +6,27 @@
 \usepackage{subcaption}
 \usepackage{fancyhdr}
 \usepackage{pdfpages}
-\usepackage{longtable}
-\usepackage{multirow}
-\usepackage{pgfplots}
-\usepackage{pgfplotstable}
+\usepackage{listings}
 \usepackage{float}
+
 \pagestyle{fancy}
-\lhead{Messtechnik Labor}
+\lstset{
+	language=Matlab,
+	breaklines=true,
+	morekeywords={matlab2tikz},
+	keywordstyle=\color{blue},
+	morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+	identifierstyle=\color{black},
+	stringstyle=\color{mylilas},
+	commentstyle=\color{mygreen},
+	showstringspaces=false,
+	mathescape=true
+	emph=[1]{for,end,break},emphstyle=[1]\color{red},
+}
+
+\lhead{Sonneneinstrahlung und Photovoltaik Teil 1}
 \chead{}
-\rhead{Gruppe 2}
+\rhead{Gruppe D}
 
 \begin{document}
 	\includepdf{Protokoll_titlepage.pdf}
@@ -73,7 +85,7 @@
 		\end{itemize}
 	\end{itemize}
 	\newpage
-	\section{Berechnungen}
+	\section{Berechnungen - Aufgabe 1.1}
 	\subsection{Beschreibung der Winkel}
 	\begin{figure}[H]
 		\centering
@@ -95,4 +107,85 @@
 	\begin{equation}
 		\Theta_{gen} = \arccos{[-\cos{(\gamma_S)}*\sin{(\gamma_E)}*\cos{(\alpha_S-\alpha_E-180^{\circ})}+\sin{(\gamma_S)}*\cos{(\gamma_E)}]}
 	\end{equation}
+	Der MATLAB Code, zur Berechnung des Moduleinfallswinkels $Theta_{gen}$ auf eine geneigte Fläche lautet wie folgt:
+	\begin{lstlisting}
+		acosd($-$cosd(sHoehenwinkel).*sind(pvHoehenwinkel).*cosd(sAzimut $-$ pvAzimut $-$ 180)+sind(sHoehenwinkel).*cosd(pvHoehenwinkel));
+	\end{lstlisting}
+	In dieser Formel ist hervor zu heben, dass zur Berechnung jeweils die Funktionen sind, cosd und acosd genutzt wurden. Die Besonderheit liegt darin, dass diese Funktionen den Übergabeparameter in Grad erwarten, wohingegen sin, cos und acos den Winkel in Radiant erwarten.\newline
+	In der Funktion werden folgende Variablen genutzt:
+	\begin{itemize}
+		\item \textbf{sAzimut} - Der Sonnenazimutalwinkel der Sonne. Dieser Wert wird mit Hilfe der Funktion SonnenstandTST berechnet.
+		\item \textbf{sHoehenwinkel} - Der Höhenwinkel der Sonne. Dieser Wert wird mit Hilfe der Funktion SonnenstandTST berechnet.
+		\item \textbf{pvAzimut} - Der Azimutalwinkel der PV-Anlage. In unserem Fall entspricht $\alpha_E$ einem Winkel von $270^{\circ}$.
+		\item \textbf{pvHoehenwinkel} - Der Höhenwinkel der PV-Anlage. Dieser entspricht dem Modulneigungswinkel. In unserem Fall entspricht $\gamma_E$ einem Winkel von $20^{\circ}$.
+	\end{itemize}
+	\subsection{Berechnung der Strahlungsanteile auf eine geneigte Fläche}
+	Im Falle einer geneigten PV-Anlage sind drei Strahlungsanteile relevant: direkte Strahlung, diffuse Strahlung und reflektierte Strahlung. (Im Falle einer horizontalen PV-Anlage würden sich die Strahlungsanteile auf die direkte und die diffuse Strahlung begrenzen, da die reflektierte Strahlung über $\frac{1-\cos{(\gamma_E)}}{2}$ vom Modulneigungswinkel abhängig ist. Im Falle eines Modulneigungswinkels ergibt sich somit für die reflektierte Strahlung ein Wert von $0$.)
+	\subsubsection{Direkte Strahlung}
+	Die direkte Strahlung ist der Anteil, der direkt auf der PV-Anlage auftrifft.\newline
+	Die Berechnung des direkten Strahlungsanteils erfolgt über die Formel
+	\begin{equation}
+		E_{dir,gen}=E_{dir,hor}*{max(0,\frac{\cos{\Theta_{gen}}}{\sin{\gamma_S}})}.
+	\end{equation}
+	$E_{dir,hor}$ entspricht dabei der gemessenen Direktstrahlung auf eine horizontale Fläche. Die Daten für $E_{dir,hor}$ sind in der Datei $Strahlung.mat$ gegeben.
+	Der MATLAB Code für die Berechnung lautet
+	\begin{lstlisting}
+	DirectGen = Strahlung.DirectHoriz.*max(0, (cosd(pvModuleinfallswinkel)./sind(sHoehenwinkel)));
+	\end{lstlisting}
+	\subsubsection{Diffuse Strahlung}
+	Der diffuse Strahlungsanteil entspricht der Strahlung, die am Weg durch die Erdatmosphäre mit ihr wechselwirkt (z.B. mit Wolken).
+	Die diffuse Strahlung kann als eine Hohlhalbkugel betrachtet werden, die sich über der PV-Anlage befindet und Licht emittiert. (Isotropes Diffusstrahlungsmodell)\newline
+	Die Berechnung des diffusen Strahlungsanteils erfolgt über die Formel
+	\begin{equation}
+		E_{diff,gen,iso}=E_{diff,hor}*\frac{1+\cos{(\gamma_E)}}{2}.
+	\end{equation}
+	Daraus ergibt sich folgender MATLAB Code:
+	\begin{lstlisting}
+	DiffusGen = Strahlung.DiffusHoriz.*(1+cosd(pvHoehenwinkel))./2;
+	\end{lstlisting}
+	\subsubsection{Reflektierte Strahlung}
+	Bei der reflektierten Strahlung handelt es sich um den Strahlungsanteil, der zuerst vom Boden reflektiert wird und dann auf dem PV Modul auftrifft.\newline
+	Daraus folgt die Formel zur Berechnung des reflektierten Strahlungsanteils zu
+	\begin{equation}
+		E_{refl,gen}=E_{G,hor}*A*\frac{1-\cos{(\gamma_E)}}{2}.
+	\end{equation}
+	$A$ entspricht in dieser Formel dem Albedo-Wert. Dieser entspricht dem Verhältnis der auf eine Fläche einfallenden Strahlung und der von der Fläche reflektierten Strahlung. Ist dieser Wert für eine Fläche nicht bekannt, kann er mit dem Wert $0.2$ angenommen werden.\newline
+	Der daraus resultierende MATLAB Code, zur Errechnung der reflektierten Strahlung, lautet
+	\begin{lstlisting}
+	ReflectedGen = Strahlung.Reflected.*0.2.*(1$-$cosd(pvHoehenwinkel))./2;
+	\end{lstlisting}
+	\subsection{Berechnung der gesamten Strahlung auf eine geneigte Fläche}
+	Wie bereits eingangs erwähnt, setzt sich die gesamte Strahlung auf eine geneigte Fläche aus dem direkten, dem diffusen und dem reflektierten Strahlungsanteil zusammen.\newline
+	Daraus ergibt sich
+	\begin{equation}
+		E_{G,gen}=E_{dir,gen}+E_{diff,gen,iso}+E_{refl,gen}.
+	\end{equation}
+	Unter Berücksichtigung des obigen MATLAB Codes ergibt sich für die Berechnung der gesamten Strahlung auf eine geneigte Fläche
+	\begin{lstlisting}
+	GesGen = DirectGen + ReflectedGen + DiffusGen;
+	\end{lstlisting}
+	Als zusätzliche Annahme wurde definiert, dass Erträge bei einem Höhenwinkel unter $5^{\circ}$ nicht berücksichtigt werden sollen.\newline
+	Diese Annahme lässt sich durch folgende Formel umsetzen:
+	\begin{lstlisting}
+	GesGen(sHoehenwinkel < 5) = 0;
+	\end{lstlisting}
+	\subsection{Berechnung des Ertrags}
+	Der gesamte Ertrag $E_{ges}$ der Anlage errechnet sich durch
+	\begin{equation}
+		E=E_{G,gen}*A*\eta_{Modul}*\eta_{sonst}.
+	\end{equation}
+	\begin{itemize}
+		\item \textbf{$E_{G,gen}$} entspricht der gesamten Einstrahlung (dem gesamten Ertrag) auf die geneigte PV-Anlage.
+		\item \textbf{$A$} entspricht der Fläche der PV-Anlage.
+		\item \textbf{$\eta_{Modul}$} ist der Modulwirkungsgrad (in unserem Fall $0.17$).
+		\item \textbf{$\eta_{sonst}$} sind sonstige Verluste, die durch Reflexion, die Temperatur, Wechselrichter, etc. auftreten. (In unserem Fall $0.8$).
+	\end{itemize}
+	Da die in der Variable $E_{G,gen}$ errechneten Werte in 15 Minuten Intervalle aufgeteilt sind, müssen wir in MATLAB eine zusätzliche Korrektur (ein Multiplikator mit dem Wert $0.25$) in die Formel einfügen:
+	\begin{lstlisting}
+		Eges = GesGen.*0.25.*pvFlaeche.*pvWirkungsgrad.*pvVerluste;
+	\end{lstlisting}
+	\newpage
+	\section{Ergebnisse - Aufgabe 1.1}
+	\section{Berechnungen - Aufgabe 1.2}
+	\section{Ergebnisse - Aufgabe 1.2}
 \end{document}
