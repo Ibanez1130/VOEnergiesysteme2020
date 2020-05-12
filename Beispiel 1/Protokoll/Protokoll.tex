@@ -186,6 +186,122 @@
 	\end{lstlisting}
 	\newpage
 	\section{Ergebnisse - Aufgabe 1.1}
-	\section{Berechnungen - Aufgabe 1.2}
+	\subsection{1.1.a}
+	In Aufgabe 1.1.a ging es darum ein Modell zu erstellen, das für eine bestimmte Anlage (mit gegebenem Sonnenstand und Einstrahlungswerten) den Ertrag der PV-Anlage errechnet.\newline
+	Das Modell zur Berechnung des Ertrags befindet sich in der Datei $Beispiel1.m$. Die Ergebnisse der Berechnungen werden im Unterpunkt 1.1.b beschrieben.
+	\subsection{1.1.b}
+	In Aufgabe 1.1.b waren der gesamte Jahresertrag 2005 und die Volllaststunden, der in der Angabe parametrisierten Anlage, zu errechnen.\newline
+	Die Ergebnisse der Berechnungen befinden sich in den Dateien $Jahresertrag_2005.mat$ beziehungszweise $Vollaststunden.mat$.\newline
+	Durch Aufsummieren der einzelnen Viertelstunden-Erträge, erhält man für das Jahr 2005 einen Gesamtertrag von $219.25kWh$.\newline
+	Über die Formel
+	\begin{equation}
+	T=\frac{\sum \limits_{t=1}^T P_t}{P_{Peak}}
+	\end{equation}
+	können die Volllaststunden der Anlage errechnet werden. Im Falle unserer $1kWp$ Anlage ergibt sich eine Vollauslastung von etwa $219.25$ Stunden.
 	\section{Ergebnisse - Aufgabe 1.2}
+	\subsection{1.2.a - Leistungsdauerlinie}
+	Das Ziel der Aufgabe 1.2.a war eine Leistungsdauerlinie der PV-Erzeugung, über das Jahr, darzustellen.\newline
+	Eine Leistungsdauerlinie gibt die erbrachte Leistung der PV-Anlage, über eine bestimmte Zeitspanne, an.\newline
+	Die Leistung $P$ der Anlage ergibt sich aus
+	\begin{equation}
+	P=E*4
+	\end{equation}
+	Um aus dem berechneten gesamten Ertrag der PV-Anlage die Leistungsdauerlinie zu erhalten, ist folgender MATLAB Code notwendig:
+	\begin{lstlisting}
+	sort(Eges, $'$descend$'$).*4;
+	\end{lstlisting}
+	Daraus ergibt sich folgendes Diagramm:
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{img/results/Leistungsdauerlinie}
+		\caption{Leistungsdauerlinie der PV-Anlage, im Jahre 2005.}
+	\end{figure}
+	In Abbildung 2 ist ersichtlich, dass die PV-Anlage in einem Zeitraum von ungefähr $5.3$ Monaten Energie liefert. Der Grund, warum die Anlage die restlichen $6.7$ Monate keine Energie liefert, ist einerseits die Nacht. Andererseits ist die Anlage nicht nachgeführt, was zu einem geringeren Ertrag in den Morgen- und Abendstunden führt.
+	\subsection{1.2.b - monatliche Erträge}
+	In Aufgabe 1.2.b ging es darum einen Plot über die monatlichen Erträge der PV-Anlage zu erstellen.\newline
+	Der Plot kann mit folgendem MATLAB Code erstellt werden:
+	\begin{lstlisting}
+	plot(Eges);
+	\end{lstlisting}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{img/results/MonatlicheErtraege}
+		\caption{Monatliche Erträge der PV-Anlage, über das Jahr 2005.}
+	\end{figure}
+	In Abbildung 3 ist schön dargestellt, wie der Ertrag der PV-Anlage in den Sommermonaten deutlich höher ist, als in den Wintermonaten.\newline
+	Das ist dadurch begründet, dass in den Sommermonaten die Strahlungsleistung auf einen Quadratmeter deutlich höher ist und die Tage zusätzlich länger sind, als in den Wintermonaten.\newline
+	Da wir in der Angabe definiert haben, dass der Wirkungsgrad der PV-Anlage konstant ist, wurde der Faktor "Temperatur" nicht in der Berechnung berücksichtigt.\newline
+	Dieser würde jedoch dafür sorgen, dass der Wirkungsgrad bei höheren Temperaturen sinkt und bei niedrigeren Temperaturen steigt.
+	\subsection{1.2.c - Ertragsminima und Ertragsmaxima}
+	Das Ziel von Aufgabe 1.2.c war es jeweils die fünf ertragreichsten und ertragsschwächsten Tage zu identifizieren.\newline
+	Hierzu müssen die Viertelstunden-Erträge in der Variable $Eges$ zuerst zu ganzen Tagen aufsummiert werden.\newline
+	Dies geschieht über folgenden Code:
+	\begin{lstlisting}
+	Etag = zeros(1,365);
+	for tag=1:365
+		Etag(tag) = sum(Eges(time.Tag == tag));
+	end
+	\end{lstlisting}
+	Um nun die fünf ertragsstärksten bzw. ertragsschwächsten Tage zu ermitteln, können die Funktionen $maxk(Etag, 5)$ bzw. $mink(Etag, 5)$ benutzt werden.\newline
+	Daraus ergeben sich für die ertragsstärksten Tage:
+	\begin{table}[H]
+		\begin{tabular}{|c|c|c|c|c|c|}
+			\hline
+			Tagesertrag (in Wh) & 1.5104e+03  & 1.5079e+03  & 1.4992e+03  & 1.4989e+03  & 1.48783+03  \\ \hline
+			Datum               & 21-Jun-2005 & 24-Jun-2005 & 23-Jun-2005 & 03-Jun-2005 & 04-Jul-2005 \\ \hline
+		\end{tabular}
+	\end{table}
+	\noindent Die ertragsschwächsten Tage sind:
+	\begin{table}[H]
+		\begin{tabular}{|c|c|c|c|c|c|}
+			\hline
+			Tagesertrag (in Wh) & 52.7921     & 54.5420     & 58.0446     & 59.8388     & 60.2442     \\ \hline
+			Datum               & 06-Dec-2005 & 31-Dec-2005 & 27-Nov-2005 & 03-Dec-2005 & 28-Dec-2005 \\ \hline
+		\end{tabular}
+	\end{table}
+	\noindent Die ertragsstärksten Tage liegen, wie erwartet, in den Sommermonaten (in diesem Fall alle im Juni), während die ertragsschwächsten Tage in den Wintermonaten (in unserem Fall Dezember) liegen.\newline
+	Die PV-Anlage produziert maximal $1.5104e+03Wh$ und minimal $52.7921Wh$. Die Verteilung über jeweils einen Tag ist glockenförmig, mit einem Maximum bei circa 12:00 Uhr.
+	\subsection{1.2.d - Strahlungsanteile}
+	Zur Darstellung der Strahlungsanteile in einem Diagramm, steht uns die Funktion $plotStrahlungsanteile.m$ zur Verfügung.\newline
+	Damit ergibt sich folgender MATLAB Code:
+	\begin{lstlisting}
+	plotStrahlungsanteile(pvAzimut, pvHoehenwinkel, sLaengengrad, sBreitengrad, Strahlung, time)
+	\end{lstlisting}
+	Das resultierende Diagramm ist in Abbildung 4 dargestellt.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{img/results/Strahlungsanteile}
+		\caption{Strahlungsanteile, über das Jahr 2005.}
+	\end{figure}
+	Wie erwartet kommt der Großteil der Strahlungsenergie von der direkten und der diffusen Strahlung. Der reflektierte Anteil trägt relativ wenig zur Energie bei.
+	\subsection{1.2.e - Durchschnittliche Stromproduktion}
+	In Aufgabe 1.2.e sollte die durchschnittliche Stromproduktion für jede Stunde am Tag, für die Monate Juni und Dezember, berechnet werden. Die Darstellung soll mithilfe von Boxplots geschehen.\newline
+	Mithilfe folgendem MATLAB Code erhalten wir eine $24 x 30$ Matrix, die uns zu jedem Tag des Monats Juni den Ertrag in $Wh$ angibt:
+	\begin{lstlisting}
+	Ejuni = Eges(time.Monat == 6);
+	EJuniStunden = sum(reshape(Ejuni,4,720));
+	EJuniTage = reshape(EJuniStunden,24,30);
+	\end{lstlisting}
+	Analog dazu kann die Matrix für Dezember folgendermaßen errechnet werden:
+	\begin{lstlisting}
+	Edezember = Eges(time.Monat == 12);
+	EDezemberStunden = sum(reshape(Edezember,4,744));
+	EDezemberTage = reshape(EDezemberStunden,24,31);
+	\end{lstlisting}
+	Die resultierenden Boxplot Diagramme sehen folgendermaßen aus:
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{img/results/ErtragProStunde_Juni}
+		\caption{Ertrag pro Stunde, über das Monat Juni 2005.}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{img/results/ErtragProStunde_Dezember}
+		\caption{Ertrag pro Stunde, über das Monat Dezember 2005.}
+	\end{figure}
+	\section{Interpretation der Ergebnisse}
+	Die errechneten Werte basieren auf Annahmen, die unter Anderem einen, durch die Tempertatur veränderten, Wirkungsgrad der PV-Anlage, Verschattung durch Bäume und Gebäude und Verschmutzung nicht berücksichtigen. Sie vermitteln daher eine ungefähre Idee über den Ertrag der Anlage, sollten jedoch nur in Anbetracht dieser Annahmen weiterverwendet werden.
+	\section{Literatur}
+	Modellierung eines Wärmeschichtspeichers mit
+	Solareinbindung in Excel/VBA von Rainer Blabensteiner.
 \end{document}

@@ -11,4 +11,14 @@
 \contentsline {subsubsection}{\numberline {2.3.3}Reflektierte Strahlung}{7}% 
 \contentsline {subsection}{\numberline {2.4}Berechnung der gesamten Strahlung auf eine geneigte Fläche}{8}% 
 \contentsline {subsection}{\numberline {2.5}Berechnung des Ertrags}{8}% 
-\contentsline {section}{\numberline {3}Berechnungen - Aufgabe 1.2}{9}% 
+\contentsline {section}{\numberline {3}Ergebnisse - Aufgabe 1.1}{9}% 
+\contentsline {subsection}{\numberline {3.1}1.1.a}{9}% 
+\contentsline {subsection}{\numberline {3.2}1.1.b}{9}% 
+\contentsline {section}{\numberline {4}Ergebnisse - Aufgabe 1.2}{9}% 
+\contentsline {subsection}{\numberline {4.1}1.2.a - Leistungsdauerlinie}{9}% 
+\contentsline {subsection}{\numberline {4.2}1.2.b - monatliche Erträge}{10}% 
+\contentsline {subsection}{\numberline {4.3}1.2.c - Ertragsminima und Ertragsmaxima}{11}% 
+\contentsline {subsection}{\numberline {4.4}1.2.d - Strahlungsanteile}{12}% 
+\contentsline {subsection}{\numberline {4.5}1.2.e - Durchschnittliche Stromproduktion}{13}% 
+\contentsline {section}{\numberline {5}Interpretation der Ergebnisse}{15}% 
+\contentsline {section}{\numberline {6}Literatur}{15}% 
