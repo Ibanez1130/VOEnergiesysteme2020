@@ -42,16 +42,13 @@ xlabel("Zeit in Vierteltunden")
 ylabel("Gesamtertrag in Wh/15min")
 axis([0 35040 0 inf])
 
-
-
 %% Aufgabe 1.2.a
 figure('Name', 'Leistungsdauerlinie (1.2.a)', 'NumberTitle', 'Off')
-Psorted = sort(Eges, 'descend').*4;
+Psorted = sort(Eges, 'descend').*15;
 plot(Psorted)
-xlabel("Zeit in Vierteltunden")
+xlabel("Zeit in Viertelstunden")
 ylabel("Leistung in W")
 axis([0 35040 0 inf])
-
 
 %% Aufgabe 1.2.b und 1.2.c
 

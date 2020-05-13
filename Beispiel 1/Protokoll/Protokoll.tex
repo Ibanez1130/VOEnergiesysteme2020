@@ -191,7 +191,7 @@
 	Das Modell zur Berechnung des Ertrags befindet sich in der Datei $Beispiel1.m$. Die Ergebnisse der Berechnungen werden im Unterpunkt 1.1.b beschrieben.
 	\subsection{1.1.b}
 	In Aufgabe 1.1.b waren der gesamte Jahresertrag 2005 und die Volllaststunden, der in der Angabe parametrisierten Anlage, zu errechnen.\newline
-	Die Ergebnisse der Berechnungen befinden sich in den Dateien $Jahresertrag_2005.mat$ beziehungszweise $Vollaststunden.mat$.\newline
+	Die Ergebnisse der Berechnungen befinden sich in den Dateien $Jahresertrag\_2005.mat$ beziehungszweise $Vollaststunden.mat$.\newline
 	Durch Aufsummieren der einzelnen Viertelstunden-Erträge, erhält man für das Jahr 2005 einen Gesamtertrag von $219.25kWh$.\newline
 	Über die Formel
 	\begin{equation}
@@ -204,19 +204,20 @@
 	Eine Leistungsdauerlinie gibt die erbrachte Leistung der PV-Anlage, über eine bestimmte Zeitspanne, an.\newline
 	Die Leistung $P$ der Anlage ergibt sich aus
 	\begin{equation}
-	P=E*4
+	P=E*15
 	\end{equation}
+	Die Mulitplikation mit $15$ ist nötig, da die Energie der Anlage mit $Wh/15min$ gegeben ist.\newline
 	Um aus dem berechneten gesamten Ertrag der PV-Anlage die Leistungsdauerlinie zu erhalten, ist folgender MATLAB Code notwendig:
 	\begin{lstlisting}
-	sort(Eges, $'$descend$'$).*4;
+	sort(Eges, $'$descend$'$).*15;
 	\end{lstlisting}
 	Daraus ergibt sich folgendes Diagramm:
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=12cm]{img/results/Leistungsdauerlinie}
-		\caption{Leistungsdauerlinie der PV-Anlage, im Jahre 2005.}
+		\caption{Leistungsdauerlinie der PV-Anlage, im Jahre 2005. (x-Achse in Viertelstunden-Schritten)}
 	\end{figure}
-	In Abbildung 2 ist ersichtlich, dass die PV-Anlage in einem Zeitraum von ungefähr $5.3$ Monaten Energie liefert. Der Grund, warum die Anlage die restlichen $6.7$ Monate keine Energie liefert, ist einerseits die Nacht. Andererseits ist die Anlage nicht nachgeführt, was zu einem geringeren Ertrag in den Morgen- und Abendstunden führt.
+	In Abbildung 2 ist ersichtlich, dass die PV-Anlage in einem Zeitraum von ungefähr $5.2$ Monaten ($\sim 16.000$ Viertelstunden) Energie liefert. Der Grund, warum die Anlage die restlichen $6.8$ Monate keine Energie liefert, ist einerseits die Nacht. Andererseits ist die Anlage nicht nachgeführt, was zu einem geringeren Ertrag in den Morgen- und Abendstunden führt.
 	\subsection{1.2.b - monatliche Erträge}
 	In Aufgabe 1.2.b ging es darum einen Plot über die monatlichen Erträge der PV-Anlage zu erstellen.\newline
 	Der Plot kann mit folgendem MATLAB Code erstellt werden:
