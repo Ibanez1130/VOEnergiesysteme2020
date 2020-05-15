@@ -52,4 +52,16 @@ legend('ideal','temperaturabhängig')
 xlabel("Monat")
 ylabel("Ertrag in Wh/Monat")
 
-% TODO: Stellen Sie dazu die durchschnittlichen stündlichen Werte gegenüber.
+% Berechnen der Stündlichen Werte - Aufsummieren von jeweils 4
+% Viertelstundenwerten.
+Estunden = sum(reshape(Eges,4,8760));
+EstundenT = sum(reshape(EgesT,4,8760));
+% Errechnen der Durchschnittswerte pro Stunde, für alle Tage des Jahres
+Etagmean = mean(reshape(Estunden,24,365));
+EtagmeanT = mean(reshape(EstundenT,24,365));
+
+figure('Name', 'Durchschnittliche stündliche Werte (2.1.b)', 'NumberTitle', 'Off')
+bar(1:365,[Etagmean;EtagmeanT]);
+legend('ideal','temperaturabhängig')
+xlabel("Tag")
+ylabel("Ertrag in Wh/Tag")
