@@ -32,8 +32,11 @@ ct = 0.026; % Beschreibt wie stark die PV-Anlage durch die Strahlung erhitzt wir
 % Moduleinfallswinkel bei einer Südausrichtung von 180°
 pvModuleinfallswinkel = acosd(-cosd(sHoehenwinkel).*sind(pvHoehenwinkel).*cosd(sAzimut - pvAzimut - 180)+sind(sHoehenwinkel).*cosd(pvHoehenwinkel));
 
-%% Funktion: Eges = Jahreserzeugung(...) aufrufen. Funktion muss zuvor erstellt werden.
+%% Aufgabe 2.1.b
+%{
 [Eges,EgesT] = Jahreserzeugung(pvHoehenwinkel, pvGroesse, pvWirkungsgrad, pvVerluste, pvModuleinfallswinkel, sHoehenwinkel, Strahlung, gSTC, TmodSTC, ct, Temperatur);
+% Eliminieren aller NaN Werte, die beim Arbeiten mit dem Logarithmus
+% entstehen.
 EgesT(isnan(EgesT))=0;
 
 % Plot der Differenz zwischen Eges (ideal) und EgesT (Berücksichtigung der
@@ -65,3 +68,35 @@ bar(1:365,[Etagmean;EtagmeanT]);
 legend('ideal','temperaturabhängig')
 xlabel("Tag")
 ylabel("Ertrag in Wh/Tag")
+%}
+%% Aufgabe 2.2
+pvHoehenwinkelNeu = 0:2.5:90;
+pvAzimutNeu = 0:10:360;
+
+combinations = zeros(37);
+
+for h=1:length(pvHoehenwinkelNeu)
+    for a=1:length(pvAzimutNeu)
+        pvModuleinfallswinkelNeu = acosd(-cosd(sHoehenwinkel).*sind(pvHoehenwinkelNeu(h)).*cosd(sAzimut - pvAzimutNeu(a) - 180)+sind(sHoehenwinkel).*cosd(pvHoehenwinkelNeu(h)));
+        [Eges3,Eges3T] = Jahreserzeugung(pvHoehenwinkelNeu(h), pvGroesse, pvWirkungsgrad, pvVerluste, pvModuleinfallswinkelNeu, sHoehenwinkel, Strahlung, gSTC, TmodSTC, ct, Temperatur);
+        combinations(h,a) = sum(Eges3)/(pvGroesse.*1000);
+    end
+end
+
+maxValue = max(combinations(:));
+[rowsOfMaxes,colsOfMaxes] = find(combinations == maxValue);
+
+figure('Name', 'Volllast-Stunden abhängig von Azimut- und Neigungswinkel (2.2.b)', 'NumberTitle', 'Off')
+meshc(pvAzimutNeu,pvHoehenwinkelNeu,combinations)
+hold on
+plot3(pvAzimutNeu(colsOfMaxes),pvHoehenwinkelNeu(rowsOfMaxes),maxValue,'r*')
+xlabel('PV Azimut [°]')
+ylabel('PV Neigungswinkel [°]')
+zlabel('Volllast-Stunden [h/a]')
+
+figure('Name', 'Volllast-Stunden abhängig von Azimut- und Neigungswinkel (2.2.b)', 'NumberTitle', 'Off')
+contour(pvAzimutNeu,pvHoehenwinkelNeu,combinations)
+hold on
+plot(pvAzimutNeu(colsOfMaxes),pvHoehenwinkelNeu(rowsOfMaxes),'r*')
+xlabel('PV Azimut [°]')
+ylabel('PV Neigungswinkel [°]')
