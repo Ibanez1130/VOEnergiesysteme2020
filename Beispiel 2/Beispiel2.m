@@ -70,6 +70,7 @@ xlabel("Tag")
 ylabel("Ertrag in Wh/Tag")
 %}
 %% Aufgabe 2.2.a & 2.2.b
+%{
 pvHoehenwinkelNeu = 0:2.5:90;
 pvAzimutNeu = 0:10:360;
 
@@ -143,3 +144,7 @@ hold on
 plot(pvAzimutNeu(colsOfMaxesDezember),pvHoehenwinkelNeu(rowsOfMaxesDezember),'r*')
 xlabel('PV Azimut [°]')
 ylabel('PV Neigungswinkel [°]')
+%}
+
+%% Afugabe 2.3
+
