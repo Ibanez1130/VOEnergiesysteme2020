@@ -61,7 +61,6 @@ figure('Name', 'Monatliche Erträge (1.2.b)', 'NumberTitle', 'Off')
 bar(Emon)
 xlabel("Monat")
 ylabel("Ertrag in Wh/Monat")
-close all
 
 % Aufgabe 1.2.c
 Etag = zeros(1,365);
