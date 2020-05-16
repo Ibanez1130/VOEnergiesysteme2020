@@ -69,17 +69,21 @@ legend('ideal','temperaturabhängig')
 xlabel("Tag")
 ylabel("Ertrag in Wh/Tag")
 %}
-%% Aufgabe 2.2
+%% Aufgabe 2.2.a & 2.2.b
 pvHoehenwinkelNeu = 0:2.5:90;
 pvAzimutNeu = 0:10:360;
 
 combinations = zeros(37);
+combinationsJuni = zeros(37);
+combinationsDezember = zeros(37);
 
 for h=1:length(pvHoehenwinkelNeu)
     for a=1:length(pvAzimutNeu)
         pvModuleinfallswinkelNeu = acosd(-cosd(sHoehenwinkel).*sind(pvHoehenwinkelNeu(h)).*cosd(sAzimut - pvAzimutNeu(a) - 180)+sind(sHoehenwinkel).*cosd(pvHoehenwinkelNeu(h)));
         [Eges3,Eges3T] = Jahreserzeugung(pvHoehenwinkelNeu(h), pvGroesse, pvWirkungsgrad, pvVerluste, pvModuleinfallswinkelNeu, sHoehenwinkel, Strahlung, gSTC, TmodSTC, ct, Temperatur);
         combinations(h,a) = sum(Eges3)/(pvGroesse.*1000);
+        combinationsJuni(h,a) = sum(Eges3(time.Monat == 6))/(pvGroesse.*1000);
+        combinationsDezember(h,a) = sum(Eges3(time.Monat == 12))/(pvGroesse.*1000);
     end
 end
 
@@ -98,5 +102,44 @@ figure('Name', 'Volllast-Stunden abhängig von Azimut- und Neigungswinkel (2.2.b
 contour(pvAzimutNeu,pvHoehenwinkelNeu,combinations)
 hold on
 plot(pvAzimutNeu(colsOfMaxes),pvHoehenwinkelNeu(rowsOfMaxes),'r*')
+xlabel('PV Azimut [°]')
+ylabel('PV Neigungswinkel [°]')
+
+%% Aufgabe 2.2.c
+% Juni
+maxValueJuni = max(combinationsJuni(:));
+[rowsOfMaxesJuni,colsOfMaxesJuni] = find(combinationsJuni == maxValueJuni);
+
+figure('Name', 'Volllast-Stunden abhängig von Azimut- und Neigungswinkel Juni (2.2.c)', 'NumberTitle', 'Off')
+meshc(pvAzimutNeu,pvHoehenwinkelNeu,combinationsJuni)
+hold on
+plot3(pvAzimutNeu(colsOfMaxesJuni),pvHoehenwinkelNeu(rowsOfMaxesJuni),maxValueJuni,'r*')
+xlabel('PV Azimut [°]')
+ylabel('PV Neigungswinkel [°]')
+zlabel('Volllast-Stunden [h/a]')
+
+figure('Name', 'Volllast-Stunden abhängig von Azimut- und Neigungswinkel Juni (2.2.c)', 'NumberTitle', 'Off')
+contour(pvAzimutNeu,pvHoehenwinkelNeu,combinationsJuni)
+hold on
+plot(pvAzimutNeu(colsOfMaxesJuni),pvHoehenwinkelNeu(rowsOfMaxesJuni),'r*')
+xlabel('PV Azimut [°]')
+ylabel('PV Neigungswinkel [°]')
+
+% Dezember
+maxValueDezember = max(combinationsDezember(:));
+[rowsOfMaxesDezember,colsOfMaxesDezember] = find(combinationsDezember == maxValueDezember);
+
+figure('Name', 'Volllast-Stunden abhängig von Azimut- und Neigungswinkel Dezember (2.2.c)', 'NumberTitle', 'Off')
+meshc(pvAzimutNeu,pvHoehenwinkelNeu,combinationsDezember)
+hold on
+plot3(pvAzimutNeu(colsOfMaxesDezember),pvHoehenwinkelNeu(rowsOfMaxesDezember),maxValueDezember,'r*')
+xlabel('PV Azimut [°]')
+ylabel('PV Neigungswinkel [°]')
+zlabel('Volllast-Stunden [h/a]')
+
+figure('Name', 'Volllast-Stunden abhängig von Azimut- und Neigungswinkel Dezember (2.2.c)', 'NumberTitle', 'Off')
+contour(pvAzimutNeu,pvHoehenwinkelNeu,combinationsDezember)
+hold on
+plot(pvAzimutNeu(colsOfMaxesDezember),pvHoehenwinkelNeu(rowsOfMaxesDezember),'r*')
 xlabel('PV Azimut [°]')
 ylabel('PV Neigungswinkel [°]')
