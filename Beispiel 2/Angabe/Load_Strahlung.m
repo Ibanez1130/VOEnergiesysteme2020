@@ -19,7 +19,7 @@ fn=fieldnames(Strahlung);
 
 for i=1:1:(length(fn)-1)
     
-    Strahlung.(fn{i})(Strahlung.(fn{i})==-999)=Strahlung.(fn{i})(find(Strahlung.(fn{i})==-999)-672);
+    Strahlung.(fn{i})(strcmp(Strahlung.(fn{i}),-999))=Strahlung.(fn{i})(find(strcmp(Strahlung.(fn{i}),-999))-672);
    
 end
 
