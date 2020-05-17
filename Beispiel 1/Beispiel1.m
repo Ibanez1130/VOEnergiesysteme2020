@@ -39,7 +39,7 @@ T = sum(Eges)/(pvGroesse.*1000);
 figure('Name', 'Gesamtertrag (1.1.b)', 'NumberTitle', 'Off')
 plot(Eges)
 xlabel("Zeit in Vierteltunden")
-ylabel("Gesamtertrag in Wh/15min")
+ylabel("Strahlungsenergie/15min in Wh")
 axis([0 35040 0 inf])
 
 %% Aufgabe 1.2.a
@@ -60,7 +60,7 @@ end
 figure('Name', 'Monatliche Erträge (1.2.b)', 'NumberTitle', 'Off')
 bar(Emon)
 xlabel("Monat")
-ylabel("Ertrag in Wh/Monat")
+ylabel("Ertrag in Wh")
 
 % Aufgabe 1.2.c
 Etag = zeros(1,365);
@@ -90,8 +90,8 @@ EJuniTage = reshape(EJuniStunden,24,30);
 
 boxplot(EJuniTage)
 xlabel('Tage (Juni 2005)')
-ylabel('Ertrag in Watt')
-title('Ertrag pro Stunde - Juni')
+ylabel('Ertrag in Wh')
+title('Durchschnittlicher Ertrag pro Stunde, pro Tag - Juni')
 
 % Dezember
 % Die Schritte für Dezember sind die selben wie für Juni.
@@ -101,7 +101,9 @@ Edezember = Eges(time.Monat == 12);
 EDezemberStunden = sum(reshape(Edezember,4,744));
 EDezemberTage = reshape(EDezemberStunden,24,31);
 
-boxplot(EJuniTage)
+%{
+boxplot(EDezemberTage)
 xlabel('Tage (Dezember 2005)')
-ylabel('Ertrag in Watt')
-title('Ertrag pro Stunde - Dezember')
+ylabel('Ertrag in Wh')
+title('Durchschnittlicher Ertrag pro Stunde, pro Tag - Dezember')
+%}

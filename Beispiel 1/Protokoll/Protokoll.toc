@@ -14,11 +14,11 @@
 \contentsline {section}{\numberline {3}Ergebnisse - Aufgabe 1.1}{9}% 
 \contentsline {subsection}{\numberline {3.1}1.1.a}{9}% 
 \contentsline {subsection}{\numberline {3.2}1.1.b}{9}% 
-\contentsline {section}{\numberline {4}Ergebnisse - Aufgabe 1.2}{9}% 
-\contentsline {subsection}{\numberline {4.1}1.2.a - Leistungsdauerlinie}{9}% 
-\contentsline {subsection}{\numberline {4.2}1.2.b - monatliche Erträge}{10}% 
-\contentsline {subsection}{\numberline {4.3}1.2.c - Ertragsminima und Ertragsmaxima}{11}% 
-\contentsline {subsection}{\numberline {4.4}1.2.d - Strahlungsanteile}{12}% 
-\contentsline {subsection}{\numberline {4.5}1.2.e - Durchschnittliche Stromproduktion}{13}% 
-\contentsline {section}{\numberline {5}Interpretation der Ergebnisse}{15}% 
-\contentsline {section}{\numberline {6}Literatur}{15}% 
+\contentsline {section}{\numberline {4}Ergebnisse - Aufgabe 1.2}{10}% 
+\contentsline {subsection}{\numberline {4.1}1.2.a - Leistungsdauerlinie}{10}% 
+\contentsline {subsection}{\numberline {4.2}1.2.b - monatliche Erträge}{11}% 
+\contentsline {subsection}{\numberline {4.3}1.2.c - Ertragsminima und Ertragsmaxima}{12}% 
+\contentsline {subsection}{\numberline {4.4}1.2.d - Strahlungsanteile}{13}% 
+\contentsline {subsection}{\numberline {4.5}1.2.e - Durchschnittliche Stromproduktion}{14}% 
+\contentsline {section}{\numberline {5}Interpretation der Ergebnisse}{16}% 
+\contentsline {section}{\numberline {6}Literatur}{16}% 
