@@ -6,7 +6,7 @@
 % (siehe Matlab-Hilfe zu "struct") Den Vektor der Globalstrahlung auf eine
 % horizontale Fläche erhalten sie z.B. über Strahlung.GlobalHoriz
 
-Strahlung=dataset('XLSFile','Strahlung_Neapel.xlsx');
+Strahlung=readtable('Strahlung_Neapel.xlsx','Sheet','Strahlung_Neapel');
 
 %% Korrektur fehlender Werte - Vorsicht!!! lange Rechenzeit!
 % alle Datensätze von "SODA" aus dem Jahr 2005 enthalten einen Fehler. Über
@@ -22,5 +22,4 @@ for i=1:1:(length(fn)-1)
     Strahlung.(fn{i})(strcmp(Strahlung.(fn{i}),-999))=Strahlung.(fn{i})(find(strcmp(Strahlung.(fn{i}),-999))-672);
    
 end
-
-save Strahlung 
+save Strahlung

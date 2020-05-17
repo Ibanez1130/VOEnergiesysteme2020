@@ -65,6 +65,7 @@
 		\item Konstante Einstrahlung in den 15 Minuten Intervallen.
 		\item Norden $5^{\circ}$, Osten $90^{\circ}$, Süden $180^{\circ}$, Westen $270^{\circ}$.
 	\end{itemize}
+	\newpage
 	Die Aufgaben lauten:
 	\begin{itemize}
 		\item[a)] Erstellen Sie ein Modell, das für den gegebenen Sonnenstand und die Einstrahlungswerte (Diffus- und Direktstrahlung) auf eine horizontale Fläche den Ertrag der PV-Anlage nach Angabe der installierten Leistung in $kW_{peak}$ und der Ausrichtung der Anlage (Azimut und Neigungswinkel) modelliert. Verwenden Sie dazu das isotrope Einstrahlungsmodell.
@@ -216,6 +217,7 @@
 	\begin{lstlisting}
 	sort(Eges, $'$descend$'$).*15;
 	\end{lstlisting}
+	\newpage
 	Daraus ergibt sich folgendes Diagramm:
 	\begin{figure}[H]
 		\centering
@@ -240,7 +242,8 @@
 	Dieser würde jedoch dafür sorgen, dass der Wirkungsgrad bei höheren Temperaturen sinkt und bei niedrigeren Temperaturen steigt.
 	\subsection{1.2.c - Ertragsminima und Ertragsmaxima}
 	Das Ziel von Aufgabe 1.2.c war es jeweils die fünf ertragreichsten und ertragsschwächsten Tage zu identifizieren.\newline
-	Hierzu müssen die Viertelstunden-Erträge in der Variable $Eges$ zuerst zu ganzen Tagen aufsummiert werden.\newline
+	Hierzu müssen die Viertelstunden-Erträge in der Variable $Eges$ zuerst zu ganzen Tagen aufsummiert werden.
+	\newpage
 	Dies geschieht über folgenden Code:
 	\begin{lstlisting}
 	Etag = zeros(1,365);
@@ -294,6 +297,7 @@
 	EDezemberStunden = sum(reshape(Edezember,4,744));
 	EDezemberTage = reshape(EDezemberStunden,24,31);
 	\end{lstlisting}
+	\newpage
 	Die resultierenden Boxplot Diagramme sehen folgendermaßen aus:
 	\begin{figure}[H]
 		\centering

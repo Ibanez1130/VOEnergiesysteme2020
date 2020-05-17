@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7200 64-bit) (preloaded format=pdflatex 2019.10.21)  17 MAY 2020 13:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7200 64-bit) (preloaded format=pdflatex 2019.10.21)  17 MAY 2020 18:41
 entering extended mode
 **./Protokoll.tex
 (Protokoll.tex
@@ -482,13 +482,13 @@ Overfull \hbox (3.15392pt too wide) in paragraph at lines 55--56
  []
 
 [3]
-Overfull \hbox (6.48306pt too wide) in paragraph at lines 78--79
+Overfull \hbox (6.48306pt too wide) in paragraph at lines 79--80
 []\OT1/cmr/m/n/12 Ermitteln Sie je-weils die 5 Ta-ge mit der mi-ni-ma-len und d
 er ma-xi-ma-len PV-Erzeugung.
  []
 
 
-Overfull \hbox (44.71686pt too wide) in paragraph at lines 79--80
+Overfull \hbox (44.71686pt too wide) in paragraph at lines 80--81
 \OT1/cmr/m/n/12 Strah-lung an je-dem der 365 Ta-ge dar (ver-wen-den Sie da-zu d
 as Fi-le $\OML/cmm/m/it/12 plotStrahlungsanteile:m$\OT1/cmr/m/n/12 ). 
  []
@@ -497,66 +497,65 @@ as Fi-le $\OML/cmm/m/it/12 plotStrahlungsanteile:m$\OT1/cmr/m/n/12 ).
 <img/Winkel.png, id=67, 466.40227pt x 315.90186pt>
 File: img/Winkel.png Graphic file (type png)
 <use img/Winkel.png>
-Package pdftex.def Info: img/Winkel.png  used on input line 92.
+Package pdftex.def Info: img/Winkel.png  used on input line 93.
 (pdftex.def)             Requested size: 341.43306pt x 231.2668pt.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 104.
+(Font)              <14.4> on input line 105.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 104.
+(Font)              <7> on input line 105.
  [5 <./img/Winkel.png (PNG copy)>] [6] [7]
-Overfull \hbox (2.05368pt too wide) in paragraph at lines 157--157
+Overfull \hbox (2.05368pt too wide) in paragraph at lines 158--158
 []\OT1/cmr/bx/n/14.4 Berechnung der ge-sam-ten Strah-lung auf ei-ne ge-neig-te 
 Fl[]ache 
  []
 
 LaTeX Font Info:    Trying to load font information for OML+cmr on input line 1
-70.
+71.
 
 ("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\om
 lcmr.fd"
 File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 170.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 171.
  [8]
 <img/results/Gesamtertrag.png, id=84, 421.575pt x 316.18124pt>
 File: img/results/Gesamtertrag.png Graphic file (type png)
 <use img/results/Gesamtertrag.png>
-Package pdftex.def Info: img/results/Gesamtertrag.png  used on input line 203.
+Package pdftex.def Info: img/results/Gesamtertrag.png  used on input line 204.
 (pdftex.def)             Requested size: 341.43306pt x 256.08127pt.
- [9]
-<img/results/Leistungsdauerlinie.png, id=89, 421.575pt x 316.18124pt>
+ [9] [10 <./img/results/Gesamtertrag.png (PNG copy)>]
+<img/results/Leistungsdauerlinie.png, id=92, 421.575pt x 316.18124pt>
 File: img/results/Leistungsdauerlinie.png Graphic file (type png)
 <use img/results/Leistungsdauerlinie.png>
 Package pdftex.def Info: img/results/Leistungsdauerlinie.png  used on input lin
-e 222.
+e 224.
 (pdftex.def)             Requested size: 341.43306pt x 256.08127pt.
 
-Underfull \hbox (badness 3872) in paragraph at lines 223--223
+Underfull \hbox (badness 3872) in paragraph at lines 225--225
 []\OT1/cmr/m/n/12 Abbildung 3: |Leis-tungs-dau-er-li-nie der PV-Anlage, im Jah-
 re 2005. (x-Achse in
  []
 
-[10 <./img/results/Gesamtertrag.png (PNG copy)>]
 <img/results/MonatlicheErtraege.png, id=93, 421.575pt x 316.18124pt>
 File: img/results/MonatlicheErtraege.png Graphic file (type png)
 <use img/results/MonatlicheErtraege.png>
 Package pdftex.def Info: img/results/MonatlicheErtraege.png  used on input line
- 234.
+ 236.
 (pdftex.def)             Requested size: 341.43306pt x 256.08127pt.
- [11 <./img/results/Leistungsdauerlinie.png (PNG copy)>] [12 <./img/results/Mon
-atlicheErtraege.png (PNG copy)>]
-Overfull \hbox (30.01283pt too wide) in paragraph at lines 254--259
+[11 <./img/results/Leistungsdauerlinie.png (PNG copy)>] [12 <./img/results/Mona
+tlicheErtraege.png (PNG copy)>]
+Overfull \hbox (30.01283pt too wide) in paragraph at lines 257--262
 [][] 
  []
 
 
-Overfull \hbox (35.55722pt too wide) in paragraph at lines 262--267
+Overfull \hbox (35.55722pt too wide) in paragraph at lines 265--270
 [][] 
  []
 
 
-Overfull \hbox (86.03311pt too wide) in paragraph at lines 271--273
+Overfull \hbox (86.03311pt too wide) in paragraph at lines 274--276
 \OT1/cmr/m/n/12 Zur Dar-stel-lung der Strah-lungs-an-tei-le in ei-nem Dia-gramm
 , steht uns die Funk-ti-on $\OML/cmm/m/it/12 plotStrahlungsanteile:m$
  []
@@ -565,48 +564,48 @@ Overfull \hbox (86.03311pt too wide) in paragraph at lines 271--273
 File: img/results/Strahlungsanteile.png Graphic file (type png)
 <use img/results/Strahlungsanteile.png>
 Package pdftex.def Info: img/results/Strahlungsanteile.png  used on input line 
-279.
+282.
 (pdftex.def)             Requested size: 341.43306pt x 256.08127pt.
-[13]
-<img/results/ErtragProStunde_Juni.png, id=105, 421.575pt x 316.18124pt>
+[13] [14 <./img/results/Strahlungsanteile.png (PNG copy)>]
+<img/results/ErtragProStunde_Juni.png, id=108, 421.575pt x 316.18124pt>
 File: img/results/ErtragProStunde_Juni.png Graphic file (type png)
 <use img/results/ErtragProStunde_Juni.png>
 Package pdftex.def Info: img/results/ErtragProStunde_Juni.png  used on input li
-ne 300.
+ne 304.
 (pdftex.def)             Requested size: 341.43306pt x 256.08127pt.
-<img/results/ErtragProStunde_Dezember.png, id=106, 421.575pt x 316.18124pt>
+<img/results/ErtragProStunde_Dezember.png, id=109, 421.575pt x 316.18124pt>
 File: img/results/ErtragProStunde_Dezember.png Graphic file (type png)
 <use img/results/ErtragProStunde_Dezember.png>
 Package pdftex.def Info: img/results/ErtragProStunde_Dezember.png  used on inpu
-t line 305.
+t line 309.
 (pdftex.def)             Requested size: 341.43306pt x 256.08127pt.
- [14 <./img/results/Strahlungsanteile.png (PNG copy)>] [15 <./img/results/Ertra
-gProStunde_Juni.png (PNG copy)> <./img/results/ErtragProStunde_Dezember.png (PN
-G copy)>] [16] (Protokoll.aux) ) 
+ [15 <./img/results/ErtragProStunde_Juni.png (PNG copy)>] [16 <./img/results/Er
+tragProStunde_Dezember.png (PNG copy)>] (Protokoll.aux) ) 
 Here is how much of TeX's memory you used:
  7626 strings out of 492452
  114717 string characters out of 3114924
- 396878 words of memory out of 3000000
+ 395878 words of memory out of 3000000
  11870 multiletter control sequences out of 15000+200000
  8509 words of font info for 30 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  46i,18n,46p,503b,1575s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/Konstantin Kobel/AppData/Local/Progra
-ms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Konstantin Ko
-bel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pf
+<C:/Users/Konstantin K
+obel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pf
 b><C:/Users/Konstantin Kobel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmex10.pfb><C:/Users/Konstantin Kobel/AppData/Local/Programs/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/Konstantin Kobel/Ap
-pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/U
-sers/Konstantin Kobel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
-onts/cm/cmmi6.pfb><C:/Users/Konstantin Kobel/AppData/Local/Programs/MiKTeX 2.9/
-fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Konstantin Kobel/AppData/Loc
-al/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Konst
-antin Kobel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
-r8.pfb><C:/Users/Konstantin Kobel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmsy10.pfb><C:/Users/Konstantin Kobel/AppData/Local/Program
-s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on Protokoll.pdf (16 pages, 1462134 bytes).
+ic/amsfonts/cm/cmcsc10.pfb><C:/Users/Konstantin Kobel/AppData/Local/Programs/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Konstantin Kobel/A
+ppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/
+Users/Konstantin Kobel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmmi12.pfb><C:/Users/Konstantin Kobel/AppData/Local/Programs/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/Konstantin Kobel/AppData/L
+ocal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Kon
+stantin Kobel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
+cmr12.pfb><C:/Users/Konstantin Kobel/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
+pe1/public/amsfonts/cm/cmr8.pfb><C:/Users/Konstantin Kobel/AppData/Local/Progra
+ms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Konstantin Ko
+bel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+
+Output written on Protokoll.pdf (16 pages, 1462225 bytes).
 PDF statistics:
  149 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
