@@ -101,9 +101,7 @@ Edezember = Eges(time.Monat == 12);
 EDezemberStunden = sum(reshape(Edezember,4,744));
 EDezemberTage = reshape(EDezemberStunden,24,31);
 
-%{
 boxplot(EDezemberTage)
 xlabel('Tage (Dezember 2005)')
 ylabel('Ertrag in Wh')
 title('Durchschnittlicher Ertrag pro Stunde, pro Tag - Dezember')
-%}
