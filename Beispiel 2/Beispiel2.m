@@ -33,16 +33,15 @@ ct = 0.026; % Beschreibt wie stark die PV-Anlage durch die Strahlung erhitzt wir
 pvModuleinfallswinkel = acosd(-cosd(sHoehenwinkel).*sind(pvHoehenwinkel).*cosd(sAzimut - pvAzimut - 180)+sind(sHoehenwinkel).*cosd(pvHoehenwinkel));
 
 %% Aufgabe 2.1.b
-%{
 [Eges,EgesT] = Jahreserzeugung(pvHoehenwinkel, pvGroesse, pvWirkungsgrad, pvVerluste, pvModuleinfallswinkel, sHoehenwinkel, Strahlung, gSTC, TmodSTC, ct, Temperatur);
 % Eliminieren aller NaN Werte, die beim Arbeiten mit dem Logarithmus
 % entstehen.
 EgesT(isnan(EgesT))=0;
-
 % Plot der Differenz zwischen Eges (ideal) und EgesT (Berücksichtigung der
 % Temperatur)
 % plot(abs(Eges-EgesT))
 % Aufsummieren der jeweiligen Monats-Summen
+
 Emon = zeros(1,12);
 EmonT = zeros(1,12);
 for monat=1:12
@@ -68,9 +67,8 @@ bar(1:365,[Etagmean;EtagmeanT]);
 legend('ideal','temperaturabhängig')
 xlabel("Tag")
 ylabel("Ertrag in Wh/Tag")
-%}
+
 %% Aufgabe 2.2.a & 2.2.b
-%{
 pvHoehenwinkelNeu = 0:2.5:90;
 pvAzimutNeu = 0:10:360;
 
@@ -144,7 +142,80 @@ hold on
 plot(pvAzimutNeu(colsOfMaxesDezember),pvHoehenwinkelNeu(rowsOfMaxesDezember),'r*')
 xlabel('PV Azimut [°]')
 ylabel('PV Neigungswinkel [°]')
-%}
 
-%% Afugabe 2.3
+%% Aufgabe 2.3
+% TODO: ENTER THE RIGHT FILE HERE!
+% Strahlung_Neapel = load ('./Angabe/Strahlung.mat');
+Strahlung_Neapel = Strahlung;
+sLaengengradNeapel = 14.24878;
+sBreitengradNeapel = 40.83593;
 
+% TODO: ENTER THE RIGHT FILE HERE!
+% Strahlung_Stockholm = load ('./Angabe/Strahlung.mat');
+Strahlung_Stockholm = Strahlung;
+sLaengengradStockholm = 18.07109;
+sBreitengradStockholm = 59.32512;
+
+[sAzimutNeapel,sHoehenwinkelNeapel] = SonnenstandTST(sLaengengradNeapel,sBreitengradNeapel,time);
+pvModuleinfallswinkelNeapel = acosd(-cosd(sHoehenwinkelNeapel).*sind(pvHoehenwinkel).*cosd(sAzimutNeapel - pvAzimut - 180)+sind(sHoehenwinkelNeapel).*cosd(pvHoehenwinkel));
+
+[sAzimutStockholm,sHoehenwinkelStockholm] = SonnenstandTST(sLaengengradStockholm,sBreitengradStockholm,time);
+pvModuleinfallswinkelStockholm = acosd(-cosd(sHoehenwinkelStockholm).*sind(pvHoehenwinkel).*cosd(sAzimutStockholm - pvAzimut - 180)+sind(sHoehenwinkelStockholm).*cosd(pvHoehenwinkel));
+
+% Da die Temperatur für den Standort falsch ist, werden wir nur die
+% idealisierte Berechnung betrachen
+% Berechnung der gesamte Jahreserzeugung
+EgesNeapel = Jahreserzeugung(pvHoehenwinkel, pvGroesse, pvWirkungsgrad, pvVerluste, pvModuleinfallswinkelNeapel, sHoehenwinkelNeapel, Strahlung_Neapel, gSTC, TmodSTC, ct, Temperatur);
+EgesStockholm = Jahreserzeugung(pvHoehenwinkel, pvGroesse, pvWirkungsgrad, pvVerluste, pvModuleinfallswinkelStockholm, sHoehenwinkelStockholm, Strahlung_Stockholm, gSTC, TmodSTC, ct, Temperatur);
+% Berechnung der Volllaststunden
+T = sum(Eges)/(pvGroesse.*1000);
+TNeapel = sum(EgesNeapel)/(pvGroesse.*1000);
+TStockholm = sum(EgesStockholm)/(pvGroesse.*1000);
+
+% Berechnung des Gesamtertrags, pro Tag
+EtagNeapel = sum(reshape(EgesNeapel,96,365));
+EtagStockholm = sum(reshape(EgesStockholm,96,365));
+
+% Berechnen des durchschnittlichen Tagesertrags
+EtagNeapelmean = mean(EtagNeapel);
+EtagStockholmmean = mean(EtagStockholm);
+
+% 2.3.c
+pvHoehenwinkelNeu = 0:2.5:90;
+pvAzimutNeu = 0:10:360;
+
+combinationsNeapel = zeros(37);
+combinationsStockholm = zeros(37);
+
+for h=1:length(pvHoehenwinkelNeu)
+    for a=1:length(pvAzimutNeu)
+        pvModuleinfallswinkelNeapelNeu = acosd(-cosd(sHoehenwinkelNeapel).*sind(pvHoehenwinkelNeu(h)).*cosd(sAzimutNeapel - pvAzimutNeu(a) - 180)+sind(sHoehenwinkelNeapel).*cosd(pvHoehenwinkelNeu(h)));
+        pvModuleinfallswinkelStockholmNeu = acosd(-cosd(sHoehenwinkelStockholm).*sind(pvHoehenwinkelNeu(h)).*cosd(sAzimutStockholm - pvAzimutNeu(a) - 180)+sind(sHoehenwinkelStockholm).*cosd(pvHoehenwinkelNeu(h)));
+        EgesNeapel3 = Jahreserzeugung(pvHoehenwinkelNeu(h), pvGroesse, pvWirkungsgrad, pvVerluste, pvModuleinfallswinkelNeapelNeu, sHoehenwinkelNeapel, Strahlung_Neapel, gSTC, TmodSTC, ct, Temperatur);
+        EgesStockholm3 = Jahreserzeugung(pvHoehenwinkelNeu(h), pvGroesse, pvWirkungsgrad, pvVerluste, pvModuleinfallswinkelStockholmNeu, sHoehenwinkelStockholm, Strahlung_Stockholm, gSTC, TmodSTC, ct, Temperatur);
+        combinationsNeapel(h,a) = sum(EgesNeapel3(time.Monat == 6))/(pvGroesse.*1000);
+        combinationsStockholm(h,a) = sum(EgesStockholm3(time.Monat == 12))/(pvGroesse.*1000);
+    end
+end
+
+maxValueNeapel = max(combinationsNeapel(:));
+[rowsOfMaxesNeapel,colsOfMaxesNeapel] = find(combinationsNeapel == maxValueNeapel);
+
+figure('Name', 'Volllast-Stunden abhängig von Azimut- und Neigungswinkel - Neapel (2.3.b)', 'NumberTitle', 'Off')
+meshc(pvAzimutNeu,pvHoehenwinkelNeu,combinationsNeapel)
+hold on
+plot3(pvAzimutNeu(colsOfMaxesNeapel),pvHoehenwinkelNeu(rowsOfMaxesNeapel),maxValueNeapel,'r*')
+xlabel('PV Azimut [°]')
+ylabel('PV Neigungswinkel [°]')
+zlabel('Volllast-Stunden [h/a]')
+
+maxValueStockholm = max(combinationsStockholm(:));
+[rowsOfMaxesStockholm,colsOfMaxesStockholm] = find(combinationsStockholm == maxValueStockholm);
+
+figure('Name', 'Volllast-Stunden abhängig von Azimut- und Neigungswinkel - Stockholm (2.3.b)', 'NumberTitle', 'Off')
+meshc(pvAzimutNeu,pvHoehenwinkelNeu,combinationsStockholm)
+hold on
+plot3(pvAzimutNeu(colsOfMaxesStockholm),pvHoehenwinkelNeu(rowsOfMaxesStockholm),maxValueStockholm,'r*')
+xlabel('PV Azimut [°]')
+ylabel('PV Neigungswinkel [°]')
+zlabel('Volllast-Stunden [h/a]')
