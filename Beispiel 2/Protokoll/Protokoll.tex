@@ -103,8 +103,46 @@ unterschiedlichen Standorten zeitliche (tageszeitliche und saisonale) Unterschie
 aufweist.
 	\end{itemize}
 	\newpage
-	\section{Berechnungen - Aufgabe 2.1}
-	
+	\section{Berechnungen}
+	\subsection{Temperaturabhängigkeit einer PV-Anlage}
+	Wie bereits in Kapitel 5 "Interpretation der Ergebnisse" von Protokoll 1 erwähnt, ist der Wirkungsgrad einer PV-Anlage von der Temperatur dieser abhängig. Generell gilt, dass der Wirkungsgrad bei niedrigen Temperaturen steigt und bei hohen Temperaturen sinkt.\newline
+	Der temperaturabhängige Wirkungsgrad kann über folgende Formel ermittelt werden:
+	\begin{equation}
+	\eta_{rel}=1+k_1*\ln{(G')}+k_2*\ln{(G')}^2+T'*(k_3+k_4*\ln{(G')}+k_5*\ln{(G')}^2)+k_6*T'^2
+	\end{equation}
+	Die Parameter in dieser Gleichung sind folgendermaßen definiert:
+	\begin{itemize}
+		\item \textbf{$G$} - Dieser Wert entspricht der gesamten, auf die PV-Anlage auftreffenden, Einstrahlung. (Die Berechnung von $G$ wird im ersten Protokoll erklärt.)
+		\item \textbf{$T_{mod_{STC}}$} - Dieser Wert wurde als Referenzwert, für die Temperatur des Moduls, in den Standard Test Conditions definiert. Er entspricht $25^{\circ}C$.
+		\item \textbf{$G_{STC}$} - Dieser Wert wurde in den Standard Test Conditions als Referenzwert für die einfallende Strahlung definiert. Er entspricht $1000W/m^2$.
+		\item \textbf{$c_T$} - Dieser Faktor gibt an, wie stark sich das Modul durch Sonneneinstrahlung erhitzt.
+		\item \textbf{$T_{amb}$} - Entspricht der Umgebungstemperatur der PV-Anlage.
+		\item \textbf{$T_{mod}$} - Entspricht der tatsächlichen Temperatur des Moduls. Diese errechnet sich zu $T_{amb}+c_T*G$.
+		\item \textbf{$G'$} - Dieser Wert ist der Quotient aus der tatsächlichen Einstrahlung $G$ und der in den Standard Test Conditions definierten Einstrahlung $G_{STC}$. Daraus ergibt sich $G'=\frac{G}{G_{STC}}$.
+		\item \textbf{$T'$} - Die Temperatur des Moduls wird als Differenz zum Referenzwert $T_{mod_{STC}}$ angegeben. Diese errechnet sich zu $T'=T_{mod}-T_{mod_{STC}}$.
+	\end{itemize}
+	Die Parameter $k_1$ bis $k_6$, für c-Si Module, müssen durch Messungen gefunden werden. Sie werden im Skript $Mapping the performance of PV modules, effects of module type and data averaging$ folgendermaßen definiert:
+	\begin{table}[H]
+		\begin{tabular}{|l|c|c|c|c|c|}
+			\hline
+			\multicolumn{1}{|c|}{$k_1$} & $k_2$     & $k_3$     & $k_4$    & $k_5$    & $k_6$    \\ \hline
+			-0.017162                   & -0.040289 & -0.004681 & 0.000148 & 0.000169 & 0.000005 \\ \hline
+		\end{tabular}
+	\end{table}
+	In MATLAB ergibt sich daraus folgender Code:
+	\begin{lstlisting}
+	Tmod = repelem(Temperatur,4) + ct.*GesGen;
+	T = Tmod $-$ TmodSTC;
+	TWirkungsgrad=1$-$0.017162*log(GesGen./gSTC)$-$0.040289*log(GesGen./gSTC).^2$-$0.004681.*log(GesGen./gSTC).^3+0.000148.*log(GesGen./gSTC).^4+0.000169.*log(GesGen./gSTC).^5+0.000005.*T.^2;
+	\end{lstlisting}
+	Da die Temperatur in der Datei $Temperatur.mat$ nur in Stunden-Intervallen gegeben ist, müssen wir den Array der Temperatur dementsprechend skalieren, damit eine Multiplikation mit $GesGen$ möglich ist. ($GesGen$ enthält Viertelstunden-Werte)\newline
+	Die Berechnung von $GesGen$ wird im ersten Protokoll erklärt.\newline
+	Daraus ergibt sich die temperaturabhängige Energie zu
+	\begin{equation}
+	E=E_{G,gen}*A*\eta_{Modul}*\eta_{sonst}*\eta_{rel}
+	\end{equation}
+	Definitionen zu Formel (2) können dem ersten Protokoll entnommen werden.
+	\newpage	
 	\section{Ergebnisse - Aufgabe 2.1}
 	\subsection{1.1.a}
 	
