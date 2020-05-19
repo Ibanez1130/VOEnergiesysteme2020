@@ -47,7 +47,7 @@ for i = 1:25
         Preis_i = table2array(Spotpreis(:,9))./100;  %Euro/kWh ab dem Jahr 2016
     end
     PV_Energie = PV_profil.*4;  %Energie in einer Viertelstunge
-    CF = sum(PV_Energie.*Spotpreis_i) - Betriebskosten*Anlagenleistung;  %Cashflow im Jahr i
+    CF = sum(PV_Energie.*Preis_i) - Betriebskosten*Anlagenleistung;  %Cashflow im Jahr i
     NPV = NPV + CF/(1+Zinssatz)^i; %Barwert bis zum Jahr i
     
     hold on
