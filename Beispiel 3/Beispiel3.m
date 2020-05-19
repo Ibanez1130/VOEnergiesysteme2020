@@ -42,9 +42,9 @@ bar(0, NPV);
 
 for i = 1:25
     if i <= 9
-        Spotpreis_i = table2array(Spotpreis(:,i))./100;  %Euro/kWh bis zum Jahr 2016
+        Preis_i = table2array(Spotpreis(:,i))./100;  %Euro/kWh bis zum Jahr 2016
     else
-        Spotpreis_i = table2array(Spotpreis(:,9))./100;  %Euro/kWh ab dem Jahr 2016
+        Preis_i = table2array(Spotpreis(:,9))./100;  %Euro/kWh ab dem Jahr 2016
     end
     PV_Energie = PV_profil.*4;  %Energie in einer Viertelstunge
     CF = sum(PV_Energie.*Spotpreis_i) - Betriebskosten*Anlagenleistung;  %Cashflow im Jahr i
