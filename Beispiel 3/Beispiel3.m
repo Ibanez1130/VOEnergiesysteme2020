@@ -4,10 +4,14 @@ clear;                              % Leert Workspace
 clc                                 % Leert Command Window
 
 % Einlesen der Daten
-load('.\Angabe\Spotpreis.mat');
-load('.\Angabe\PV_Einspeiseprofil.mat');
-load('.\Angabe\Load_PVProduction.mat');
-load('.\Angabe\LeistungHaushalte.mat');
+load('.\Angabe\Spotpreis.mat');             % Stundenpreise in Cent/kWh für die Jahre 2008-2016 
+load('.\Angabe\Load_PVProduction.mat');     % Enthält Last.mat und PV_profil.mat
+                                            % Last.mat ist ein Lastprofil
+                                            % und PV_Prpfil ein
+                                            % Einspeiseprofil
+                                            % Jeweils in Stundenwerten
+load('.\Angabe\PV_Einspeiseprofil.mat');    % Enthält Leistung_Vec_Temperatur_Temp mit 15min Werte
+load('.\Angabe\LeistungHaushalte.mat');     % 15min Werte
 
 % Parameter
 % Parameter zur Aufgabe 3.1
@@ -34,60 +38,61 @@ Einspeisetarif_5_3 = 0.05;         % Einspeisetarif in €/kWh
 
 %% Aufgabe 3.1
 % 3.1a
-NPV = - Systemkosten*Anlagenleistung;    %NPV im Jahr null entspricht den negativen Investitionskosten
+NPV = - Systemkosten*Anlagenleistung;    % NPV im Jahr null entspricht den negativen Investitionskosten
 
-%figure_1 = figure('Name', '3.1a', 'NumberTitle', 'off');
+figure_1 = figure('Name', 'Aufgabe 3.1 - Verkauf der gesamten Produktion', 'NumberTitle', 'off');
 subplot(2,1,1)
+hold on
 bar(0, NPV);
 
 for i = 1:25
     if i <= 9
-        Preis_i = table2array(Spotpreis(:,i))./100;  %Euro/kWh bis zum Jahr 2016
+        Preis_i = table2array(Spotpreis(:,i))./100;  % Euro/kWh bis zum Jahr 2016
     else
-        Preis_i = table2array(Spotpreis(:,9))./100;  %Euro/kWh ab dem Jahr 2016
+        Preis_i = table2array(Spotpreis(:,9))./100;  % Euro/kWh ab dem Jahr 2016
     end
-    PV_Energie = PV_profil.*4;  %Energie in einer Viertelstunge
-    CF = sum(PV_Energie.*Preis_i) - Betriebskosten*Anlagenleistung;  %Cashflow im Jahr i
-    NPV = NPV + CF/(1+Zinssatz)^i; %Barwert bis zum Jahr i
+    CF = sum(PV_profil.*10.*Preis_i) - Betriebskosten*Anlagenleistung;  %Cashflow im Jahr i
+                                                                        % Multiplikation
+                                                                        % mit
+                                                                        % 10kWp
+    NPV = NPV + CF/(1+Zinssatz)^i; % Barwert bis zum Jahr i
     
-    hold on
     bar(i, NPV);
-    hold off
 end
+hold off
 
 xlabel('Lebensdauer in Jahren');
 ylabel('Barwert in Euro');
-axis([-1 26 -inf inf]);
-title('3.1a');
+title('Barwert bei Verkauf am Spotmarkt');
 
-Max_Invest = NPV + Anlagenleistung*Systemkosten;    %Maximale Investitionskosten für Wirtschaftlichkeit
+Max_Invest = NPV + Anlagenleistung*Systemkosten    % Maximale Investitionskosten für Wirtschaftlichkeit
 
 %3.1b
 
-subplot(2,1,2)
-NPV = - Systemkosten*Anlagenleistung;    %NPV im Jahr null entspricht den negativen Investitionskosten
+NPV = - Systemkosten*Anlagenleistung;    % NPV im Jahr null entspricht den negativen Investitionskosten
 
-%figure_2 = figure('Name', '3.1a', 'NumberTitle', 'off');
-bar(0, NPV);
+subplot(2,1,2)
+hold on
+bar(0, NPV);    % Barchart für Jahr 0 (Also nur Investitionskosten)
 
 for i = 1:25
     if i <= Foerderdauer
-        Preis_i = Einspeisetarif;  %Euro/kWh bis zum Förderende
+        Preis_i = Einspeisetarif;  % Euro/kWh bis zum Förderende
     else
-        Preis_i = table2array(Spotpreis(:,9))./100;  %Euro/kWh ab dem Förderende
+        Preis_i = table2array(Spotpreis(:,9))./100;  % Euro/kWh ab dem Förderende
     end
-    PV_Energie = PV_profil.*4;  %Energie in einer Viertelstunge
-    CF = sum(PV_Energie.*Preis_i) - Betriebskosten*Anlagenleistung;  %Cashflow im Jahr i
-    NPV = NPV + CF/(1+Zinssatz)^i; %Barwert bis zum Jahr i
+    CF = sum(PV_profil.*10.*Preis_i) - Betriebskosten*Anlagenleistung;  % Cashflow im Jahr i
+                                                                        % Multiplikation
+                                                                        % mit
+                                                                        % 10kWp
+    NPV = NPV + CF/(1+Zinssatz)^i; % Barwert bis zum Jahr i
     
-    hold on
-    bar(i, NPV);
-    hold off
+    bar(i, NPV);    % Barchart für Jahr i
 end
+hold off
 
 xlabel('Lebensdauer in Jahren');
 ylabel('Barwert in Euro');
-axis([-1 26 -inf inf]);
-title('3.1b');
+title('Barwert bei Förderung für 13 Jahre');
 
-
+%% Aufgabe 3.2
