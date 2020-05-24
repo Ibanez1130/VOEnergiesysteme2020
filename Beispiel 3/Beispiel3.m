@@ -65,7 +65,7 @@ xlabel('Lebensdauer in Jahren');
 ylabel('Barwert in Euro');
 title('Barwert bei Verkauf am Spotmarkt');
 
-Max_Invest = NPV + Anlagenleistung*Systemkosten;    % Maximale Investitionskosten für Wirtschaftlichkeit
+Max_Invest_Gesamtverkauf = NPV + Anlagenleistung*Systemkosten;    % Maximale Investitionskosten für Wirtschaftlichkeit
 
 %3.1b
 
@@ -100,6 +100,8 @@ title('Barwert bei Förderung für 13 Jahre');
 
 PV_Einspeiseenergie_a = Leistung_Vec_Temperatur_Temp.*5.*0.25.*1000; % Energie einer 5kWp Anlage in 15min-Intervallen in Wh/4
 
+EigenverbrauchHaushalt_a = zeros(35040, 5);
+
 for i=1:5
     for j=1:size(LeistungHaushalte)
         if PV_Einspeiseenergie_a(j) < LeistungHaushalte(j,i)        % Es ist immer das jeweils niedrigere der Eigenverbrauch
@@ -126,9 +128,13 @@ UeberschussHaushalt_5_a = PV_EinspeiseenergieGesamt_a - EigenverbrauchHaushalt_a
 
 % Aufgabe 3.2.b
 
+EigenverbrauchHaushalt_b = zeros(1, 35040);
+EigenverbrauchHaushaltGesamt_b = zeros(20, 5);
+StromverbrauchHaushalt_b = zeros(1, 5);
+
 
 for i = 1:20
-   PV_Einspeiseenergie_b = Leistung_Vec_Temperatur_Temp.*i.*0.25.*1000;
+   PV_Einspeiseenergie_b = Leistung_Vec_Temperatur_Temp.*i.*0.25.*1000; %Wh
    
    for j=1:5
        for k=1:size(LeistungHaushalte)
@@ -244,3 +250,58 @@ legend('Eigenverbrauch', 'Stromverbrauch', 'Einspeiseenergie');
 xlabel('Zeit in Viertelstunden');
 axis([16129 16801 -inf inf]);
 title('Woche 25');
+
+%% Aufgabe 3.3
+% Aufgabe 3.3.a
+
+Max_Invest_Verbrauchsbehaftet = zeros(5);
+
+EigenverbrauchHaushalt(1) = EigenverbrauchHaushalt_a_1;
+EigenverbrauchHaushalt(2) = EigenverbrauchHaushalt_a_2;
+EigenverbrauchHaushalt(3) = EigenverbrauchHaushalt_a_3;
+EigenverbrauchHaushalt(4) = EigenverbrauchHaushalt_a_4;
+EigenverbrauchHaushalt(5) = EigenverbrauchHaushalt_a_5;
+
+UeberschussHaushalt(1) = UeberschussHaushalt_1_a;
+UeberschussHaushalt(2) = UeberschussHaushalt_2_a;
+UeberschussHaushalt(3) = UeberschussHaushalt_3_a;
+UeberschussHaushalt(4) = UeberschussHaushalt_4_a;
+UeberschussHaushalt(5) = UeberschussHaushalt_5_a;
+
+figure_4 = figure('Name', 'Aufgabe 3.3.a - Verkauf der Überschusseinspeisung', 'NumberTitle', 'off');
+
+for i = 1:5
+    NPV = - Systemkosten*5;    % NPV im Jahr null entspricht den negativen Investitionskosten
+    
+    subplot(3,2,i);
+    xlabel('Lebensdauer in Jahren');
+    ylabel('Barwert in Euro');
+    title(['Haushalt ', num2str(i)]);
+    
+    hold on
+    bar(0, NPV);
+    
+    for j = 1:25
+        
+        CF = EigenverbrauchHaushalt(i)*0.15/1000 + UeberschussHaushalt(i)*0.5/1000 - Betriebskosten*5;  %Cashflow im Jahr i, Mutltiplikation mit Anlagenleistung
+        NPV = NPV + CF/(1+Zinssatz)^j; % Barwert bis zum Jahr j
+        bar(j, NPV);
+    end
+    hold off
+    
+    %Aufgabe 3.3.b
+    Max_Invest_Verbrauchsbehaftet(i) = (NPV + Systemkosten*5)/5;    % Maximale spezifische Investitionskosten für Wirtschaftlichkeit
+end
+
+%% Aufgabe 3.4.
+
+% Diese Übung hat ergeben, dass der Barwert einer PV-Anlage im Schnitt nach einer Verwendung von nur fünf Jahren positiv wird.
+% Über die gesamte Laufzeit gerechnet ergeben sich durch die Ersparnise bzw. den Verkauf der Überschussleistung beträchtilche Summen.
+% Aus rein elektrischer Sicht ist die Verwendung von PV-Anlagen daher als durchaus wirtschaftlich einzustufen.
+% 
+% Die Förderung von PV-Anlagen ist weiterhin zeitgemäß, weil dadurch auch im privaten Bereich Anreize geschaffen werden.
+% Dies ist notwendig um dem stetig wachsenden Stromverbrauch Herr zu werden.
+
+
+
+
