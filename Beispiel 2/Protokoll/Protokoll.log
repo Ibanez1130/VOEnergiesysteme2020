@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7200 64-bit) (preloaded format=pdflatex 2019.10.21)  21 MAY 2020 19:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7200 64-bit) (preloaded format=pdflatex 2019.10.21)  24 MAY 2020 15:22
 entering extended mode
 **./Protokoll.tex
 (Protokoll.tex
@@ -482,7 +482,7 @@ rvices/radiation/helioclim-
  []
 
 [4]
-Overfull \hbox (53.9218pt too wide) in paragraph at lines 124--131
+Overfull \hbox (53.9218pt too wide) in paragraph at lines 124--132
 \OT1/cmr/m/n/12 wer-den im Skript $\OML/cmm/m/it/12 MappingtheperformanceofPVmo
 dules; effectsofmoduletypeanddataaveraging$
  []
@@ -492,20 +492,20 @@ dules; effectsofmoduletypeanddataaveraging$
 File: img/results/DifferenzIdealTemp.png Graphic file (type png)
 <use img/results/DifferenzIdealTemp.png>
 Package pdftex.def Info: img/results/DifferenzIdealTemp.png  used on input line
- 154.
+ 155.
 (pdftex.def)             Requested size: 341.43306pt x 256.08127pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 151--156
+Underfull \hbox (badness 10000) in paragraph at lines 152--157
 
  []
 
 [7 <./img/results/DifferenzIdealTemp.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 162--164
+Underfull \hbox (badness 10000) in paragraph at lines 163--165
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 164--164
+Underfull \hbox (badness 10000) in paragraph at lines 165--165
 
  []
 
@@ -513,17 +513,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 164--164
 File: img/results/MonatlicheErtraegeVergleich.png Graphic file (type png)
 <use img/results/MonatlicheErtraegeVergleich.png>
 Package pdftex.def Info: img/results/MonatlicheErtraegeVergleich.png  used on i
-nput line 167.
+nput line 168.
 (pdftex.def)             Requested size: 341.43306pt x 256.08127pt.
 <img/results/StuendlicheWerteVergleich.png, id=81, 421.575pt x 316.18124pt>
 File: img/results/StuendlicheWerteVergleich.png Graphic file (type png)
 <use img/results/StuendlicheWerteVergleich.png>
 Package pdftex.def Info: img/results/StuendlicheWerteVergleich.png  used on inp
-ut line 174.
+ut line 175.
 (pdftex.def)             Requested size: 341.43306pt x 256.08127pt.
 [8 <./img/results/MonatlicheErtraegeVergleich.png (PNG copy)>] [9 <./img/result
 s/StuendlicheWerteVergleich.png (PNG copy)>]
-Overfull \hbox (16.74545pt too wide) in paragraph at lines 179--181
+Overfull \hbox (16.74545pt too wide) in paragraph at lines 180--182
 \OT1/cmr/m/n/12 In Auf-ga-be 2.2. soll-te die Er-zeu-gung ei-ner PV-Anlage, mit
  Stand-ort Wi-en, un-ter Abh[]angigkeit
  []
@@ -535,7 +535,7 @@ File: img/results/VolllaststundenAbhaengigVomWinkel.png Graphic file (type png)
 
 <use img/results/VolllaststundenAbhaengigVomWinkel.png>
 Package pdftex.def Info: img/results/VolllaststundenAbhaengigVomWinkel.png  use
-d on input line 218.
+d on input line 219.
 (pdftex.def)             Requested size: 341.43306pt x 256.08127pt.
  [11]
 <img/results/VolllaststundenAbhaengigVomWinkelContour.png, id=96, 421.575pt x 3
@@ -544,7 +544,7 @@ File: img/results/VolllaststundenAbhaengigVomWinkelContour.png Graphic file (ty
 pe png)
 <use img/results/VolllaststundenAbhaengigVomWinkelContour.png>
 Package pdftex.def Info: img/results/VolllaststundenAbhaengigVomWinkelContour.p
-ng  used on input line 224.
+ng  used on input line 225.
 (pdftex.def)             Requested size: 341.43306pt x 256.08127pt.
  [12 <./img/results/VolllaststundenAbhaengigVomWinkel.png (PNG copy)>]
 <img/results/VolllaststundenAbhaengigVomWinkelJuni.png, id=100, 421.575pt x 316
@@ -553,10 +553,10 @@ File: img/results/VolllaststundenAbhaengigVomWinkelJuni.png Graphic file (type
 png)
 <use img/results/VolllaststundenAbhaengigVomWinkelJuni.png>
 Package pdftex.def Info: img/results/VolllaststundenAbhaengigVomWinkelJuni.png 
- used on input line 235.
+ used on input line 236.
 (pdftex.def)             Requested size: 213.39566pt x 160.04898pt.
 
-Overfull \hbox (31.3008pt too wide) in paragraph at lines 235--236
+Overfull \hbox (31.3008pt too wide) in paragraph at lines 236--237
  [][] 
  []
 
@@ -566,15 +566,15 @@ File: img/results/VolllaststundenAbhaengigVomWinkelContourJuni.png Graphic file
  (type png)
 <use img/results/VolllaststundenAbhaengigVomWinkelContourJuni.png>
 Package pdftex.def Info: img/results/VolllaststundenAbhaengigVomWinkelContourJu
-ni.png  used on input line 240.
+ni.png  used on input line 241.
 (pdftex.def)             Requested size: 213.39566pt x 160.04898pt.
 
-Overfull \hbox (31.3008pt too wide) in paragraph at lines 240--241
+Overfull \hbox (31.3008pt too wide) in paragraph at lines 241--242
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 229--243
+Underfull \hbox (badness 10000) in paragraph at lines 230--244
 
  []
 
@@ -584,10 +584,10 @@ File: img/results/VolllaststundenAbhaengigVomWinkelDezember.png Graphic file (t
 ype png)
 <use img/results/VolllaststundenAbhaengigVomWinkelDezember.png>
 Package pdftex.def Info: img/results/VolllaststundenAbhaengigVomWinkelDezember.
-png  used on input line 248.
+png  used on input line 249.
 (pdftex.def)             Requested size: 213.39566pt x 160.04898pt.
 
-Overfull \hbox (31.3008pt too wide) in paragraph at lines 248--249
+Overfull \hbox (31.3008pt too wide) in paragraph at lines 249--250
  [][] 
  []
 
@@ -597,25 +597,25 @@ File: img/results/VolllaststundenAbhaengigVomWinkelContourDezember.png Graphic
 file (type png)
 <use img/results/VolllaststundenAbhaengigVomWinkelContourDezember.png>
 Package pdftex.def Info: img/results/VolllaststundenAbhaengigVomWinkelContourDe
-zember.png  used on input line 253.
+zember.png  used on input line 254.
 (pdftex.def)             Requested size: 213.39566pt x 160.04898pt.
 
-Overfull \hbox (31.3008pt too wide) in paragraph at lines 253--254
+Overfull \hbox (31.3008pt too wide) in paragraph at lines 254--255
  [][] 
  []
 
 [13 <./img/results/VolllaststundenAbhaengigVomWinkelContour.png (PNG copy)>]
 LaTeX Font Info:    Trying to load font information for OML+cmr on input line 2
-64.
+65.
 
 ("C:\Users\Konstantin Kobel\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\om
 lcmr.fd"
 File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 264.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 265.
 
-Overfull \hbox (42.00688pt too wide) in paragraph at lines 261--267
+Overfull \hbox (42.00688pt too wide) in paragraph at lines 262--268
  [][] 
  []
 
@@ -628,10 +628,10 @@ VolllaststundenAbhaengigVomWinkelContourDezember.png (PNG copy)>]
 File: img/results/StandortVergleichTagesproduktion.png Graphic file (type png)
 <use img/results/StandortVergleichTagesproduktion.png>
 Package pdftex.def Info: img/results/StandortVergleichTagesproduktion.png  used
- on input line 298.
+ on input line 299.
 (pdftex.def)             Requested size: 341.43306pt x 256.08127pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 295--300
+Underfull \hbox (badness 10000) in paragraph at lines 296--301
 
  []
 
@@ -642,7 +642,7 @@ File: img/results/VolllaststundenAbhaengigVomWinkelNeapel.png Graphic file (typ
 e png)
 <use img/results/VolllaststundenAbhaengigVomWinkelNeapel.png>
 Package pdftex.def Info: img/results/VolllaststundenAbhaengigVomWinkelNeapel.pn
-g  used on input line 307.
+g  used on input line 308.
 (pdftex.def)             Requested size: 341.43306pt x 256.08127pt.
  [16 <./img/results/StandortVergleichTagesproduktion.png (PNG copy)>]
 <img/results/VolllaststundenAbhaengigVomWinkelLondon.png, id=119, 421.575pt x 3
@@ -651,30 +651,26 @@ File: img/results/VolllaststundenAbhaengigVomWinkelLondon.png Graphic file (typ
 e png)
 <use img/results/VolllaststundenAbhaengigVomWinkelLondon.png>
 Package pdftex.def Info: img/results/VolllaststundenAbhaengigVomWinkelLondon.pn
-g  used on input line 313.
+g  used on input line 314.
 (pdftex.def)             Requested size: 341.43306pt x 256.08127pt.
 
 [17 <./img/results/VolllaststundenAbhaengigVomWinkelNeapel.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 316--316
+Underfull \hbox (badness 10000) in paragraph at lines 317--317
 
  []
 
 <img/results/LichtTagDauer.png, id=123, 1041.53824pt x 624.92294pt>
 File: img/results/LichtTagDauer.png Graphic file (type png)
 <use img/results/LichtTagDauer.png>
-Package pdftex.def Info: img/results/LichtTagDauer.png  used on input line 327.
+Package pdftex.def Info: img/results/LichtTagDauer.png  used on input line 328.
 
 (pdftex.def)             Requested size: 341.43306pt x 204.85208pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 320--329
+Underfull \hbox (badness 10000) in paragraph at lines 321--330
 
  []
 
 [18 <./img/results/VolllaststundenAbhaengigVomWinkelLondon.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 330--330
-
- []
-
 [19 <./img/results/LichtTagDauer.png>] [20] (Protokoll.lof
 Overfull \hbox (21.30518pt too wide) in paragraph at lines 3--3
  [][] []\OT1/cmr/m/n/12 Vergleich der mo-nat-li-chen Er-tr[]age der idea-len un
@@ -708,7 +704,7 @@ s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Konstantin Kobel
 /AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C
 :/Users/Konstantin Kobel/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/a
 msfonts/cm/cmsy8.pfb>
-Output written on Protokoll.pdf (21 pages, 1899867 bytes).
+Output written on Protokoll.pdf (21 pages, 1900595 bytes).
 PDF statistics:
  168 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
