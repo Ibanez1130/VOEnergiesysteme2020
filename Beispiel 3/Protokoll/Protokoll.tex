@@ -38,8 +38,10 @@
 
 	\newpage
 	\section{Aufgabenstellung}
+	\label{sec:Aufgabenstellung}
 	Das Ziel der dritten Übung ist es, die Wirtschaftlichkeit einer PV-Anlage, für einen Haushalt, zu errechnen.\newline
-	Die einzelnen Aspekte werden in drei Aufgaben behandelt.
+	Die Wirtschaftlichkeitsrechnung ist ein wichtiges Instrument um Technologien aus volkswirtschaftlicher Sicht zu bewerten,
+	Unternehmen eine Hilfe bei Investitionsentscheidungen zu bieten, staatliche Förderungen zu planen und Zahlungen an unterschiedlichen Zeitpunkten zu bewerten.
 	\subsection{Aufgabe 3.1}
 	Aufgabe 3.1 befasst sich mit dem Barwert (= dem Kapitalwert) einer $10kWp$ PV-Anlage.\newline
 	In dieser ersten Aufgabe wird davon ausgegangen, dass die gesamte Produktion verkauft wird.\\ \par
@@ -106,8 +108,48 @@
 	\end{itemize}
 	\newpage
 	\section{Berechnungen}
-	\subsection{Temperaturabhängigkeit einer PV-Anlage}
-
+	\label{sec:Berechnungen}
+	\subsection{Zinsen}
+	Wie bereits im Kapitel \hyperref[sec:Aufgabenstellung]{Aufgabenstellung} erwähnt, ist die Wirtschaftlichkeitsrechnung ein wichtiges Instrument für unterschiedlichste Akteure.\newline
+	Einen starken Einfluss auf diese Berechnung haben Zinsen.\\ \par
+	\noindent Zinsen bezeichnen in der Wirtschaft das Entgelt, das der Schuldner dem Gläubiger als Gegenleistung für vorübergehend überlassenes Kapital zahlt.\\ \par
+	\noindent Sie haben mehrere Interpretationen und Funktionen:
+	\begin{itemize}
+		\item Funktion des \textbf{Entgelts für entliehenes Kapital}. In diesem Fall geht es um einen Mindest-Zinssatz der erreicht werden muss um die minimalen Kosten des Kapitaleinsatzes zu decken.
+		\item Funktion der \textbf{Zeitpräferenz}. Sie beschreibt die Präferenz den Konsum in der Gegenwart zu tätigen und nicht auf einen zukünftigen Zeitpunkt zu warten.
+		\item Funktion des \textbf{Allokationsmechanismus}. Diese Interpretation erlaubt Messungen und bietet eine Entscheidungshilfe. Die Funktion der Zinsen ist in diesem Fall, dass das "knappe Gut" Kapital möglichst sinnvoll verteilt wird.
+		\item Funktion des \textbf{Risikoindikators}. Das mit der Investition verbundene Risiko hat einen starken Einfluss auf den Zinssatz.
+	\end{itemize}
+	Die Zahlungsströme (= Cash Flows) werden durch Zinsen gewichtet.
+	\subsubsection{Aufzinsen}
+	Beim Aufzinsen geht es um die Frage nach dem Wert von Kapital, nach $n$ Jahren. Für die Berechnung gehen wir davon aus, dass das Kapital zum Zeitpunkt $t=0$ eingezahlt wird.\\ \par
+	\noindent Die Berechnung kann mit folgender Formel erfolgen:
+	\begin{equation}
+	K_n=K_0*(1+r)^n
+	\end{equation}
+	\begin{itemize}
+		\item $K_n$ entspricht dem Wert des Kapitals nach $n$ Jahren.
+		\item $K_0$ ist der Wert des Kapitals zum Zeitpunkt der Einzahlung. (zum Zeitpunkt $t=0$)
+		\item $n$ ist die Dauer des Betrachtungszeitraums in Jahren.
+		\item $r$ entspricht dem Zinssatz pro Jahr.
+	\end{itemize}
+	Der Wert des Kapitals wächst bei einem positiven Zinssatz $r$ nach $n$ Perioden exponentiell an.
+	\subsubsection{Abzinsen}
+	Bei der Bewertung einer Investition wird üblicherweise der Wert des zukünftigen Zahlungsstroms, zum Zeitpunkt $t=0$, ermittelt. Dieser Wert wird dann der Investition gegenübergestellt.\\ \par
+	Die Berechnung kann mit Hilfe folgender Formel durchgeführt werden:
+	\begin{equation}
+	K_0=\frac{K_n}{(1+r)^n}
+	\end{equation}
+	\begin{itemize}
+		\item $K_n$ ist der Wert des Kapitals nach $n$ Jahren.
+		\item $K_0$ entspricht dem Wert des Kapitals zum Zeitpunkt der Einzahlung. (zum Zeitpunkt $t=0$)
+		\item $n$ ist die Dauer des Betrachtungszeitraums in Jahren.
+		\item $r$ entspricht dem Zinssatz pro Jahr.
+	\end{itemize}
+	\subsection{Barwertmethode}
+	
+	\subsection{Eigenverbrauch und Überschusseinspeisung}
+	
 	\section{Ergebnisse}
 
 	\newpage
