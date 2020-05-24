@@ -147,11 +147,57 @@
 		\item $r$ entspricht dem Zinssatz pro Jahr.
 	\end{itemize}
 	\subsection{Barwertmethode}
-	
+	Die Barwertmethode ist eine Methode der dynamischen Wirtschaftlichkeitsberechnung bei der der Barwert (= Net Present Value $NPV$) errechnet wird. Sie liefert eine Aussage über die Sinnhaftigkeit einer Investition.\\ \par
+	\noindent Zur Bestimmung des Barwertes einer Investition werden alle Zahlungsströme (= Cash Flows), eines bestimmten Betrachtungszeitraumes, auf den Zeitpunkt $t=0$, mit dem erwarteten Zinssatz $r$, abgezinst und addiert. Damit werden alle Zahlungen auf den Zeitpunkt $0$ bezogen.\\ \par
+	\noindent Die Berechnung des Net Present Values erfolgt mit folgender Formel:
+	\begin{equation}
+	NPV=-I_0+\frac{E_1-A_1}{(1+r)}+\frac{E_2-A_2}{(1+r)^2}+...+\frac{E_n-A_n}{(1+r)^n}+\frac{L}{(1+r)^n}
+	\end{equation}
+	Andere Schreibweisen dieser Formel sind
+	\begin{equation}
+	NPV=-I_0+\frac{CF_1}{(1+r)}+\frac{CF_2}{(1+r)^2}+...+\frac{CF_n}{(1+r)^n}+\frac{L}{(1+r)^n}
+	\end{equation}
+	oder
+	\begin{equation}
+	NPV=-I_0+\sum_{i=1}^n\frac{CF_i}{(1+r)^i}+\frac{L}{(1+r)^n}
+	\end{equation}
+	\begin{itemize}
+		\item $NPV$ entspricht dem Nettobarwert der Investition in Euro.
+		\item $I_0$ sind die Investitionskosten zum Zeitpunkt $0$ in Euro.
+		\item $E_i$ sind die Einnahmen in der Periode $i$ in Euro.
+		\item $A_i$ sind die Ausgaben und Kosten in der Periode $i$ in Euro.
+		\item $CF_i$ entspricht dem Cash Flow in der Periode $i$ in Euro. ($E_i-A_i$ entspricht einem Cash Flow)
+		\item $r$ ist der gewählte Kalkulationszinssatz bei der Barwertrechnung bzw. der gesuchte Zinssatz bei der Berechnung des internen Zinsfuß.
+		\item $L$ ist der Restwert der Investition am Ende des Betrachtungszeitraums in Euro.
+		\item $n$ entspricht der Dauer des Betrachtungszeitraums in Jahren.
+	\end{itemize}
+	Wie bereits eingangs beschrieben, trifft die Barwertmethode eine Aussage über die Sinnhaftigkeit einer Investition.\newline Wenn der Wert $NPV$ größer als $0$ ist, lohnt sich die Investition. Ist der $NPV$ kleiner als $0$, sollte von einer Investition abgesehen werden.
 	\subsection{Eigenverbrauch und Überschusseinspeisung}
-	
+	Bei den Berechnungen zum Eigenverbrauch und der Überschusseinspeisung wird von einem oder mehreren Haushalten, mit eigener Strom Produktion, ausgegangen.\\ \par
+	In diesem Kontext sind drei Begriffe relevant:
+	\begin{itemize}
+		\item \textbf{Eigenverbrauchsanteil} - Der Eigenverbrauchsanteil entspricht dem Anteil des Eigenverbrauchs an der eigenen Gesamterzeugung.\\ \par
+		\noindent Die Berechnung erfolgt über die Formel
+		\begin{equation}
+		Eigenverbrauchsanteil=\frac{Eigenverbrauch}{Gesamterzeugung}
+		\end{equation}
+		\item \textbf{Deckungsgrad} - Der Deckungsgrad ist das Verhältnis des Eigenverbrauchs zum gesamten Stromverbrauch.
+		Er gibt den Anteil des Stromverbrauchs an, der durch die eigene Produktion gedeckt werden kann.\\ \par
+		\noindent Die Formel, zur Berechnung, lautet
+		\begin{equation}
+		Deckungsgrad=\frac{Eigenverbrauch}{Stromverbrauch}
+		\end{equation}
+		\item \textbf{Energetischer Deckungsgrad} - Der energetische Deckungsgrad gibt das Verhältnis der Gesamterzeugung zum gesamten Stromverbrauch an.\\ \par
+		\noindent Die Formel lautet
+		\begin{equation}
+		Deckungsgrad_{energetisch}=\frac{Gesamterzeugung}{Stromverbrauch}
+		\end{equation}
+	\end{itemize}
 	\section{Ergebnisse}
-
+	\subsection{Aufgabe 3.1}
+	\subsection{Aufgabe 3.2}
+	\subsection{Aufgabe 3.3}
+	\subsection{Aufgabe 3.4}
 	\newpage
 	\section{Literatur}
 	\begin{itemize}
