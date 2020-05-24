@@ -43,6 +43,7 @@
 	Die Wirtschaftlichkeitsrechnung ist ein wichtiges Instrument um Technologien aus volkswirtschaftlicher Sicht zu bewerten,
 	Unternehmen eine Hilfe bei Investitionsentscheidungen zu bieten, staatliche Förderungen zu planen und Zahlungen an unterschiedlichen Zeitpunkten zu bewerten.
 	\subsection{Aufgabe 3.1}
+	\label{sec:Aufgabenstellung31}
 	Aufgabe 3.1 befasst sich mit dem Barwert (= dem Kapitalwert) einer $10kWp$ PV-Anlage.\newline
 	In dieser ersten Aufgabe wird davon ausgegangen, dass die gesamte Produktion verkauft wird.\\ \par
 	\noindent Zur Berechnung werden folgende \textbf{Parameter} definiert:
@@ -147,6 +148,7 @@
 		\item $r$ entspricht dem Zinssatz pro Jahr.
 	\end{itemize}
 	\subsection{Barwertmethode}
+	\label{sec:BerechnungenBarwertmethode}
 	Die Barwertmethode ist eine Methode der dynamischen Wirtschaftlichkeitsberechnung bei der der Barwert (= Net Present Value $NPV$) errechnet wird. Sie liefert eine Aussage über die Sinnhaftigkeit einer Investition.\\ \par
 	\noindent Zur Bestimmung des Barwertes einer Investition werden alle Zahlungsströme (= Cash Flows), eines bestimmten Betrachtungszeitraumes, auf den Zeitpunkt $t=0$, mit dem erwarteten Zinssatz $r$, abgezinst und addiert. Damit werden alle Zahlungen auf den Zeitpunkt $0$ bezogen.\\ \par
 	\noindent Die Berechnung des Net Present Values erfolgt mit folgender Formel:
@@ -193,8 +195,32 @@
 		Deckungsgrad_{energetisch}=\frac{Gesamterzeugung}{Stromverbrauch}
 		\end{equation}
 	\end{itemize}
+	\newpage
 	\section{Ergebnisse}
 	\subsection{Aufgabe 3.1}
+	\subsubsection{3.1.a - Barwert einer 10kWp PV-Anlage}
+	In Aufgabe 3.1.a soll der Barwert einer $10kWp$ Anlage berechnet werden. Die Parameter der PV-Anlage sind in Kapitel \hyperref[sec:Aufgabenstellung31]{Aufgabe 3.1} definiert.\newline
+	Der Barwert der PV-Anlage wird mit der Formel aus Kapitel \hyperref[sec:BerechnungenBarwertmethode]{Barwertmethode} berechnet.\\ \par
+	Der MATLAB Code, zur Berechnung des Barwerts, ist folgender:
+	\begin{lstlisting}
+	NPV = $-$Systemkosten*Anlagenleistung;
+	for i = 1:25
+		if i <= 9
+			Preis_i = table2array(Spotpreis(:,i))./100;
+		else
+			Preis_i = table2array(Spotpreis(:,9))./100;
+		end
+		CF = sum(PV_profil.*10.*Preis_i)$-$Betriebskosten*Anlagenleistung;
+		NPV = NPV + CF/(1+Zinssatz)^i;
+	end
+	\end{lstlisting}
+	Daraus ergibt sich das in Abbildung 1 dargestellte Diagramm.\\ \par
+	Die maximalen Investitionskosten für die positive Bewertung der Wirtschaftlichkeit, im Fall, dass die gesamte Produktion am Spotmarkt verkauft wird, sind $50.964\mbox{\euro}$.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{img/results/BarwertVergleich}
+		\caption{TODO!}
+	\end{figure}
 	\subsection{Aufgabe 3.2}
 	\subsection{Aufgabe 3.3}
 	\subsection{Aufgabe 3.4}
