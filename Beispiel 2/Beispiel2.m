@@ -38,7 +38,7 @@ pvModuleinfallswinkel = acosd(-cosd(sHoehenwinkel).*sind(pvHoehenwinkel).*cosd(s
 % Temperatur)
 figure('Name', 'Differenz zwischen idealem und temperaturabhängigem Ertrag', 'NumberTitle', 'Off')
 bar(EgesT-Eges)
-xlabel("Monat")
+xlabel("Viertelstunde")
 ylabel("Differenz in Wh")
 
 % Aufsummieren der jeweiligen Monats-Summen
@@ -147,10 +147,12 @@ ylabel('PV Neigungswinkel [°]')
 %% Aufgabe 2.3
 % Standort-Parameter
 load ('./Strahlung_Neapel.mat');
+load('./Temperatur_Neapel.mat');
 sLaengengradNeapel = 14.24878;
 sBreitengradNeapel = 40.83593;
 
 load ('./Strahlung_London.mat');
+load('./Temperatur_London.mat');
 sLaengengradLondon = -0.12765;
 sBreitengradLondon = 51.50732;
 
@@ -161,19 +163,17 @@ pvModuleinfallswinkelNeapel = acosd(-cosd(sHoehenwinkelNeapel).*sind(pvHoehenwin
 [sAzimutLondon,sHoehenwinkelLondon] = SonnenstandTST(sLaengengradLondon,sBreitengradLondon,time);
 pvModuleinfallswinkelLondon = acosd(-cosd(sHoehenwinkelLondon).*sind(pvHoehenwinkel).*cosd(sAzimutLondon - pvAzimut - 180)+sind(sHoehenwinkelLondon).*cosd(pvHoehenwinkel));
 
-% Da die Temperatur für den Standort falsch ist, werden wir nur die
-% idealisierte Berechnung betrachen
 % Berechnung der gesamte Jahreserzeugung
-EgesNeapel = Jahreserzeugung(pvHoehenwinkel, pvGroesse, pvWirkungsgrad, pvVerluste, pvModuleinfallswinkelNeapel, sHoehenwinkelNeapel, Strahlung_Neapel, gSTC, TmodSTC, ct, Temperatur);
-EgesLondon = Jahreserzeugung(pvHoehenwinkel, pvGroesse, pvWirkungsgrad, pvVerluste, pvModuleinfallswinkelLondon, sHoehenwinkelLondon, Strahlung_London, gSTC, TmodSTC, ct, Temperatur);
+[~,EgesNeapelT] = Jahreserzeugung(pvHoehenwinkel, pvGroesse, pvWirkungsgrad, pvVerluste, pvModuleinfallswinkelNeapel, sHoehenwinkelNeapel, Strahlung_Neapel, gSTC, TmodSTC, ct, Temperatur_Neapel);
+[~,EgesLondonT] = Jahreserzeugung(pvHoehenwinkel, pvGroesse, pvWirkungsgrad, pvVerluste, pvModuleinfallswinkelLondon, sHoehenwinkelLondon, Strahlung_London, gSTC, TmodSTC, ct, Temperatur_London);
 % Berechnung der Volllaststunden
-T = sum(Eges)/(pvGroesse.*1000);
-TNeapel = sum(EgesNeapel)/(pvGroesse.*1000);
-TLondon = sum(EgesLondon)/(pvGroesse.*1000);
+T = sum(EgesT)/(pvGroesse.*1000);
+TNeapel = sum(EgesNeapelT)/(pvGroesse.*1000);
+TLondon = sum(EgesLondonT)/(pvGroesse.*1000);
 
 % Berechnung des Gesamtertrags, pro Tag
-EtagNeapel = sum(reshape(EgesNeapel,96,365));
-EtagLondon = sum(reshape(EgesLondon,96,365));
+EtagNeapel = sum(reshape(EgesNeapelT,96,365));
+EtagLondon = sum(reshape(EgesLondonT,96,365));
 
 % Berechnen des durchschnittlichen Tagesertrags
 EtagNeapelmean = mean(EtagNeapel);
@@ -194,8 +194,8 @@ for h=1:length(pvHoehenwinkelNeu)
         pvModuleinfallswinkelNeapelNeu = acosd(-cosd(sHoehenwinkelNeapel).*sind(pvHoehenwinkelNeu(h)).*cosd(sAzimutNeapel - pvAzimutNeu(a) - 180)+sind(sHoehenwinkelNeapel).*cosd(pvHoehenwinkelNeu(h)));
         pvModuleinfallswinkelLondonNeu = acosd(-cosd(sHoehenwinkelLondon).*sind(pvHoehenwinkelNeu(h)).*cosd(sAzimutLondon - pvAzimutNeu(a) - 180)+sind(sHoehenwinkelLondon).*cosd(pvHoehenwinkelNeu(h)));
         % Berechnen der Jahreserzeugung
-        EgesNeapel3 = Jahreserzeugung(pvHoehenwinkelNeu(h), pvGroesse, pvWirkungsgrad, pvVerluste, pvModuleinfallswinkelNeapelNeu, sHoehenwinkelNeapel, Strahlung_Neapel, gSTC, TmodSTC, ct, Temperatur);
-        EgesLondon3 = Jahreserzeugung(pvHoehenwinkelNeu(h), pvGroesse, pvWirkungsgrad, pvVerluste, pvModuleinfallswinkelLondonNeu, sHoehenwinkelLondon, Strahlung_London, gSTC, TmodSTC, ct, Temperatur);
+        [~,EgesNeapel3] = Jahreserzeugung(pvHoehenwinkelNeu(h), pvGroesse, pvWirkungsgrad, pvVerluste, pvModuleinfallswinkelNeapelNeu, sHoehenwinkelNeapel, Strahlung_Neapel, gSTC, TmodSTC, ct, Temperatur_Neapel);
+        [~,EgesLondon3] = Jahreserzeugung(pvHoehenwinkelNeu(h), pvGroesse, pvWirkungsgrad, pvVerluste, pvModuleinfallswinkelLondonNeu, sHoehenwinkelLondon, Strahlung_London, gSTC, TmodSTC, ct, Temperatur_London);
         % Speichern der Volllaststunden in der jeweiligen combinations Matrix.
         combinationsNeapel(h,a) = sum(EgesNeapel3(time.Monat == 6))/(pvGroesse.*1000);
         combinationsLondon(h,a) = sum(EgesLondon3(time.Monat == 12))/(pvGroesse.*1000);
@@ -231,8 +231,8 @@ zlabel('Volllast-Stunden [h/a]')
 % errechnen wir uns 24 durchschnittliche Viertelstundenwerte und
 % multiplizieren sie mit 96, um auf den gesamten Tag zu kommen.
 TprodmeanWien = mean(reshape(EgesT,1460,24)).*96;
-TprodmeanNeapel = mean(reshape(EgesNeapel,1460,24)).*96;
-TprodmeanLondon = mean(reshape(EgesLondon,1460,24)).*96;
+TprodmeanNeapel = mean(reshape(EgesNeapelT,1460,24)).*96;
+TprodmeanLondon = mean(reshape(EgesLondonT,1460,24)).*96;
 
 figure('Name', 'Vergleich der durchschnittlichen Tagesproduktion der Standorte Wien, Neapel und London (2.3.b)', 'NumberTitle', 'Off')
 bar(1:24, [TprodmeanWien;TprodmeanNeapel;TprodmeanLondon])
