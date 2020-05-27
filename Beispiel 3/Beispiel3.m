@@ -196,13 +196,15 @@ Max_Invest_Vergleich = zeros(1,5);
 NPV_mitPV = zeros(1,5);
 NPV_ohnePV = zeros(1,5);
 
+Investitionszuschuss = min(Systemkosten*Anlagenleistung*Investitionszuschuss_prozent, Investitionszuschuss_max*Anlagenleistung_5_2);
+
 for i = 1:5
     NPV_mitPV(i) = - Systemkosten*Anlagenleistung_5_2;    % NPV im Jahr null entspricht den negativen Investitionskosten
     NPV_ohnePV(i) = 0;  % Ohne PV keine Investitionskosten
     
     for j = 1:25
         
-        CF_mitPV = EigenverbrauchHaushaltGesamt_a(i)*Haushaltsstrompreis/100 + UeberschussHaushalt_a(i)*Einspeisetarif_5_3/100 - (StromverbrauchHaushalt_b(i) - EigenverbrauchHaushaltGesamt_a(i))*Haushaltsstrompreis/100 - Betriebskosten*Anlagenleistung;  %Cashflow im Jahr i, Mutltiplikation mit Anlagenleistung
+        CF_mitPV = EigenverbrauchHaushaltGesamt_a(i)*Haushaltsstrompreis/100 + UeberschussHaushalt_a(i)*Einspeisetarif_5_3/100 + Investitionszuschuss - (StromverbrauchHaushalt_b(i) - EigenverbrauchHaushaltGesamt_a(i))*Haushaltsstrompreis/100 - Betriebskosten*Anlagenleistung;  %Cashflow im Jahr i, Mutltiplikation mit Anlagenleistung
         NPV_mitPV(i) = NPV_mitPV(i) + CF_mitPV/(1+Zinssatz)^j; % Barwert bis zum Jahr j
         
         CF_ohnePV = - StromverbrauchHaushalt_b(i)*Haushaltsstrompreis/100;  % Ausgaben haben negatives Vorzeichen
