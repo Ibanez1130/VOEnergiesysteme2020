@@ -45,16 +45,16 @@ subplot(2,1,1)
 hold on
 bar(0, NPV);
 
+Investitionszuschuss = min(Systemkosten*Anlagenleistung*Investitionszuschuss_prozent, Investitionszuschuss_max*Anlagenleistung);
+
 for i = 1:25
     if i <= 9
         Preis_i = table2array(Spotpreis(:,i))./100;  % Euro/kWh bis zum Jahr 2016
     else
         Preis_i = table2array(Spotpreis(:,9))./100;  % Euro/kWh ab dem Jahr 2016
     end
-    CF = sum(PV_profil.*10.*Preis_i) - Betriebskosten*Anlagenleistung;  %Cashflow im Jahr i
-                                                                        % Multiplikation
-                                                                        % mit
-                                                                        % 10kWp
+    CF = sum(PV_profil.*Anlagenleistung.*Preis_i) + Investitionszuschuss - Betriebskosten*Anlagenleistung;  %Cashflow im Jahr i
+    
     NPV = NPV + CF/(1+Zinssatz)^i; % Barwert bis zum Jahr i
     
     bar(i, NPV);
@@ -81,10 +81,8 @@ for i = 1:25
     else
         Preis_i = table2array(Spotpreis(:,9))./100;  % Euro/kWh ab dem Förderende
     end
-    CF = sum(PV_profil.*10.*Preis_i) - Betriebskosten*Anlagenleistung;  % Cashflow im Jahr i
-                                                                        % Multiplikation
-                                                                        % mit
-                                                                        % 10kWp
+    CF = sum(PV_profil.*Anlagenleistung.*Preis_i) + Investitionszuschuss - Betriebskosten*Anlagenleistung;  % Cashflow im Jahr i
+    
     NPV = NPV + CF/(1+Zinssatz)^i; % Barwert bis zum Jahr i
     
     bar(i, NPV);    % Barchart für Jahr i
@@ -101,6 +99,10 @@ title('Barwert bei Förderung für 13 Jahre');
 PV_Einspeiseenergie_a = Leistung_Vec_Temperatur_Temp.*5.*0.25.*1000; % Energie einer 5kWp Anlage in 15min-Intervallen in Wh/4
 
 EigenverbrauchHaushalt_a = zeros(35040, 5);
+EigenverbrauchHaushaltGesamt_a = zeros(1,5);
+UeberschussHaushalt_a = zeros(1,5);
+
+PV_EinspeiseenergieGesamt_a = sum(PV_Einspeiseenergie_a);   % Jahresgesamteinspeiseenergie
 
 for i=1:5
     for j=1:size(LeistungHaushalte)
@@ -110,21 +112,9 @@ for i=1:5
             EigenverbrauchHaushalt_a(j,i) = LeistungHaushalte(j,i);
         end
     end
+    EigenverbrauchHaushaltGesamt_a(i) = sum(EigenverbrauchHaushalt_a(:,i)); % Feld mit Jahreseigenverbrauch
+    UeberschussHaushalt_a(i) = PV_EinspeiseenergieGesamt_a - EigenverbrauchHaushaltGesamt_a(i); % Feld mit Überschussenergien
 end
-
-EigenverbrauchHaushalt_a_1 = sum(EigenverbrauchHaushalt_a(:,1));
-EigenverbrauchHaushalt_a_2 = sum(EigenverbrauchHaushalt_a(:,2));
-EigenverbrauchHaushalt_a_3 = sum(EigenverbrauchHaushalt_a(:,3));
-EigenverbrauchHaushalt_a_4 = sum(EigenverbrauchHaushalt_a(:,4));
-EigenverbrauchHaushalt_a_5 = sum(EigenverbrauchHaushalt_a(:,5));
-
-PV_EinspeiseenergieGesamt_a = sum(PV_Einspeiseenergie_a);
-
-UeberschussHaushalt_1_a = PV_EinspeiseenergieGesamt_a - EigenverbrauchHaushalt_a_1;
-UeberschussHaushalt_2_a = PV_EinspeiseenergieGesamt_a - EigenverbrauchHaushalt_a_2;
-UeberschussHaushalt_3_a = PV_EinspeiseenergieGesamt_a - EigenverbrauchHaushalt_a_3;
-UeberschussHaushalt_4_a = PV_EinspeiseenergieGesamt_a - EigenverbrauchHaushalt_a_4;
-UeberschussHaushalt_5_a = PV_EinspeiseenergieGesamt_a - EigenverbrauchHaushalt_a_5;
 
 % Aufgabe 3.2.b
 
@@ -132,97 +122,43 @@ EigenverbrauchHaushalt_b = zeros(1, 35040);
 EigenverbrauchHaushaltGesamt_b = zeros(20, 5);
 StromverbrauchHaushalt_b = zeros(1, 5);
 
-
-for i = 1:20
-   PV_Einspeiseenergie_b = Leistung_Vec_Temperatur_Temp.*i.*0.25.*1000; %Wh
-   
-   for j=1:5
-       for k=1:size(LeistungHaushalte)
-           if PV_Einspeiseenergie_b(k) < LeistungHaushalte(k,j)        % Es ist immer das jeweils niedrigere der Eigenverbrauch
-               EigenverbrauchHaushalt_b(k) = PV_Einspeiseenergie_b(k);
-           else
-               EigenverbrauchHaushalt_b(k) = LeistungHaushalte(k,j);
-           end
-       end
-       EigenverbrauchHaushaltGesamt_b(i,j) = sum(EigenverbrauchHaushalt_b); % Matrix mit Gesamteigeverbrauch abhängig von Größe und Haushalt
-       Gesamterzeugung_b = sum(PV_Einspeiseenergie_b);
-       StromverbrauchHaushalt_b(j) = sum(LeistungHaushalte(:,j));
-   end
+for i=1:5
+    for j=1:Anlagenleistung_Max
+        PV_Einspeiseenergie_b = Leistung_Vec_Temperatur_Temp.*j.*0.25.*1000; %Wh
+        
+        for k=1:size(LeistungHaushalte)
+            if PV_Einspeiseenergie_b(k) < LeistungHaushalte(k,i)        % Es ist immer das jeweils niedrigere der Eigenverbrauch
+                EigenverbrauchHaushalt_b(k) = PV_Einspeiseenergie_b(k);
+            else
+                EigenverbrauchHaushalt_b(k) = LeistungHaushalte(k,i);
+            end
+        end
+        
+        EigenverbrauchHaushaltGesamt_b(j,i) = sum(EigenverbrauchHaushalt_b); % Matrix mit Gesamteigeverbrauch abhängig von Größe und Haushalt
+        Gesamterzeugung_b = sum(PV_Einspeiseenergie_b);
+        StromverbrauchHaushalt_b(i) = sum(LeistungHaushalte(:,i));
+    end  
 end
 
 figure_2 = figure('Name', 'Aufgabe 3.2.b - Eigenverbrauchsanteil und Deckungsgrad', 'NumberTitle', 'off', 'units' , 'normalized', 'outerposition' , [0 0 1 1]);
 
 hold on
 
-subplot(2,5,1)
-bar(EigenverbrauchHaushaltGesamt_b(:, 1)/Gesamterzeugung_b);
-xlabel('Anlagengröße in kWp');
-ylabel('Eigenverbrauchsanteil');
-title('Haushalt 1');
-axis([-inf inf 0 0.2]);
-
-subplot(2,5,2)
-bar(EigenverbrauchHaushaltGesamt_b(:, 2)/Gesamterzeugung_b);
-xlabel('Anlagengröße in kWp');
-ylabel('Eigenverbrauchsanteil');
-title('Haushalt 2');
-axis([-inf inf 0 0.2]);
-
-subplot(2,5,3)
-bar(EigenverbrauchHaushaltGesamt_b(:, 3)/Gesamterzeugung_b);
-xlabel('Anlagengröße in kWp');
-ylabel('Eigenverbrauchsanteil');
-title('Haushalt 3');
-axis([-inf inf 0 0.2]);
-
-subplot(2,5,4)
-bar(EigenverbrauchHaushaltGesamt_b(:, 4)/Gesamterzeugung_b);
-xlabel('Anlagengröße in kWp');
-ylabel('Eigenverbrauchsanteil');
-title('Haushalt 4');
-axis([-inf inf 0 0.2]);
-
-subplot(2,5,5)
-bar(EigenverbrauchHaushaltGesamt_b(:, 5)/Gesamterzeugung_b);
-xlabel('Anlagengröße in kWp');
-ylabel('Eigenverbrauchsanteil');
-title('Haushalt 5');
-axis([-inf inf 0 0.2]);
-
-subplot(2,5,6)
-bar(EigenverbrauchHaushaltGesamt_b(:, 1)/StromverbrauchHaushalt_b(1));
-xlabel('Anlagengröße in kWp');
-ylabel('Deckungsgrad');
-title('Haushalt 1');
-axis([-inf inf 0 0.5]);
-
-subplot(2,5,7)
-bar(EigenverbrauchHaushaltGesamt_b(:, 2)/StromverbrauchHaushalt_b(2));
-xlabel('Anlagengröße in kWp');
-ylabel('Deckungsgrad');
-title('Haushalt 2');
-axis([-inf inf 0 0.5]);
-
-subplot(2,5,8)
-bar(EigenverbrauchHaushaltGesamt_b(:, 3)/StromverbrauchHaushalt_b(3));
-xlabel('Anlagengröße in kWp');
-ylabel('Deckungsgrad');
-title('Haushalt 3');
-axis([-inf inf 0 0.5]);
-
-subplot(2,5,9)
-bar(EigenverbrauchHaushaltGesamt_b(:, 4)/StromverbrauchHaushalt_b(4));
-xlabel('Anlagengröße in kWp');
-ylabel('Deckungsgrad');
-title('Haushalt 4');
-axis([-inf inf 0 0.5]);
-
-subplot(2,5,10)
-bar(EigenverbrauchHaushaltGesamt_b(:, 5)/StromverbrauchHaushalt_b(5));
-xlabel('Anlagengröße in kWp');
-ylabel('Deckungsgrad');
-title('Haushalt 5');
-axis([-inf inf 0 0.5]);
+for i=1:5
+    subplot(2,5,i)
+    bar(EigenverbrauchHaushaltGesamt_b(:, i)/Gesamterzeugung_b);
+    xlabel('Anlagengröße in kWp');
+    ylabel('Eigenverbrauchsanteil');
+    title(['Haushalt ',num2str(i)]);
+    axis([-inf inf 0 0.2]);
+    
+    subplot(2,5,i+5)
+    bar(EigenverbrauchHaushaltGesamt_b(:, i)/StromverbrauchHaushalt_b(i));
+    xlabel('Anlagengröße in kWp');
+    ylabel('Deckungsgrad');
+    title(['Haushalt ',num2str(i)]);
+    axis([-inf inf 0 0.5]);
+end
 
 hold off
 
@@ -251,46 +187,31 @@ xlabel('Zeit in Viertelstunden');
 axis([16129 16801 -inf inf]);
 title('Woche 25');
 
+%close all
+
 %% Aufgabe 3.3
 % Aufgabe 3.3.a
 
-Max_Invest_Verbrauchsbehaftet = zeros(5);
-
-EigenverbrauchHaushalt(1) = EigenverbrauchHaushalt_a_1;
-EigenverbrauchHaushalt(2) = EigenverbrauchHaushalt_a_2;
-EigenverbrauchHaushalt(3) = EigenverbrauchHaushalt_a_3;
-EigenverbrauchHaushalt(4) = EigenverbrauchHaushalt_a_4;
-EigenverbrauchHaushalt(5) = EigenverbrauchHaushalt_a_5;
-
-UeberschussHaushalt(1) = UeberschussHaushalt_1_a;
-UeberschussHaushalt(2) = UeberschussHaushalt_2_a;
-UeberschussHaushalt(3) = UeberschussHaushalt_3_a;
-UeberschussHaushalt(4) = UeberschussHaushalt_4_a;
-UeberschussHaushalt(5) = UeberschussHaushalt_5_a;
-
-figure_4 = figure('Name', 'Aufgabe 3.3.a - Verkauf der Überschusseinspeisung', 'NumberTitle', 'off');
+Max_Invest_Vergleich = zeros(1,5);
+NPV_mitPV = zeros(1,5);
+NPV_ohnePV = zeros(1,5);
 
 for i = 1:5
-    NPV = - Systemkosten*5;    % NPV im Jahr null entspricht den negativen Investitionskosten
-    
-    subplot(3,2,i);
-    xlabel('Lebensdauer in Jahren');
-    ylabel('Barwert in Euro');
-    title(['Haushalt ', num2str(i)]);
-    
-    hold on
-    bar(0, NPV);
+    NPV_mitPV(i) = - Systemkosten*Anlagenleistung_5_2;    % NPV im Jahr null entspricht den negativen Investitionskosten
+    NPV_ohnePV(i) = 0;  % Ohne PV keine Investitionskosten
     
     for j = 1:25
         
-        CF = EigenverbrauchHaushalt(i)*0.15/1000 + UeberschussHaushalt(i)*0.5/1000 - Betriebskosten*5;  %Cashflow im Jahr i, Mutltiplikation mit Anlagenleistung
-        NPV = NPV + CF/(1+Zinssatz)^j; % Barwert bis zum Jahr j
-        bar(j, NPV);
+        CF_mitPV = EigenverbrauchHaushaltGesamt_a(i)*Haushaltsstrompreis/100 + UeberschussHaushalt_a(i)*Einspeisetarif_5_3/100 - (StromverbrauchHaushalt_b(i) - EigenverbrauchHaushaltGesamt_a(i))*Haushaltsstrompreis/100 - Betriebskosten*Anlagenleistung;  %Cashflow im Jahr i, Mutltiplikation mit Anlagenleistung
+        NPV_mitPV(i) = NPV_mitPV(i) + CF_mitPV/(1+Zinssatz)^j; % Barwert bis zum Jahr j
+        
+        CF_ohnePV = - StromverbrauchHaushalt_b(i)*Haushaltsstrompreis/100;  % Ausgaben haben negatives Vorzeichen
+        NPV_ohnePV(i) = NPV_ohnePV(i) + CF_ohnePV/(1+Zinssatz)^j; % Barwert bis zum Jahr j
     end
     hold off
     
     %Aufgabe 3.3.b
-    Max_Invest_Verbrauchsbehaftet(i) = (NPV + Systemkosten*5)/5;    % Maximale spezifische Investitionskosten für Wirtschaftlichkeit
+    Max_Invest_Vergleich(i) = ((NPV_mitPV(i) + Systemkosten*Anlagenleistung_5_2) - NPV_ohnePV(i))/Anlagenleistung_5_2;    % Maximale spezifische Investitionskosten für Wirtschaftlichkeit
 end
 
 %% Aufgabe 3.4.
