@@ -73,6 +73,7 @@
 		\item[b)] Führen Sie die Berechnung noch einmal unter der Annahme durch, dass Sie den aktuellen OeMAG Einspeisetarif für 13 Jahre erhalten.\newline Vergleich Sie diesen Fall mit dem nicht geförderten Fall.
 	\end{itemize}
 	\subsection{Aufgabe 3.2}
+	\label{sec:Aufgabenstellung32}
 	In Aufgabe 3.2 wird der Eigenverbrauch der Haushalte berücksichtigt und nur noch der Überschuss der Produktion verkauft.\\ \par
 	\noindent Folgende \textbf{Parameter} sind gegeben:
 	\begin{itemize}
@@ -175,6 +176,7 @@
 	\end{itemize}
 	Wie bereits eingangs beschrieben, trifft die Barwertmethode eine Aussage über die Sinnhaftigkeit einer Investition.\newline Wenn der Wert $NPV$ größer als $0$ ist, lohnt sich die Investition. Ist der $NPV$ kleiner als $0$, sollte von einer Investition abgesehen werden.
 	\subsection{Eigenverbrauch und Überschusseinspeisung}
+	\label{sec:eigenverbrauchueberschusseinspeisung}
 	Bei den Berechnungen zum Eigenverbrauch und der Überschusseinspeisung wird von einem oder mehreren Haushalten, mit eigener Strom Produktion, ausgegangen.\\ \par
 	In diesem Kontext sind drei Begriffe relevant:
 	\begin{itemize}
@@ -197,31 +199,148 @@
 	\end{itemize}
 	\newpage
 	\section{Ergebnisse}
-	\subsection{Aufgabe 3.1}
-	\subsubsection{3.1.a - Barwert einer 10kWp PV-Anlage}
-	In Aufgabe 3.1.a soll der Barwert einer $10kWp$ Anlage berechnet werden. Die Parameter der PV-Anlage sind in Kapitel \hyperref[sec:Aufgabenstellung31]{Aufgabe 3.1} definiert.\newline
-	Der Barwert der PV-Anlage wird mit der Formel aus Kapitel \hyperref[sec:BerechnungenBarwertmethode]{Barwertmethode} berechnet.\\ \par
-	Der MATLAB Code, zur Berechnung des Barwerts, ist folgender:
+	\subsection{Aufgabe 3.1 -Verkauf der gesamten Produktion}
+	\subsubsection{3.1.a - Barwert einer 10kWp PV-Anlage bei Verkauf am Spotmarkt}
+	In Aufgabe 3.1.a soll der Barwert einer $10kWp$ Anlage berechnet werden. Im ersten Fall wird davon ausgegangen, dass die gesamte Produktion der PV-Anlage am Spotmarkt verkauft wird. Die Parameter der PV-Anlage, sowie die Spotmarktpreise, können Kapitel \hyperref[sec:Aufgabenstellung31]{Aufgabe 3.1} entnommen werden.\newline
+	Die Vorgangsweise, zur Ermittlung des Barwertes, wird in Kapitel \hyperref[sec:BerechnungenBarwertmethode]{Barwertmethode} erklärt.\\ \par
+	\noindent Da die Datei $Spotpreis.mat$ die stündlichen Preise für nur neun Jahre beinhaltet, werden die Preise des neunten Jahres für die restlichen 16 Jahre des Betrachtungszeitraums genommen.\newline In MATLAB ergibt sich dadurch folgender Code:
 	\begin{lstlisting}
-	NPV = $-$Systemkosten*Anlagenleistung;
+	NPV=$-$Systemkosten*Anlagenleistung;
+
+	Investitionszuschuss = min(Systemkosten*Anlagenleistung*Investitionszuschuss_prozent, Investitionszuschuss_max*Anlagenleistung);
+	
 	for i = 1:25
 		if i <= 9
-			Preis_i = table2array(Spotpreis(:,i))./100;
+			Preis_i=table2array(Spotpreis(:,i))./100;
+		else
+			Preis_i=table2array(Spotpreis(:,9))./100;
+		end
+		CF=sum(PV_profil.*Anlagenleistung.*Preis_i)+Investitionszuschuss$-$Betriebskosten*Anlagenleistung;
+	
+		NPV=NPV+CF/(1+Zinssatz)^i;
+	end
+	\end{lstlisting}
+	\begin{itemize}
+		\item \textbf{NPV} ist der Net Present Value der PV-Anlage, für das jeweilige Jahr.
+		\item \textbf{Investitionszuschuss} entspricht dem jährlichen Investitionszuschuss.
+		\item \textbf{CF} entspricht der Summe der Cash Flows, für das jeweilige Jahr.
+		\item \textbf{Anlagenleistung} entspricht einem Wert von $10$ (in $kWp$).
+		\item \textbf{Zinssatz} ist $0.04$ (in \%).
+		\item \textbf{Systemkosten} beträgt $1200$ (in $\mbox{\euro}/kWp$).
+		\item \textbf{Betriebskosten} entspricht $4$ (in $\mbox{\euro}/kWp$).
+	\end{itemize}
+	Der Verlauf des NPV, der Anlage, wird in der oberen Hälft von Abbildung 1 dargestellt.\\ \par
+	\noindent Zusätzlich sollten die maximalen Investitionskosten ermittelt werden, damit die Wirtschaftlichkeit der Investition positiv bewertet wird. Diese errechnen sich aus dem NPV nach 25 Jahren plus der Investitionskosten.
+	\begin{lstlisting}
+	Max_Invest_Gesamtverkauf = NPV + Anlagenleistung*Systemkosten;
+	\end{lstlisting}
+	Die maximalen Investitionskosten für die positive Bewertung der Wirtschaftlichkeit, im Fall, dass die gesamte Produktion am Spotmarkt verkauft wird, sind $50.964\mbox{\euro}$.
+	\subsubsection{3.1.b - Barwert einer 10kWp PV-Anlage mit Förderung}
+	In Aufgabe 3.1.b soll die Berechnung von Aufgabe 3.1.a dahingehend erweitert werden, dass man eine Förderung in der Höhe des aktuellen OeMAG Einspeisetarif für 13 Jahre erhält. Nach Vertragsende wird der Strom bis zum Ende der Lebensdauer am Spotmarkt verkauft.\newline
+	Der MATLAB Code aus Aufgabe 3.1.a muss für die neue Annahme folgendermaßen erweitert werden:
+	\begin{lstlisting}
+	NPV = $-$Systemkosten*Anlagenleistung;
+	
+	for i = 1:25
+		if i <= Foerderdauer
+			Preis_i = Einspeisetarif;
 		else
 			Preis_i = table2array(Spotpreis(:,9))./100;
 		end
-		CF = sum(PV_profil.*10.*Preis_i)$-$Betriebskosten*Anlagenleistung;
+		CF = sum(PV_profil.*Anlagenleistung.*Preis_i)+Investitionszuschuss$-$ Betriebskosten*Anlagenleistung;
+
 		NPV = NPV + CF/(1+Zinssatz)^i;
 	end
 	\end{lstlisting}
-	Daraus ergibt sich das in Abbildung 1 dargestellte Diagramm.\\ \par
-	Die maximalen Investitionskosten für die positive Bewertung der Wirtschaftlichkeit, im Fall, dass die gesamte Produktion am Spotmarkt verkauft wird, sind $50.964\mbox{\euro}$.
+	\begin{itemize}
+		\item \textbf{Einspeisetarif} entspricht $0.0824$ (in $\mbox{\euro}$).
+		\item \textbf{Foerderdauer} ist $13$ (in Jahren).
+	\end{itemize}
+	Das Ergebnis für Aufgabe 3.1.b wird in der unteren Hälfte von Abbildung 1 dargestellt.
+	\subsection{Vergleich von Aufgabe 3.1.a und Aufgabe 3.1.b}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=12cm]{img/results/BarwertVergleich}
-		\caption{TODO!}
+		\caption{Der Barwert, der in Kapitel Aufgabe 3.1 definierten PV-Anlage, über einen Betrachtungszeitraum von 25 Jahren.}
 	\end{figure}
-	\subsection{Aufgabe 3.2}
+	Wie bereits in Kapitel \hyperref[sec:BerechnungenBarwertmethode]{Barwertmethode} erwähnt, trifft die Barwertmethode eine Aussage über die Sinnhaftigkeit einer Investition.\newline
+	Der Vergleich in Abbildung 1 zeigt, dass der Barwert der PV-Anlage im Fall aus Aufgabe 3.1.a bereits im zweiten Jahr positiv ist. (ein positiver NPV spricht für die Investition, ein negativer dagegen)\newline
+	Unter der Annahme aus Aufgabe 3.1.b erreicht die PV-Anlage nach vier Jahren einen positiven NPV. Weiters ist der NPV, aus Aufgabe 3.1.a, nach 25 Jahren bei ungefähr $100.000\mbox{\euro}$, während der NPV aus Aufgabe 3.1.b nach 25 Jahren nur circa $60.000\mbox{\euro}$ beträgt.\newline
+	Demnach ist der Verkauf der gesamten Produktion auf dem Spotmarkt lukrativer, als die Förderung der PV-Anlage.
+	\subsection{Aufgabe 3.2 - Eigenverbrauch}
+	\subsubsection{Aufgabe 3.2.a - Eigenverbrauch und Überschusseinspeisung}
+	In Aufgabe 3.2.a soll der Eigenverbrauch und die Überschüsseinspeisung einer $5kWp$ Anlage, mit Standort Wien, für 5 Haushalte, errechnet werden.\newline
+	Unter den Annahmen aus Kapitel \hyperref[sec:Aufgabenstellung32]{Aufgabe 3.2}, sowie den Formeln aus Kapitel \hyperref[sec:eigenverbrauchueberschusseinspeisung]{Eigenverbrauch und Überschusseinspeisung} ergibt sich folgender MATLAB Code:
+	\begin{lstlisting}
+	PV_Einspeiseenergie_a = Leistung_Vec_Temperatur_Temp.*5.*0.25.*1000;
+	
+	EigenverbrauchHaushalt_a = zeros(35040, 5);
+	EigenverbrauchHaushaltGesamt_a = zeros(1,5);
+	UeberschussHaushalt_a = zeros(1,5);
+	
+	PV_EinspeiseenergieGesamt_a = sum(PV_Einspeiseenergie_a);
+	for i=1:5
+		for j=1:size(LeistungHaushalte)
+			if PV_Einspeiseenergie_a(j) < LeistungHaushalte(j,i)
+				EigenverbrauchHaushalt_a(j,i) = PV_Einspeiseenergie_a(j);
+			else
+				EigenverbrauchHaushalt_a(j,i) = LeistungHaushalte(j,i);
+			end
+		end
+		EigenverbrauchHaushaltGesamt_a(i) = sum(EigenverbrauchHaushalt_a(:,i));
+		UeberschussHaushalt_a(i) = PV_EinspeiseenergieGesamt_a $-$ EigenverbrauchHaushaltGesamt_a(i);
+	end
+	\end{lstlisting}
+	\begin{itemize}
+		\item \textbf{PV\_Einspeiseenergie\_a} entspricht der Energie der $5kWp$ Anlage. Die Variable $Leistung\_Vec\_Temperatur\_Temp$ stammt aus der Datei $PV\_Einspeiseprofil.mat$.
+		\item \textbf{EigenverbrauchHaushalt\_a} ist der Eigenverbrauch eines Haushalts. Er wird in der Datei $LeistungHaushalte.mat$ zur Verfügung gestellt.
+		\item \textbf{UeberschussHaushalt\_a} entspricht der Überschuss-Energie des jeweiligen Haushalts. Dieser Wert errechnet sich aus der Differenz zwischen der gesamten Einspeiseenergie und dem gesamten Eigenverbrauch des jeweiligen Haushalts.
+		\item \textbf{EigenverbrauchHaushaltGesamt\_a} ist der gesamte Eigenverbrauch eines Haushalts, über ein Jahr.
+	\end{itemize}
+	Alle Werte liegen in 15-Minuten Intervallen vor.\\ \par
+	\noindent Die Werte für den Eigenverbrauch und den Überschuss der Haushalte sind in den Dateien $EigenverbrauchHaushalt.mat$ und $UeberschussHaushalt.mat$ gespeichert.
+	\subsubsection{Aufgabe 3.2.b - Entwicklung des Eigenverbrauchsanteils und der Deckungsgrade}
+	Aufgabe 3.2.b beleuchtet die Entwicklung des Eigenverbrauchsanteils und der Deckungsgrade der Haushalte, für eine variable Anlagenrgöße von $0$ bis $20kWp$.\newline
+	Die Formeln zur Errechnung des Eigenverbrauchsanteils und des Deckungsgrades sind in Kapitel \hyperref[sec:eigenverbrauchueberschusseinspeisung]{Eigenverbrauch und Überschusseinspeisung} definiert.\\ \par
+	Die Umsetzung in MATLAB sieht folgendermaßen aus:
+	\begin{lstlisting}
+	EigenverbrauchHaushalt_b = zeros(1, 35040);
+	EigenverbrauchHaushaltGesamt_b = zeros(20, 5);
+	StromverbrauchHaushalt_b = zeros(1, 5);
+	
+	for i=1:5
+		for j=1:Anlagenleistung_Max
+			PV_Einspeiseenergie_b=Leistung_Vec_Temperatur_Temp.*j.*0.25.*1000;
+			
+			for k=1:size(LeistungHaushalte)
+				if PV_Einspeiseenergie_b(k)<LeistungHaushalte(k,i)
+					EigenverbrauchHaushalt_b(k)=PV_Einspeiseenergie_b(k);
+				else
+					EigenverbrauchHaushalt_b(k)=LeistungHaushalte(k,i);
+				end
+			end
+			
+			EigenverbrauchHaushaltGesamt_b(j,i)=sum(EigenverbrauchHaushalt_b);
+			Gesamterzeugung_b = sum(PV_Einspeiseenergie_b);
+			StromverbrauchHaushalt_b(i)=sum(LeistungHaushalte(:,i));
+		end
+	end
+	\end{lstlisting}
+	Die Variablen entsprechen denen aus dem MATLAB Code von Aufgabe 3.2.a. Als einziger Unterschied ist zu nennen, dass die Dimension der einzelnen Variablen sich unterscheidet. So entspricht die Variable $EigenverbrauchHaushalt\_b$ zum Beispiel, einer Matrix die den Eigenverbrauch für jeden der fünf Haushalte, in Abhängigkeit der Grüße der Pv-Anlage, beinhaltet.\\ \par
+	\noindent
+	Die Darstellung der Werte aus $EigenverbrauchHaushalt\_b$ ergibt das in Abbildung 2 dargestellte Diagramm.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{img/results/EigenverbrauchDeckungsanteil}
+		\caption{Die Entwicklung des Eigenverbrauchsanteils und der Deckungsgrade, der ersten fünf Haushalte, für eine Anlagengröße von $0$ bis $20kWp$.}
+	\end{figure}
+	\subsubsection{Aufgabe 3.2.c - Darstellung der Last und des Eigenverbrauchs}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{img/results/LastundEigenverbrauch}
+		\caption{Die Anteile "Eigenverbrauch", "Stromverbrauch" und "Einspeiseenergie" für den Haushalt 1, in den Wochen 3 und 25 des Jahres 2016.}
+	\end{figure}
 	\subsection{Aufgabe 3.3}
 	\subsection{Aufgabe 3.4}
 	\newpage
