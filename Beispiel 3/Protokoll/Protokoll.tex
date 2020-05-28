@@ -335,12 +335,30 @@
 		\caption{Die Entwicklung des Eigenverbrauchsanteils und der Deckungsgrade, der ersten fünf Haushalte, für eine Anlagengröße von $0$ bis $20kWp$.}
 	\end{figure}
 	\subsubsection{Aufgabe 3.2.c - Darstellung der Last und des Eigenverbrauchs}
+	In Aufgabe 3.2.c sollen die Erzeugung, die Last und der Eigenverbrauch für Haushalt 1, in einem Diagramm dargestellt werden.\newline
+	Da die Berechnunen hierfür bereits in den Aufgaben 3.2.a durchgeführt wurden, müssen die Daten lediglich noch in dem geforderten $area$ Plot dargestellt werden.\\ \par
+	\noindent Der MATLAB Code dazu sieht wie folgt aus:
+	\begin{lstlisting}
+	Woche_3(:,1) = EigenverbrauchHaushalt_a(1345:2017, 1);
+	Woche_3(:,2) = LeistungHaushalte(1345:2017, 1);
+	Woche_3(:,3) = PV_Einspeiseenergie_a(1345:2017);
 	
+	area(1345:2017, Woche_3);
+	
+	Woche_25(:,1) = EigenverbrauchHaushalt_a(16129:16801, 1);
+	Woche_25(:,2) = LeistungHaushalte(16129:16801, 1);
+	Woche_25(:,3) = PV_Einspeiseenergie_a(16129:16801);
+	
+	area(16129:16801, Woche_25);
+	\end{lstlisting}
+	Das daraus resultierende Diagramm wird in Abbildung 3 dargestellt.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=12cm]{img/results/LastundEigenverbrauch}
 		\caption{Die Anteile "Eigenverbrauch", "Stromverbrauch" und "Einspeiseenergie" für den Haushalt 1, in den Wochen 3 und 25 des Jahres 2016.}
 	\end{figure}
+	\noindent Durch die kürzeren Tage in der Woche 3 steigt der Stromverbrauch des Haushaltes, da Energiekonsumenten wie die Beleuchtung und die Beheizung eine längere Zeit aktiv sind. Gleichzeitig sinkt jedoch die Energieproduktion der PV-Anlage aufgrund der geringeren Einstrahlung. Daraus resultiert für die Woche 3 eine sehr geringe Einspeiseenergie.\\ \par
+	\noindent In der Woche 25 sinkt der Energiekonsum von Verbrauchern wie der Beleuchtung und der Beheizung, was zu einem wesentlich geringeren Stromverbrauch des Haushaltes beiträgt. Gleichzeitig ist die Einstrahlung in den Sommer-Monaten wesentlich höher, wodurch die Produktion der PV-Anlage steigt. Dadurch resultiert eine Einspeiseenergie für den Haushalt 1.
 	\subsection{Aufgabe 3.3}
 	\subsection{Aufgabe 3.4}
 	\newpage
