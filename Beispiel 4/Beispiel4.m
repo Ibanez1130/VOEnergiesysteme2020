@@ -12,9 +12,6 @@ PV2012 = ExcelFile.PV;
 Wind2012 = ExcelFile.Wind;
 Spotpreis2012 = ExcelFile.Spotpreis;
 
-%% Parameter
-
-
 %% Aufgabe 4.1
 % Aufgabe 4.1.a
 iLeistung = 0:50:200; % Die installierte Leistung von PV-Anlagen.
@@ -116,3 +113,46 @@ boxplot(SpotpreiseStd2016)
 xlabel('Zeit in Stunden')
 ylabel('Preis in Euro')
 title('Boxplot der mittleren stündlichen Großhandelsstrompreise 2016')
+
+%% Aufgabe 4.3
+% Aufgabe 4.3.a
+Skalierungsfaktor = 0.001; % Da der Ertrag in MW/MWp angegeben ist, müssen wir auf die 1kWp Anlage skalieren.
+MonetaererEtrag = zeros(9,1);
+
+for i=1:length(SpotpreisDaten)
+    MonetaererEtrag(i) = sum(Skalierungsfaktor.*PV_profil.*Spotpreis.(SpotpreisDaten(i)));
+end
+
+MonetaererEtragGesamt = sum(MonetaererEtrag);
+
+figure('Name', 'Die monetären Erträge einer 1kWp Anlage von 2008 bis 2016 (4.3.c)', 'NumberTitle', 'Off')
+bar(2008:2016,MonetaererEtrag)
+xlabel('Jahr')
+ylabel('Ertrag in Euro')
+title('Die monetären Erträge einer 1kWp Anlage von 2008 bis 2016')
+
+% Aufgabe 4.3.b
+MonetaererEtrag2008_1 = 0;
+MonetaererEtrag2016_1 = 0;
+MonetaererEtrag2008_2 = 0;
+MonetaererEtrag2016_2 = 0;
+
+Ertrag2008 = Skalierungsfaktor.*PV_profil.*Spotpreis.Spotpreis2008;
+Ertrag2016 = Skalierungsfaktor.*PV_profil.*Spotpreis.Spotpreis2016;
+
+for j=4:34
+    MonetaererEtrag2008_1 = MonetaererEtrag2008_1 + sum(Skalierungsfaktor*PV_profil(j)*Spotpreis.Spotpreis2008(j));
+    MonetaererEtrag2016_1 = MonetaererEtrag2016_1 + sum(Skalierungsfaktor*PV_profil(j)*Spotpreis.Spotpreis2016(j));
+end
+
+for k=180:220
+    MonetaererEtrag2008_2 = MonetaererEtrag2008_2 + sum(Skalierungsfaktor*PV_profil(k)*Spotpreis.Spotpreis2008(k));
+    MonetaererEtrag2016_2 = MonetaererEtrag2016_2 + sum(Skalierungsfaktor*PV_profil(k)*Spotpreis.Spotpreis2016(k));
+end
+
+figure('Name', 'Die monetären Erträge der Tag 4 bis 34 und 180 bis 220 in den Jahren 2008 bis 2016 (4.3.c)', 'NumberTitle', 'Off')
+bar([MonetaererEtrag2008_1,MonetaererEtrag2016_1,MonetaererEtrag2008_2,MonetaererEtrag2016_2])
+xlabel('Zeitbereich')
+ylabel('Ertrag in Euro')
+set(gca, 'XTickLabel',{'Tage 4-34 (2008)' 'Tage 4-34 (2016)' 'Tage 180-220 (2008)' 'Tage 180-220 (2016)'})
+title('Die monetären Erträge der Tag 4 bis 34 und 180 bis 220 in den Jahren 2008 bis 2016')
