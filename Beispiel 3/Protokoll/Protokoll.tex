@@ -257,7 +257,7 @@
 		\item \textbf{Foerderdauer} ist $13$ (in Jahren).
 	\end{itemize}
 	Das Ergebnis für Aufgabe 3.1.b wird in der unteren Hälfte von Abbildung 1 dargestellt.
-	\subsection{Vergleich von Aufgabe 3.1.a und Aufgabe 3.1.b}
+	\subsubsection{Vergleich von Aufgabe 3.1.a und Aufgabe 3.1.b}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=12cm]{img/results/BarwertVergleich}
@@ -339,17 +339,13 @@
 	Da die Berechnunen hierfür bereits in den Aufgaben 3.2.a durchgeführt wurden, müssen die Daten lediglich noch in dem geforderten $area$ Plot dargestellt werden.\\ \par
 	\noindent Der MATLAB Code dazu sieht wie folgt aus:
 	\begin{lstlisting}
-	Woche_3(:,1) = EigenverbrauchHaushalt_a(1345:2017, 1);
-	Woche_3(:,2) = LeistungHaushalte(1345:2017, 1);
-	Woche_3(:,3) = PV_Einspeiseenergie_a(1345:2017);
+	Woche_3(:,1)=EigenverbrauchHaushalt_a(1345:2017,1);
+	Woche_3(:,2)=LeistungHaushalte(1345:2017,1);
+	Woche_3(:,3)=PV_Einspeiseenergie_a(1345:2017);
 	
-	area(1345:2017, Woche_3);
-	
-	Woche_25(:,1) = EigenverbrauchHaushalt_a(16129:16801, 1);
-	Woche_25(:,2) = LeistungHaushalte(16129:16801, 1);
-	Woche_25(:,3) = PV_Einspeiseenergie_a(16129:16801);
-	
-	area(16129:16801, Woche_25);
+	Woche_25(:,1)=EigenverbrauchHaushalt_a(16129:16801,1);
+	Woche_25(:,2)=LeistungHaushalte(16129:16801,1);
+	Woche_25(:,3)=PV_Einspeiseenergie_a(16129:16801);
 	\end{lstlisting}
 	Das daraus resultierende Diagramm wird in Abbildung 3 dargestellt.
 	\begin{figure}[H]
@@ -360,11 +356,69 @@
 	\noindent Durch die kürzeren Tage in der Woche 3 steigt der Stromverbrauch des Haushaltes, da Energiekonsumenten wie die Beleuchtung und die Beheizung eine längere Zeit aktiv sind. Gleichzeitig sinkt jedoch die Energieproduktion der PV-Anlage aufgrund der geringeren Einstrahlung. Daraus resultiert für die Woche 3 eine sehr geringe Einspeiseenergie.\\ \par
 	\noindent In der Woche 25 sinkt der Energiekonsum von Verbrauchern wie der Beleuchtung und der Beheizung, was zu einem wesentlich geringeren Stromverbrauch des Haushaltes beiträgt. Gleichzeitig ist die Einstrahlung in den Sommer-Monaten wesentlich höher, wodurch die Produktion der PV-Anlage steigt. Dadurch resultiert eine Einspeiseenergie für den Haushalt 1.
 	\subsection{Aufgabe 3.3}
-	\subsection{Aufgabe 3.4}
-	\newpage
-	\section{Literatur}
+	\subsubsection{Aufgabe 3.3.a - Vergleich des Barwerts der Haushalte mit und ohne PV-Anlage}
+	In Aufgabe 3.3 soll die Investitionsrechnung für die fünf Haushalte aus Aufgabe 3.2 durchgeführt werden. Es wird wieder von einer PV-Anlage mit einer Größe von $5kWp$ ausgegangen.\newline
+	Es soll für die Haushalte der Barwert für den Fall mit PV-Anlage mit dem Fall ohne PV-Anlage vergleichen werden. Der Betrachtungszeitraum ist wieder $25$ Jahre.\\ \par
+	\noindent Folgender MATLAB Code errechnet sowohl den Barwert für den Fall mit PV-Anlage als auch für den Fall ohne PV-Anlage.
+	\begin{lstlisting}
+	NPV_mitPV=zeros(1,5);
+	NPV_ohnePV=zeros(1,5);
+	
+	Investitionszuschuss=min(Systemkosten*Anlagenleistung*Investitionszuschuss_prozent, Investitionszuschuss_max*Anlagenleistung_5_2);
+	
+	for i = 1:5
+		NPV_mitPV(i) =$-$Systemkosten*Anlagenleistung_5_2;
+		NPV_ohnePV(i) = 0;
+
+		for j = 1:25
+			CF_mitPV=EigenverbrauchHaushaltGesamt_a(i)*Haushaltsstrompreis/100+UeberschussHaushalt_a(i)*Einspeisetarif_5_3/100+Investitionszuschuss$-$(StromverbrauchHaushalt_b(i)$-$EigenverbrauchHaushaltGesamt_a(i))*Haushaltsstrompreis/100$-$Betriebskosten*Anlagenleistung;
+			NPV_mitPV(i)=NPV_mitPV(i)+CF_mitPV/(1+Zinssatz)^j;
+			
+			CF_ohnePV=$-$StromverbrauchHaushalt_b(i)*Haushaltsstrompreis/100;
+			NPV_ohnePV(i)=NPV_ohnePV(i) + CF_ohnePV/(1+Zinssatz)^j;
+		end
+	end
+	\end{lstlisting}
 	\begin{itemize}
-		\item Literatur 1
+		\item \textbf{CF\_mitPV} entspricht den Cash Flows eines Haushaltes mit PV-Anlage.
+		\item \textbf{NPV\_mitPV} ist ein Vektor, der für jeden Haushalt den Barwert, für den Fall mit PV-Anlage, nach i Jahren beinhaltet.
+		\item \textbf{CF\_ohnePV} entspricht den Cash Flows eines Haushaltes ohne PV-Anlage.
+		\item \textbf{NPV\_ohnePV} ist ein Vektor, der für jeden Haushalt den Barwert, für den Fall ohne PV-Anlage, nach i Jahren beinhaltet.
 	\end{itemize}
+	Abbildung 4 stellt den Barwert der einzelnen Haushalte, für beide Fälle, dar. Obwohl der Barwert in allen Fällen, mit Ausnahme von einem, negativ ist, ist er für den Fall mit PV-Anlage stets höher als für den Fall ohne PV-Anlage. Demnach verbessert sich die Wirtschaftlichkeit der Haushalte durch die Investition in eine PV-Anlage.\\ \par
+	\noindent In Abbildung 5 wird die Differenz der beiden Fälle dargestellt.\newline Besonders hervor zu heben ist der Unterschied im NPV, für Haushalt 1, von circa $150.000\mbox{\euro}$.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{img/results/HaushalteBarwerte}
+		\caption{Die Barwerte der einzelnen Haushalte, für den Fall mit und ohne PV-Anlage, nach 25 Jahren.}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{img/results/VergleichBarwertMitOhne}
+		\caption{Der Unterschied des Barwerts vom Fall mit PV-Anlage, zum Fall ohne PV-Anlage, für jeden Haushalt.}
+	\end{figure}
+	\subsubsection{Aufgabe 3.3.b - Maximale spezifischen Investitionskosten je Haushalt}
+	Für Aufgabe 3.3.b sollen die maximalen spezifischen Investitionskosten je Haushalt errechnet werden.\\ \par
+	\noindent Hierzu fügen wir dem MATLAB Code aus Aufgabe 3.3.a folgenden Code hinzu:
+	\begin{lstlisting}
+	Max_Invest_Vergleich(i)=((NPV_mitPV(i)+Systemkosten*Anlagenleistung_5_2)$-$NPV_ohnePV(i))/Anlagenleistung_5_2;
+	\end{lstlisting}
+	Die daraus resultierenden maximalen Investitionskosten sind in Tabelle 1 angeführt.
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			Haushalt 1   & Haushalt 2   & Haushalt 3   & Haushalt 4   & Haushalt 5   \\ \hline
+			$3.1030e+04\mbox{\euro}$ & $2.7805e+04\mbox{\euro}$ & $2.6413e+04\mbox{\euro}$ & $2.5125e+04\mbox{\euro}$ & $3.0202e+04\mbox{\euro}$ \\ \hline
+		\end{tabular}
+	\end{table}
+	\subsection{Aufgabe 3.4}
+	\subsubsection{Aufgabe 3.4.a - Wirtschaftlichkeit von PV-Anlagen in Österreich}
+	\textit{Wie beurteilen Sie auf Basis der in der dieser Übung erlangten Erkenntnisse die Wirtschaftlichkeit von PV-Anlagen in Österreich?}\\ \par
+	\noindent Diese Übung hat ergeben, dass der Barwert einer PV-Anlage im Schnitt nach einer Verwendung von nur fünf Jahren positiv wird. Über die gesamte Laufzeit gerechnet ergeben sich durch die Ersparnise bzw. den Verkauf der Überschussleistung beträchtilche Summen. Aus rein elektrischer Sicht ist die Verwendung von PV-Anlagen daher als durchaus wirtschaftlich einzustufen.
+	\subsubsection{Aufgabe 3.4.b - Förderung von PV-Anlagen in Österreich}
+	\textit{Wie beurteilen Sie auf Basis der in der dieser Übung erlangten Erkenntnisse die Wirtschaftlichkeit von PV-Anlagen in Österreich?}\\ \par
+	\noindent Die Förderung von PV-Anlagen ist weiterhin zeitgemäß, weil dadurch auch im privaten Bereich Anreize geschaffen werden. Dies ist notwendig um dem stetig wachsenden Stromverbrauch Herr zu werden.
+	\newpage
 	\listoffigures
 \end{document}

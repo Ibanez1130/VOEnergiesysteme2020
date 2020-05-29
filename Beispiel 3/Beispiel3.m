@@ -210,7 +210,6 @@ for i = 1:5
         CF_ohnePV = - StromverbrauchHaushalt_b(i)*Haushaltsstrompreis/100;  % Ausgaben haben negatives Vorzeichen
         NPV_ohnePV(i) = NPV_ohnePV(i) + CF_ohnePV/(1+Zinssatz)^j; % Barwert bis zum Jahr j
     end
-    hold off
     
     %Aufgabe 3.3.b
     Max_Invest_Vergleich(i) = ((NPV_mitPV(i) + Systemkosten*Anlagenleistung_5_2) - NPV_ohnePV(i))/Anlagenleistung_5_2;    % Maximale spezifische Investitionskosten für Wirtschaftlichkeit
