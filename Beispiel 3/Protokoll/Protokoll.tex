@@ -54,8 +54,9 @@
 		\item Die Lebensdauer der PV-Anlage kann mit $25$ Jahren angenommen werden.
 		\item Der $Einspeisetarif_{OeMAG}$ beträgt $8.24\,Cent/kWh$.
 		\item Die $F\ddot{o}rderdauer_{OeMAG}$ beträgt $13$ Jahre.
-		\item Die relevanten Spotpreise werden in der Datei $Spotpreise.mat$ zur Verfügung gestellt.
-		\item Informationen zu Förderungen können folgendem Link entnommen werden:\newline
+		\item Die relevanten Spotpreise werden in der Datei $Spotpreise.mat$ zur Verfügung gestellt. (in $\mbox{\euro}/MWh$)
+		\item Der Investitionszuschuss, in Höhe von $40\%$ der Errichtungskosten, jedoch maximal $375\mbox{\euro}$, ist zu beachten. Er geht in den jährlichen Cash Flow mit ein.
+		\item Weitere Informationen zu Förderungen können folgendem Link entnommen werden:\newline
 		\url{http://www.oem-ag.at/de/foerderung/photovoltaik/}
 	\end{itemize}
 	Es werden folgende \textbf{Annahmen} getroffen:
@@ -94,12 +95,14 @@
 	\noindent Dazu werden folgende \textbf{Annahmen} getroffen:
 	\begin{itemize}
 		\item Für den Eigenverbrauch kann eine Ersparnis in Höhe des Haushaltsstrompreises angesetzt werden. Diese beträgt $15\,Cent/kWh$.
+		\item Für nicht selbst erzeugten Strom muss der Haushaltsstrompreis in Höhe von $15\,Cent/kWh$ bezahlt werden.
 		\item Für die Überschusseinspeisung kann ein Einspeisetarif von $5\,Cent/kWh$ angenommen werden.
+		\item Die Investitionskosten der PV-Anlage sollen berücksichtigt werden.
 	\end{itemize}
 	Die \textbf{Aufgaben} lauten:
 	\begin{itemize}
 		\item[a)] Erstellen Sie eine Investitionsrechnung (Barwert) für die 5 gegebenen Haushalte und einer Anlagengröße von $5kWp$. Vergleichen Sie dazu den Fall mit PV-Anlage mit dem Fall ohne PV-Erzeugung.
-		\item[b)] Wie hoch dürfen die spezifischen Investitionskosten (EUR/kW) je Haushalt maximal sein, damit die Investition als wirtschaftlich gewertet wird?
+		\item[b)] Wie hoch dürfen die spezifischen Investitionskosten (EUR/kW) je Haushalt maximal sein, damit die Investition als wirtschaftlich gewertet wird? Wie hoch dürfen die Investitionskosten maximal sein, damit der Fall mit PV-Anlage wirtschaftlicher ist als der Fall ohne PV-Anlage?
 	\end{itemize}
 	\subsection{Aufgabe 3.4}
 	In Aufgabe 3.4 soll eine Beurteilung von PV-Anlagen in Österreich, auf Basis der in den vorigen Aufgaben durchgeführten Berechnungen, getroffen werden.\\ \par
@@ -222,7 +225,7 @@
 	\end{lstlisting}
 	\begin{itemize}
 		\item \textbf{NPV} ist der Net Present Value der PV-Anlage, für das jeweilige Jahr.
-		\item \textbf{Investitionszuschuss} entspricht dem jährlichen Investitionszuschuss.
+		\item \textbf{Investitionszuschuss} entspricht dem jährlichen Investitionszuschuss. Dieser entspricht $40\%$ der Errichtungskosten, jedoch maximal $375\mbox{\euro}$.
 		\item \textbf{CF} entspricht der Summe der Cash Flows, für das jeweilige Jahr.
 		\item \textbf{Anlagenleistung} entspricht einem Wert von $10$ (in $kWp$).
 		\item \textbf{Zinssatz} ist $0.04$ (in \%).
@@ -326,7 +329,7 @@
 		end
 	end
 	\end{lstlisting}
-	Die Variablen entsprechen denen aus dem MATLAB Code von Aufgabe 3.2.a. Als einziger Unterschied ist zu nennen, dass die Dimension der einzelnen Variablen sich unterscheidet. So entspricht die Variable $EigenverbrauchHaushalt\_b$ zum Beispiel, einer Matrix die den Eigenverbrauch für jeden der fünf Haushalte, in Abhängigkeit der Grüße der Pv-Anlage, beinhaltet.\\ \par
+	Die Variablen entsprechen denen aus dem MATLAB Code von Aufgabe 3.2.a. Als einziger Unterschied ist zu nennen, dass die Dimension der einzelnen Variablen sich unterscheidet. So entspricht die Variable $EigenverbrauchHaushalt\_b$ zum Beispiel, einer Matrix die den Eigenverbrauch für jeden der fünf Haushalte, in Abhängigkeit der Größe der PV-Anlage, beinhaltet.\\ \par
 	\noindent
 	Die Darstellung der Werte aus $EigenverbrauchHaushalt\_b$ ergibt das in Abbildung 2 dargestellte Diagramm.
 	\begin{figure}[H]
@@ -380,6 +383,7 @@
 	end
 	\end{lstlisting}
 	\begin{itemize}
+		\item \textbf{Systemkosten*Anlagenleistung\_5\_2} sind die Investitionskosten der PV-Anlage.
 		\item \textbf{CF\_mitPV} entspricht den Cash Flows eines Haushaltes mit PV-Anlage.
 		\item \textbf{NPV\_mitPV} ist ein Vektor, der für jeden Haushalt den Barwert, für den Fall mit PV-Anlage, nach i Jahren beinhaltet.
 		\item \textbf{CF\_ohnePV} entspricht den Cash Flows eines Haushaltes ohne PV-Anlage.
@@ -398,7 +402,7 @@
 		\caption{Der Unterschied des Barwerts vom Fall mit PV-Anlage, zum Fall ohne PV-Anlage, für jeden Haushalt.}
 	\end{figure}
 	\subsubsection{Aufgabe 3.3.b - Maximale spezifischen Investitionskosten je Haushalt}
-	Für Aufgabe 3.3.b sollen die maximalen spezifischen Investitionskosten je Haushalt errechnet werden.\\ \par
+	Für Aufgabe 3.3.b sollen die maximalen spezifischen Investitionskosten je Haushalt errechnet, damit der Fall mit PV-Anlage wirtschaftlicher ist als der Fall ohne PV-Anlage.\\ \par
 	\noindent Hierzu fügen wir dem MATLAB Code aus Aufgabe 3.3.a folgenden Code hinzu:
 	\begin{lstlisting}
 	Max_Invest_Vergleich(i)=((NPV_mitPV(i)+Systemkosten*Anlagenleistung_5_2)$-$NPV_ohnePV(i))/Anlagenleistung_5_2;
