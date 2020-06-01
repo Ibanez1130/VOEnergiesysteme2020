@@ -34,9 +34,9 @@ end
 xlabel('Zeit in Stunden')
 ylabel('Residuallast in MW')
 title('Dauerlinie der Residuallast')
-legend(['Installierte Leistung: 0 GW', 'Installierte Leistung: 50 GW', 'Installierte Leistung: 100 GW', 'Installierte Leistung: 150 GW', 'Installierte Leistung: 200 GW'])
+legend({'Installierte Leistung: 0 GW', 'Installierte Leistung: 50 GW', 'Installierte Leistung: 100 GW', 'Installierte Leistung: 150 GW', 'Installierte Leistung: 200 GW'})
 axis([0 8760 -10^5 10^5])
-
+%{
 % Aufgabe 4.1.b
 figure('Name', 'Lastdauerlinie 2012 (4.1.b)', 'NumberTitle', 'Off')
 plot(sort(Netzlast2012, 'descend'))
@@ -156,3 +156,4 @@ xlabel('Zeitbereich')
 ylabel('Ertrag in Euro')
 set(gca, 'XTickLabel',{'Tage 4-34 (2008)' 'Tage 4-34 (2016)' 'Tage 180-220 (2008)' 'Tage 180-220 (2016)'})
 title('Die monetären Erträge der Tag 4 bis 34 und 180 bis 220 in den Jahren 2008 bis 2016')
+%}
