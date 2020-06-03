@@ -132,54 +132,97 @@
 	\label{sec:Ergebnisse}
 	\subsection{Aufgabe 4.1 - Last und Residuallast}
 	\subsubsection{Aufgabe 4.1.a - Dauerlinie der Last und der Residuallast}
+	Das Ziel von Aufgabe 4.1.a war es die Dauerlinie der Last darzustellen.\\ \par
+	\noindent Die Daten für die Darstellung sind in der Datei $Load\_PVProduction.mat$ enthalten. Um eine korrekte Darstellung der Dauerlinie zu erhalten, müssen die Werte absteigend sortiert werden.\newline
+	Folgender MATLAB Code sortiert die Daten, der in der Datei $Load\_PVProduction.mat$ enthaltenen Variable $Last$ und plottet sie.
+	\begin{lstlisting}
+	plot(sort(Last, "descend"));
+	\end{lstlisting}
+	Der deraus resultierende Graph ist in Abbildung 1 dargestellt.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=12cm]{img/results/Lastdauerlinie}
-		\caption{TODO!}
+		\caption{Dauerlinie der Last.}
 	\end{figure}
+	\noindent Zusätzlich sollte in Aufgabe 4.1.a die Residuallast, in Abhängigkeit von der installierten Leistung von PV-Anlagen, ermittelt werden.\\
+	Hierzu soll von einer installierten Leistung von $0$ bis $200GW$ ausgegangen werden. Die installierte Leistung soll in Intervallen von $50GW$ erhöht werden.\\
+	Folgender MATLAB Code erzeugt mit Hilfe der Variablen $Last$ und $PV_profil$ aus der Datei $Load\_PVProduction.mat$ sowie der Variable $iLeistung$, welche für die installierte Leistung steht, das in Abbildung 2 dargestellte Diagramm.
+	\begin{lstlisting}
+	iLeistung = 0:50:200;
+
+	for l=1:length(iLeistung)
+		Residuallast = Last $-$ (PV_profil .* (iLeistung(l) * 1000));
+		plot(sort(Residuallast, "descend"))
+		hold on
+	end
+	\end{lstlisting}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=12cm]{img/results/DauerlinieResiduallast}
-		\caption{TODO!}
+		\caption{Dauerlinie der Residuallast, in Abhängigkeit der installierten Leistung von PV-Anlagen.}
 	\end{figure}
+	Wie man an dem Graphen erkennen kann, sinkt mit zunehmender installierter Leistung die Residuallast. Das bedeutet, dass ein geringerer Anteil der Last auf Regelkraftwerke abfällt und demnach eine höhere gesamte Last abgedeckt werden kann.\\ Jedoch ist auch ersichtlich, dass selbst die Einspeisung von PV-Anlagen mit einer installierten Leistung von $200GW$ in den ersten $1000$ Stunden (circa ein Achtel des Jahres) kaum eine Einfluss auf die Residuallast haben.\\
+	In den letzten $1000$ Stunden des Jahres sorgt die geringere Last jedoch dafür, dass die Residuallast teilweise in den negativen Bereich fällt. Der Grund hierfür ist der geringere Stromverbrauch im Sommer, da Verbraucher wie die Beleuchtung oder Heizung nicht aktiv sind. Gleichzeitig ist die Erzeugung bei PV-Anlagen am höchsten.\\
+	Gegenteiliges Verhalten (wenig Erzeugung, hohe Last) kann im Winter beobachtet werden.\\
+	Diesem Problem kann mit ausreichendem Speichern von Energie, im Sommer (zum Beispiel in Pumpspeicherkraftwerken), entgegengewirkt werden.
 	\subsubsection{Aufgabe 4.1.b - Dauerlinie der Last und der Residuallast für das Jahr 2012}
+	In Aufgabe 4.1.b sollten die tatsächlichen Dauerlinien für die Last und die Residuallast, für das Jahr 2012, dargestellt werden. In dieser Aufgabe sollte ebenfalls die Erzeugung durch Windkraft-Anlagen berücksichtigt werden.\\ \par
+	\noindent Mit Hilfe der in der Datei $Daten\_Preise\_Last\_2012.xlsx$ enthaltenen Daten zur Netzlast, der PV- und der Wind-Erzeugung, kann die Dauerlinie analog zu Aufgabe 4.1.a erstellt werden:
+	\begin{lstlisting}
+	plot(sort(Netzlast2012, "descend"))
+	\end{lstlisting}
+	Die Variable $Netzlast2012$ entspricht den in der Datei $Daten\_Preise\_Last\_2012.xlsx$ enthaltenen Daten für die Last.\\
+	Abbildung 3 zeigt die resultierende Dauerlinie der Last, für das Jahr 2012.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=12cm]{img/results/Lastdauerlinie2012}
-		\caption{TODO!}
+		\caption{Die Dauerlinie der Last, für das Jahr 2012.}
 	\end{figure}
+	Mithilfe der in der Datei $Daten\_Preise\_Last\_2012.xlsx$ zur Verfügung gestellten Variablen $PV2012$, welche die PV-Erzeugung über das Jahr 2012 abbildet und $Wind2012$, welche die Erzeugung aus der Windkraft darstellt, kann die Dauerlinie der Residuallast, für das Jahr 2012, ermittelt werden.\\
+	Das Resultat ist in Abbildung 4 dargestellt.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=12cm]{img/results/DauerlinieResiduallast2012}
-		\caption{TODO!}
+		\caption{Die Dauerlinie der Residuallast für das Jahr 2012.}
 	\end{figure}
+	Der Vergleich der beiden Diagramme zeigt, dass die Dauerlinie der Residuallast, im Vergleich zur Dauerlinie der Last, in den ersten $1000$ Stunden des Jahres stärker abfällt. Zwischen $1000$ Stunden und $8000$ Stunden ist die Kurve der Residuallast flacher, als die Kurve der Last. In den letzten $760 Stunden$ fällt die Kurve der Residuallast noch einmal sehr steil ab.\\
+	Der Vergleich zeigt, dass mit Hilfe der Erzeugung durch erneuerbare Energien die Stunden, in denen eine hohe Leistung von Regelkraftwerken abgedeckt werden muss (über $70.000 MW$), reduziert werden kann (auf ungefähr $1000$ Stunden). Zeitweise sinkt die Residuallast sogar auf nur circa $15.000MW$.
 	\subsubsection{Aufgabe 4.1.c - Abhängigkeiten des Spotmarktpreises}
+	In Aufgabe 4.1.c sollte die Abhängigkeit der Spotmarktpreise, des Jahres 2012, von der Netzlast, der Residuallast und der Einspeisung erneuerbarer Energien dargestellt werden.\\
+	Die Interpretation der Ergebnisse findet sich in Kapitel \hyperref[sec:Ergebnisse41d]{Aufgabe 4.1.d - Interpretation der Scatter-Plots}.\\ \par
+	\noindent Zum Erstellen eines Scatter-Plots ist folgender MATLAB Code notwendig:
+	\begin{lstlisting}
+	scatter(Netzlast2012, Spotpreis2012)
+	\end{lstlisting}
+	Die Variablen $Netzlast2012$ und $Spotpreis2012$ wurden in der Datei $Daten\_Preise\_Last\_2012.xlsx$ zur Verfügung gestellt. Die Variable $Netzlast2012$ wird für die beiden weiteren Diagramme durch die die Variablen $Residuallast2012$ und $EinspeisungErneuerbareEnergie2012$ ersetzt.\\
+	Die resultierenden Scatter-Plots sind in den Abbildungen 5-7 dargestellt.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=12cm]{img/results/ScatterNetzlast}
-		\caption{TODO!}
+		\caption{Die Abhängigkeit des Spotmarktpreises von der Netzlast, für das Jahr 2012.}
 	\end{figure}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=12cm]{img/results/ScatterResiduallast}
-		\caption{TODO!}
+		\caption{Die Abhängigkeit des Spotmarktpreises von der Residuallast, für das Jahr 2012.}
 	\end{figure}
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=12cm]{img/results/ScatterEinspeisung}
-		\caption{TODO!}
+		\caption{Die Abhängigkeit des Spotmarktpreises von der Einspeisung erneuerbarer Energien, für das Jahr 2012.}
 	\end{figure}
 	\subsubsection{Aufgabe 4.1.d - Interpretation der Scatter-Plots}
+	\label{sec:Ergebnisse41d}
 	\begin{enumerate}
 		\item Der Scatter-Plot in Abbildung 5 stellt den Spotmarktpreis, in Abhängigkeit der Netzlast dar.\newline
-		
-		
+		Umso weiter man auf der x-Achse nach rechts geht, umso höher ist die Nachfrage nach Energie. In der Abbildung ist schön ersichtlich, wie der Spotmarktpreis bei einer hohen Nachfrage steigt, während er bei einer geringen Nachfrage (auf der linken Seite der x-Achse) sinkt.
 		\item In Abbildung 6 ist der Spotmarktpreis, in Abhängigkeit der Residuallast dargestellt.\newline
-		
+		Analog zur Interpretation von Abbildung 5 ist auch in Abbildung 6 ein Zusammenhang zwischen der Nachfrage nach Energie und dem Spotmarktpreis ersichtlich. In Abbildung 6 ist dieser Zusammenhang sogar noch deutlicher sichtbar, da der unberechenbarere Faktor "erneuerbare Energien" nicht in die Berechnung miteinfließt und nur die Preissetzung der Anbieter dargestellt wird.
 		\item Abbildung 7 stellt den Spotmarktpreis in Abhängigkeit der Einspeisung erneuerbarer Energie dar.\newline
+		In diesem Diagramm ist ersichtlich, dass der Spotmarktpreis bei einem großen Angebot an Energie sinkt. Bei einem begrenzten Angebot, wie es links in der Abbildung der Fall ist, ist der Spotmarktpreis hoch. Bei einem großen Angebot sinkt der Preis dementsprechend.
 	\end{enumerate}
-	Zusammenfassen kann man sagen, dass sich die Ergebnisse mit unseren Erwartungen decken. Es ist ein allgemeiner Zusammenhang zwischen der Nachfrage nach Energie und dem Spotmarktpreis ersichtlich.\newline Sobald eine hohe Nachfrage besteht, die fluktuierender Einspeisung von dargebotsabhängigen Erzeugern jedoch gering ist (Aufgrund der aktuellen Jahreszeit, des Wetters, etc.), steigt der Spotmarktpreis.\newline
-	Besteht eine geringe Nachfrage während die Einspeisung durch erneuerbare Energien jedoch hoch ist (z.B. zur Mittagszeit im Sommer), sinkt der Spotmarktpreis.
+	Zusammenfassen kann man sagen, dass sich die Ergebnisse mit unseren Erwartungen decken. Es ist ein allgemeiner Zusammenhang zwischen der Nachfrage nach Energie und dem Spotmarktpreis ersichtlich.\newline Sobald eine hohe Nachfrage besteht, die fluktuierende Einspeisung von dargebotsabhängigen Erzeugern jedoch gering ist, steigt der Spotmarktpreis.\newline
+	Besteht eine geringe Nachfrage während die Einspeisung durch erneuerbare Energien hoch ist (z.B. zur Mittagszeit im Sommer), sinkt der Spotmarktpreis.
 	\newpage
 	\listoffigures
 \end{document}
