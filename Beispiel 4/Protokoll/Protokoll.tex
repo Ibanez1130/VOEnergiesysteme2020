@@ -223,6 +223,106 @@
 	\end{enumerate}
 	Zusammenfassen kann man sagen, dass sich die Ergebnisse mit unseren Erwartungen decken. Es ist ein allgemeiner Zusammenhang zwischen der Nachfrage nach Energie und dem Spotmarktpreis ersichtlich.\newline Sobald eine hohe Nachfrage besteht, die fluktuierende Einspeisung von dargebotsabhängigen Erzeugern jedoch gering ist, steigt der Spotmarktpreis.\newline
 	Besteht eine geringe Nachfrage während die Einspeisung durch erneuerbare Energien hoch ist (z.B. zur Mittagszeit im Sommer), sinkt der Spotmarktpreis.
+	\subsection{Aufgabe 4.2 - Preisentwicklung in den Jahren von 2008 bis 2016}
+	\subsubsection{Aufgabe 4.2.a - Preisdauerlinie für die Jahre von 2008 bis 2016}
+	In Aufgabe 4.2 soll die Preisentwicklung in den Jahren von 2008 bis 2016 analysiert werden. Hierzu wurden uns in der Datei $Spotpreis.mat$ die stündlichen Preise, für die jeweiligen Jahre, zur Verfügung gestellt.\newline
+	In Aufgabe 4.2.a sollen diese Daten in einer Preisdauerlinie dargestellt werden.\\ \par
+	Folgender MATLAB Code generiert die Preisdauerlinie des jeweiligen Jahres:
+	\begin{lstlisting}
+	SpotpreisDaten=["Spotpreis2008","Spotpreis2009","Spotpreis2010","Spotpreis2011","Spotpreis2012","Spotpreis2013","Spotpreis2014","Spotpreis2015","Spotpreis2016"];
+	
+	for i=1:length(SpotpreisDaten)
+		plot(sort(Spotpreis.(SpotpreisDaten(i)),"descend"));
+	end
+	\end{lstlisting}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{img/results/DauerlinieSpotpreise}
+		\caption{Die Dauerlinie der Spotpreise für die Jahre von 2008 bis 2016.}
+	\end{figure}
+	\noindent In Abbildung 8 ist das resultierende Diagramm dargestellt. Besonders im Bereich der Spitzenwerte ist ein Preissturz, über die Jahre, zu beobachten. Während der Unterschied zwischen der Preisdauerlinie des Jahres 2008 und der Preisdauerlinie des Jahres 2011, welche der Linie von 2008 am nächsten ist, groß ist, liegen die restlichen Preisdauerlinien relativ nahe beisammen. Besonders die Dauerlinien der Jahre 2014 bis 2016 unterscheiden sich nicht stark von einander. Die hohen Spotpreise im Jahr 2008 können eventuell auf die Wirtschaftskrise, in diesem Jahr, zurück geführt werden.\newline
+	Ebenfalls zu erkennen ist, dass der Strompreis besonders in den letzten fünf Jahren zeitweise deutlich in den negativen Bereich fällt. Ein Grund hierfür ist die Energieproduktion von erneuerbaren Energien zu Spitzenzeiten, wie zum Beispiel zur Mittagszeit an Sommertagen.\\ \par
+	\noindent Aus Abbildung 8 ist zu schließen, dass der vermehrte Einsatz von erneuerbaren Energien den Strompreis über die Jahre immer weiter nach unten drückt.
+	\subsubsection{Aufgabe 4.2.b - Die stündlichen Strompreis-Mittelwerte für die Jahre von 2008 bis 2016}
+	Für Aufgabe 4.2.b sollten aus den Daten aus Aufgabe 4.2.a die mittleren stündlichen Großhandelspreise für alle 24 Stunden, für die Jahre 2008 und 2016 ermittelt werden. Diese sollten dann in Boxplot-Diagrammen dargestellt werden.\\ \par
+	\noindent Wie bereits in Aufgabe 4.2.a werden die Daten aus der Datei $Spotpreis.mat$ genutzt.\newline
+	Folgender MATLAB Code errechnet für jede Stunde eines Tages den Mittelwert aus 365 Tagen:
+	\begin{lstlisting}
+	SpotpreiseStd2008 = reshape(Spotpreis.Spotpreis2008,365,24);
+	SpotpreiseStd2016 = reshape(Spotpreis.Spotpreis2016,365,24);
+	\end{lstlisting}
+	Mithilfe der $boxplot()$ Funktion können diese Daten in weiterer Folge dargestellt werden.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{img/results/BoxplotsGroßhandelspreise}
+		\caption{Boxplot-Diagramme der mittleren stündlichen Großhandelsstrompreise der Jahre 2008 und 2016.}
+	\end{figure}
+	\noindent Abbildung 9 stellt die resultierenden Diagramme dar.\newline
+	Im Jahr 2008 liegen die mittleren Strompreise großteils bei über $50\mbox{\euro}$. In der Mittags- und Abendszeit erreichen die Preise ihre höchsten Durchschnittswerte. In der Früh können ebenfalls erhöhte Mittelwerte erkannt werden, jedoch sind diese geringer als zur Mittagszeit. Besonders zu Mittag und am Abend sind einige Ausreißer erkennen.\newline
+	Diese Beobachtung ist dadurch zu erklären, dass in der Früh, zu Mittag und am Abend gekocht wird. Am Abend ist zusätzlich die Beleuchtung aktiv, was die Nachfrage nach Energie noch einmal vergrößert.\newline
+	\noindent Der Vergleich zum Jahr 2016 zeigt, dass die Höhe der Boxplots im Jahr 2008 wesentlich größer ist. Diese Höhe representiert die mittleren $50\%$ der Daten. Demnach ist sind die Schwankungen im Preis, im Jahr 2016, geringer.\newline Weiters liegen die mittleren Strompreise im Jahr 2016 nur noch sehr selten bei über $50\mbox{\euro}$.\newline
+	Besonders auffällig sind die Ausreißer zur Mittagszeit. Während diese im Jahr 2008 noch in den positiven Bereich gingen, befinden sich die Ausreißer im Jahr 2016 teilweise im negativen Bereich. Diese Änderung ist durch die wesentlich höhere Erzeugung durch erneuerbare Energien zu erklären, die zu Mittag ein Produktionsmaximum erreichen. Zusätzlich sind im Jahr 2016 auch negative Ausreißer am Abend zu erkennen.
+	\subsection{Aufgabe 4.3 - Monetärer Ertrag einer PV-Anlage für die Jahre von 2008 bis 2016}
+	\textit{Anmerkung: Die Interpretation der Ergebnisse aus Aufgabe 4.3.c, wird in die Kapitel der Aufgaben 4.3.a und 4.3.b eingebunden.}
+	\subsubsection{Aufgabe 4.3.a - Monetärer Ertrag einer 1kWp PV-Anlage für die Jahre von 2008 bis 2016}
+	Aufgabe 4.3.a beschäftigt sich mit dem monetären Ertrag einer PV-Anlage in den Jahren 2008 bis 2016. Es wird davon ausgegangen, dass die gesamte Produktion am Spotmarkt verkauft wird.\\ \par
+	Folgender MATLAB Code errechnet den gesamten monetären Ertrag der PV-Anlage, für die jeweiligen Jahre:
+	\begin{lstlisting}
+	Skalierungsfaktor = 0.001;
+	MonetaererEtrag = zeros(9,1);
+	
+	for i=1:length(SpotpreisDaten)
+		MonetaererEtrag(i)=sum(Skalierungsfaktor.*PV_profil.*Spotpreis.(SpotpreisDaten(i)));
+	end
+	
+	MonetaererEtragGesamt = sum(MonetaererEtrag);
+	bar(2008:2016,MonetaererEtrag)
+	\end{lstlisting}
+	\begin{itemize}
+		\item Der \textbf{Skalierungsfaktor} ist notwendig, da der Ertrag im PV-Profil der Anlage in $MW/MWp$, die Größe der Anlage jedoch in $kWp$, gegeben ist.
+		\item Die Daten für das \textbf{PV-Profil} entstammen der Datei $Load\_PVProduction.mat$.
+		\item Die Definition der Variable \textbf{SpotpreisDaten} kann dem MATLAB Code aus Aufgabe 4.2.a entnommen werden.
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{img/results/ErtragUeberJahre}
+		\caption{Der gesamte monetäre Ertrag einer $1kWp$ PV-Anlage, über die Jahre von 2008 bis 2016.}
+	\end{figure}
+	\noindent Wie Abbildung 10 entnommen werden kann, hätte die PV-Anlage im Jahr 2008 mit Abstand den meisten monetären Ertrag gebracht. Diese Beobachtung deckt sich mit dem Verhalten in Abbildung 8, wo die Preisdauerlinie des Jahres 2008 ebenfalls am höchsten war. Wie bereits in Abbildung 8, ist der Ertrag im Jahr 2011 dem von 2008 am nächsten. In den darauffolgenden Jahren sinkt der monetäre Ertrag tendenziell. Dieses Beobachtung kann durch den vermehrten Ausbau der erneuerbaren Energien begründet werden.\newline
+	Während im Jahre 2008 noch $75\mbox{\euro}$ erwirtschaftet wurden, liegt der Ertrag im Jahr 2016 nur noch bei circa $25\mbox{\euro}$, also einem Drittel.\newline
+	Ebenfalls ist zu erwähnen, dass der gesamte monetäre Ertrag, über den Zeitraum von neun Jahren, bei $370\mbox{\euro}$ liegt. Die PV-Anlage würde sich ohne Förderung, bei vollständiger Einspeisung, demnach nicht rentieren.\newline
+	Es ist zu erwarten, dass trotz der vermehrten Nachfrage nach Energie, der Preis und damit der monetäre Ertrag, über die kommenden Jahre weiter sinken wird.
+	\subsubsection{Aufgabe 4.3.b - Monetärer Ertrag der Tage 4 bis 34 und 180 bis 220, im Jahr 2008 und 2016}
+	In Aufgabe 4.3.b sollen die monetären Erträge der Wintertage 4-34 und der Sommertage 180-220, der Jahre 2008 und 2016, verglichen werden.\newline
+	Die Daten können wieder der Datei $Spotpreis.mat$ entnommen werden.\\ \par
+	Der Ertrag der jeweiligen Zeitbereiche kann mit Hilfe folgendes MATLAB Codes bestimmt werden:
+	\begin{lstlisting}
+	MonetaererEtrag2008_1 = 0;
+	MonetaererEtrag2016_1 = 0;
+	MonetaererEtrag2008_2 = 0;
+	MonetaererEtrag2016_2 = 0;
+	
+	Ertrag2008=Skalierungsfaktor.*PV_profil.*Spotpreis.Spotpreis2008;
+	Ertrag2016=Skalierungsfaktor.*PV_profil.*Spotpreis.Spotpreis2016;
+	
+	for j=4:34
+		MonetaererEtrag2008_1=MonetaererEtrag2008_1+sum(Skalierungsfaktor*PV_profil(j)*Spotpreis.Spotpreis2008(j));
+		MonetaererEtrag2016_1=MonetaererEtrag2016_1+sum(Skalierungsfaktor*PV_profil(j)*Spotpreis.Spotpreis2016(j));
+	end
+	
+	for k=180:220
+		MonetaererEtrag2008_2=MonetaererEtrag2008_2+sum(Skalierungsfaktor*PV_profil(k)*Spotpreis.Spotpreis2008(k));
+		MonetaererEtrag2016_2=MonetaererEtrag2016_2+sum(Skalierungsfaktor*PV_profil(k)*Spotpreis.Spotpreis2016(k));
+	end
+	\end{lstlisting}
+	Die Definition der einzelnen Variablen kann dem MATLAB Code aus Kapitel Aufgabe 4.3.a entnommen werden.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{img/results/ErtragEinzelnerTage}
+		\caption{Der monetäre Ertrag der Tage 4 bis 34 und 180 bis 220, in den Jahren 2008 und 2016.}
+	\end{figure}
+	\noindent Abbildung 11 veranschaulicht noch einmal das in Aufgabe 4.3.a beobachtete Verhalten. Der monetäre Ertrag im Jahr 2008 ist durch die höheren Spotmarktpreise wesentlich höher, als im Jahr 2016. Für die Tage 180 bis 220 ist der Ertrag des Jahres 2008 mehr als doppelt so hoch, wie im Jahr 2016. Gründe für den Preisunterschied werden in den vorigen Kapiteln besprochen.\newline
+	Wie zu erwarten war, ist der Ertrag im Sommer höher als im Winter.
 	\newpage
 	\listoffigures
-\end{document}
+	\end{document}
