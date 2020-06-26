@@ -5,3 +5,6 @@
 *.blg
 **/*.gz
 **/*.aux
+*.lof
+*.out
+*.toc
