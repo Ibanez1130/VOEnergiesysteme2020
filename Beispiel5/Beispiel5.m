@@ -40,8 +40,7 @@ onLatitude = 54.9;          % Längengrad der OnShore WKA
 onLongitude = 9.1;          % Breitengrad der OnShore WKA
 onZ = 0.05;                 % Rauhigkeit für landwirtschaftl. Gelände mit offenem Erscheindungsbild lt. Tabelle 2-1 im Skript
 
-%% Vergleich Offshore/Onshore für den Standort Sylt/Juldelund
-% Offshore/Onshore Vergleich - Sylt (Offshore Windpark Butendiek)
+%% Vergleich Offshore/Onshore für den Standort Butendiek/Joldelund
 
 % Berechnen der Offshore Leistung
 % Mangels Messdaten zu der expliziten Anlage, errechnen wir das Produkt aus
@@ -55,7 +54,7 @@ offP(offWindSpeed > 12.5) = offRatedPower;
 offP(offWindSpeed > 25) = 0;
 
 % Plot der Leistungsdauerlinie
-figure('Name','Dauerlinie der Offshore Windkraftanlage (Butendiek)','NumberTitle','off');
+figure('Name','Dauerlinie der Offshore Windkraftanlage (Butendiek, SWT-3.6-120)','NumberTitle','off');
 plot(sort(offWindSpeed, 'descend'));
 ylabel('Windgeschwindigkeit in m/s');
 hold on
@@ -77,7 +76,7 @@ onP(onWindSpeed > 12.5) = offRatedPower;
 onP(onWindSpeed > 25) = 0;
 
 % Plot der Leistungsdauerlinie
-figure('Name','Dauerlinie der Onshore Windkraftanlage (Joldelund)','NumberTitle','off');
+figure('Name','Dauerlinie der Onshore Windkraftanlage (Joldelund, SWT-3.6-120)','NumberTitle','off');
 plot(sort(onWindSpeed, 'descend'));
 ylabel('Windgeschwindigkeit in m/s');
 hold on
@@ -86,6 +85,40 @@ ylabel('Leistung in MW')
 plot(onP);
 xlim([0 35040]);
 xlabel('Zeit in Viertelstunden');
+
+%% Vergleich Offshore/Onshore für höhere und niedrigere Anlagen
+comparisonHeight = 70:5:130;
+offIncome = zeros(length(comparisonHeight), 1);
+
+for h=1:length(comparisonHeight)
+    effFactor = offRatedPower / (0.5 * mean(calculateAirDensity(Butendiek.Pressure,Butendiek.Temperature,spezGaskonst)) * offRotorArea * offRatedWind ^ 3);
+    windSpeed = sort(convertWindspeedToHeight(Butendiek.WindSpeed,2,comparisonHeight(h),offZ), 'descend');
+    PWind = 0.5 .* calculateAirDensity(Butendiek.Pressure,Butendiek.Temperature,spezGaskonst) .* offRotorArea .* windSpeed .^ 3;
+    P = PWind .* effFactor;
+    P(windSpeed < 3) = 0;
+    P(windSpeed > 12.5) = offRatedPower;
+    P(windSpeed > 25) = 0;
+    offIncome(h) = sum(P) - sum(offP);
+end
+
+onIncome = zeros(length(comparisonHeight), 1);
+
+for h=1:length(comparisonHeight)
+    effFactor = offRatedPower / (0.5 * mean(calculateAirDensity(Joldelund.Pressure,Joldelund.Temperature,spezGaskonst)) * offRotorArea * offRatedWind ^ 3);
+    windSpeed = sort(convertWindspeedToHeight(Joldelund.WindSpeed,2,comparisonHeight(h),onZ), 'descend');
+    PWind = 0.5 .* calculateAirDensity(Joldelund.Pressure,Joldelund.Temperature,spezGaskonst) .* offRotorArea .* windSpeed .^ 3;
+    P = PWind .* effFactor;
+    P(windSpeed < 3) = 0;
+    P(windSpeed > 12.5) = offRatedPower;
+    P(windSpeed > 25) = 0;
+    onIncome(h) = sum(P) - sum(onP);
+end
+
+figure('Name','Vergleich unterschiedlicher Höhen für eine Onshore WKA','NumberTitle','off');
+plot(comparisonHeight, [offIncome, onIncome]);
+xlabel('Höhe der Rotornabe in m');
+ylabel('Ertragsdifferenz in Wh');
+legend('Offshore (Butendiek)','Onshore (Joldelund)');
 
 %% Vergleich unterschiedlicher Standorte in Europa
 % Standorte in Europa - Helsinki, Wien, Neapel
