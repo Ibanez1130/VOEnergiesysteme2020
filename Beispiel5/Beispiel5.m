@@ -17,7 +17,7 @@ Wien = DatenWien.Wien;
 DatenNeapel = load('./Daten/Neapel.mat');
 Neapel = DatenNeapel.Neapel;
 
-%% Definition der Variablen
+%% Definition der Variablen für den Offshore/Onshore Vergleich
 % Allgemeine Konstanten
 spezGaskonst = 287.058;     % spezifische Gaskonstante der Luft
 
@@ -39,6 +39,9 @@ onLatitude = 54.9;          % Längengrad der OnShore WKA
 
 onLongitude = 9.1;          % Breitengrad der OnShore WKA
 onZ = 0.05;                 % Rauhigkeit für landwirtschaftl. Gelände mit offenem Erscheindungsbild lt. Tabelle 2-1 im Skript
+
+%% Definition der Variablen für den Offshore/Onshore Vergleich
+
 
 %% Vergleich Offshore/Onshore für den Standort Butendiek/Joldelund
 
@@ -87,8 +90,8 @@ xlim([0 35040]);
 xlabel('Zeit in Viertelstunden');
 
 %% Vergleich Offshore/Onshore für höhere und niedrigere Anlagen
-comparisonHeight = 70:5:130;
-offIncome = zeros(length(comparisonHeight), 1);
+comparisonHeight = 70:5:140;
+offVolllaststunden = zeros(length(comparisonHeight), 1);
 
 for h=1:length(comparisonHeight)
     effFactor = offRatedPower / (0.5 * mean(calculateAirDensity(Butendiek.Pressure,Butendiek.Temperature,spezGaskonst)) * offRotorArea * offRatedWind ^ 3);
@@ -98,10 +101,10 @@ for h=1:length(comparisonHeight)
     P(windSpeed < 3) = 0;
     P(windSpeed > 12.5) = offRatedPower;
     P(windSpeed > 25) = 0;
-    offIncome(h) = sum(P) - sum(offP);
+    offVolllaststunden(h) = sum(P)/offRatedPower;
 end
 
-onIncome = zeros(length(comparisonHeight), 1);
+onVolllaststunden = zeros(length(comparisonHeight), 1);
 
 for h=1:length(comparisonHeight)
     effFactor = offRatedPower / (0.5 * mean(calculateAirDensity(Joldelund.Pressure,Joldelund.Temperature,spezGaskonst)) * offRotorArea * offRatedWind ^ 3);
@@ -111,27 +114,30 @@ for h=1:length(comparisonHeight)
     P(windSpeed < 3) = 0;
     P(windSpeed > 12.5) = offRatedPower;
     P(windSpeed > 25) = 0;
-    onIncome(h) = sum(P) - sum(onP);
+    onVolllaststunden(h) = sum(P)/offRatedPower;
 end
 
-figure('Name','Vergleich unterschiedlicher Höhen für eine Onshore WKA','NumberTitle','off');
-plot(comparisonHeight, [offIncome, onIncome]);
+figure('Name','Vergleich unterschiedlicher Höhen für Offshore und Onshore Anlagen','NumberTitle','off');
+plot(comparisonHeight, [offVolllaststunden, onVolllaststunden]);
 xlabel('Höhe der Rotornabe in m');
-ylabel('Ertragsdifferenz in Wh');
+ylabel('Volllaststunden in h');
 legend('Offshore (Butendiek)','Onshore (Joldelund)');
 
 %% Vergleich unterschiedlicher Standorte in Europa
 % Standorte in Europa - Helsinki, Wien, Neapel
 
+%% Funktionen
+
+% Funktion zum Umrechnen der Windgeschwindigkeiten von einer Referenzhöhe
+% auf eine andere.
 function speed = convertWindspeedToHeight(data,refHeight,height,z)
     speed = data.*(log(height/z)/log(refHeight/z));
 end
 
+% Funktion zum Berechnen der Luftdichte
 function airDensity = calculateAirDensity(pressure,temperature,rs)
     airDensity = pressure.*100./(rs.*temperature); % mal 100, da der Druck in hPa vorliegt
 end
 
 %% Notizen
 % Luftdruck und Temperature sind beide auf Boden-Niveau. Sind also ungenau.
-% Aufgrund mangelnder Messdaten wird in allen Fällen von einem
-% Leistungsbeiwert von 0.45 ausgegangen (Beispiel 5-1 vergleichbar)
