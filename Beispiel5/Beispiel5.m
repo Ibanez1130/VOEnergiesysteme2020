@@ -17,6 +17,8 @@ Wien = DatenWien.Wien;
 DatenNeapel = load('./Daten/Neapel.mat');
 Neapel = DatenNeapel.Neapel;
 
+load('./Daten/Spotpreis');
+
 %% Definition der Variablen für den Offshore/Onshore Vergleich
 % Allgemeine Konstanten
 spezGaskonst = 287.058;     % spezifische Gaskonstante der Luft
@@ -51,6 +53,14 @@ eurRatedWind = 12.5;        % rated wind-speed of the turbine (m/s)
 eurCutOutWind = 22;         % cut out wind-speed of the turbine (m/s)
 eurRotorArea = (eurRotorRadius^2 * pi) - (eurRotorHubRadius^2 * pi);
 eurZ = onZ;
+
+%% Definition der Daten für die Barwertanalyse
+
+lifespan = 25;                                      % Lebensdauer (a)
+interestRate = 4;                                   % Zinssatz (%)
+feedInTariff_OEMAG = 0.082;                         % Einspeisetarif in €/kWh lt. OEMAG
+fundingPeriod = 13;                                 % Förderdauer 13a
+spotprice = table2array(Spotpreis(:,9))./10./100;   % Einspeisetarif in €/kWh im Jahr 2016 (Annahme: Spotpreis jedes Jahr gleich)
 
 %% Vergleich Offshore/Onshore für den Standort Butendiek/Joldelund
 
@@ -149,6 +159,52 @@ bar(eurHeight, [volllaststundenHelsinki, volllaststundenWien, volllaststundenNea
 xlabel('Höhe der Rotornabe in m');
 ylabel('Volllaststunden in h');
 legend('Helsinki','Wien','Neapel');
+
+%% Barwert der Einnahmen zum Zeitpunkt der Erbauung
+% Aus Mangel an weiteren Daten wird der österreichische Spotmarktpreis vom Jahr 2016
+% für alle begutachteten WKAs hergezogen.
+% Für einen korrekten Vergleich, bei dem länderspezifische Investitionskosten bzw
+% Betriebskosten miteinberechnet werden, müsste auch länderspezifisch der Spotmarktpreis 
+% verwendet werden.
+
+close all
+
+% Jährlicher Ertrag Förderdauer
+CF_Butendiek_OEMAG = sum(offP)./4.*1000.*feedInTariff_OEMAG;
+CF_Joldelund_OEMAG = sum(onP)./4.*1000.*feedInTariff_OEMAG;
+
+% Jährlicher Ertrag Spotmarkt
+CF_Butendiek_Spotprice = 0;
+CF_Joldelund_Spotprice = 0;
+
+for i=1:8760
+    run =4*i;
+    CF_Butendiek_Spotprice = CF_Butendiek_Spotprice + sum(offP(run-3:run))./4.*1000.*spotprice(i);
+    CF_Joldelund_Spotprice = CF_Joldelund_Spotprice + sum(onP(run-3:run))./4.*1000.*spotprice(i);
+end
+
+%Barwert
+NPV_Butendiek = zeros(25,1);
+NPV_Joldelund = zeros(25,1);
+
+for i = 1:25
+    if i==1
+        NPV_Butendiek(1) = CF_Butendiek_OEMAG/(1+interestRate./100);
+        NPV_Joldelund(1) = CF_Joldelund_OEMAG/(1+interestRate./100);
+    elseif i<=13
+        NPV_Butendiek(i) = NPV_Butendiek(i-1) + CF_Butendiek_OEMAG./((1+interestRate./100)^i);
+        NPV_Joldelund(i) = NPV_Joldelund(i-1) + CF_Joldelund_OEMAG./((1+interestRate./100)^i);
+    else
+        NPV_Butendiek(i) = NPV_Butendiek(i-1) + CF_Butendiek_Spotprice./((1+interestRate./100)^i);
+        NPV_Joldelund(i) = NPV_Joldelund(i-1) + CF_Joldelund_Spotprice./((1+interestRate./100)^i);
+    end
+end
+
+figure('Name', 'Barwert der Einnahmen', 'NumberTitle', 'Off');
+xlabel('Barwert der Einnahmen');
+ylabel('Betriebsjahre');
+bar([NPV_Butendiek, NPV_Joldelund]);
+legend('Butendiek', 'Joldelund', 'Location', 'northwest');
 
 %% Funktionen
 
