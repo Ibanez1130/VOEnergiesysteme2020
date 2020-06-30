@@ -176,41 +176,62 @@ nea = calculatePowerUnsorted(Neapel.WindSpeed,eurHeight,eurRatedPower,eurRatedWi
 
 
 % Jährlicher Ertrag Förderdauer
-CF_Butendiek_OEMAG = sum(offP)./4.*1000.*feedInTariff_OEMAG;
-CF_Joldelund_OEMAG = sum(onP)./4.*1000.*feedInTariff_OEMAG;
+CF_But_OEMAG = sum(but)./4.*1000.*feedInTariff_OEMAG;
+CF_Jol_OEMAG = sum(jol)./4.*1000.*feedInTariff_OEMAG;
+CF_Hel_OEMAG = sum(hel)./4.*1000.*feedInTariff_OEMAG;
+CF_Wie_OEMAG = sum(wie)./4.*1000.*feedInTariff_OEMAG;
+CF_Nea_OEMAG = sum(nea)./4.*1000.*feedInTariff_OEMAG;
 
 % Jährlicher Ertrag Spotmarkt
-CF_Butendiek_Spotprice = 0;
-CF_Joldelund_Spotprice = 0;
+CF_But_Spotprice = 0;
+CF_Jol_Spotprice = 0;
+CF_Hel_Spotprice = 0;
+CF_Wie_Spotprice = 0;
+CF_Nea_Spotprice = 0;
 
 for i=1:8760
     run =4*i;
-    CF_Butendiek_Spotprice = CF_Butendiek_Spotprice + sum(offP(run-3:run))./4.*1000.*spotprice(i);
-    CF_Joldelund_Spotprice = CF_Joldelund_Spotprice + sum(onP(run-3:run))./4.*1000.*spotprice(i);
+    CF_But_Spotprice = CF_But_Spotprice + sum(but(run-3:run))./4.*1000.*spotprice(i);
+    CF_Jol_Spotprice = CF_Jol_Spotprice + sum(jol(run-3:run))./4.*1000.*spotprice(i);
+    CF_Hel_Spotprice = CF_Hel_Spotprice + sum(hel(run-3:run))./4.*1000.*spotprice(i);
+    CF_Wie_Spotprice = CF_Wie_Spotprice + sum(wie(run-3:run))./4.*1000.*spotprice(i);
+    CF_Nea_Spotprice = CF_Nea_Spotprice + sum(nea(run-3:run))./4.*1000.*spotprice(i);
 end
 
 %Barwert
-NPV_Butendiek = zeros(25,1);
-NPV_Joldelund = zeros(25,1);
+NPV_But = zeros(25,1);
+NPV_Jol = zeros(25,1);
+NPV_Hel = zeros(25,1);
+NPV_Wie = zeros(25,1);
+NPV_Nea = zeros(25,1);
 
 for i = 1:25
     if i==1
-        NPV_Butendiek(1) = CF_Butendiek_OEMAG/(1+interestRate./100);
-        NPV_Joldelund(1) = CF_Joldelund_OEMAG/(1+interestRate./100);
+        NPV_But(1) = CF_But_OEMAG/(1+interestRate./100);
+        NPV_Jol(1) = CF_Jol_OEMAG/(1+interestRate./100);
+        NPV_Hel(1) = CF_Hel_OEMAG/(1+interestRate./100);
+        NPV_Wie(1) = CF_Wie_OEMAG/(1+interestRate./100);
+        NPV_Nea(1) = CF_Nea_OEMAG/(1+interestRate./100);
     elseif i<=13
-        NPV_Butendiek(i) = NPV_Butendiek(i-1) + CF_Butendiek_OEMAG./((1+interestRate./100)^i);
-        NPV_Joldelund(i) = NPV_Joldelund(i-1) + CF_Joldelund_OEMAG./((1+interestRate./100)^i);
+        NPV_But(i) = NPV_But(i-1) + CF_But_OEMAG./((1+interestRate./100)^i);
+        NPV_Jol(i) = NPV_Jol(i-1) + CF_Jol_OEMAG./((1+interestRate./100)^i);
+        NPV_Hel(i) = NPV_Hel(i-1) + CF_Hel_OEMAG./((1+interestRate./100)^i);
+        NPV_Wie(i) = NPV_Wie(i-1) + CF_Wie_OEMAG./((1+interestRate./100)^i);
+        NPV_Nea(i) = NPV_Nea(i-1) + CF_Nea_OEMAG./((1+interestRate./100)^i);
     else
-        NPV_Butendiek(i) = NPV_Butendiek(i-1) + CF_Butendiek_Spotprice./((1+interestRate./100)^i);
-        NPV_Joldelund(i) = NPV_Joldelund(i-1) + CF_Joldelund_Spotprice./((1+interestRate./100)^i);
+        NPV_But(i) = NPV_But(i-1) + CF_But_Spotprice./((1+interestRate./100)^i);
+        NPV_Jol(i) = NPV_Jol(i-1) + CF_Jol_Spotprice./((1+interestRate./100)^i);
+        NPV_Hel(i) = NPV_Hel(i-1) + CF_Hel_Spotprice./((1+interestRate./100)^i);
+        NPV_Wie(i) = NPV_Wie(i-1) + CF_Wie_Spotprice./((1+interestRate./100)^i);
+        NPV_Nea(i) = NPV_Nea(i-1) + CF_Nea_Spotprice./((1+interestRate./100)^i);
     end
 end
 
 figure('Name', 'Barwert der Einnahmen', 'NumberTitle', 'Off');
 xlabel('Barwert der Einnahmen');
 ylabel('Betriebsjahre');
-bar([NPV_Butendiek, NPV_Joldelund]);
-legend('Butendiek', 'Joldelund', 'Location', 'northwest');
+bar([NPV_But, NPV_Jol, NPV_Hel, NPV_Wie, NPV_Nea]);
+legend('Butendiek', 'Joldelund', 'Helsinki', 'Wien', 'Neapel', 'Location', 'northwest');
 
 %% Funktionen
 
