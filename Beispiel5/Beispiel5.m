@@ -144,9 +144,9 @@ legend('Offshore (Butendiek)','Onshore (Joldelund)');
 
 %% Vergleich unterschiedlicher Standorte in Europa, bei unterschiedlichen Höhen
 % Standorte in Europa - Helsinki, Wien, Neapel
-[ertragHelsinki,volllaststundenHelsinki,~] = calculateIncomeEurope(' Helsinki',Helsinki.WindSpeed,eurHeight,eurRatedPower,eurRatedWind,eurCutInWind,eurCutOutWind,Helsinki.Pressure,Helsinki.Temperature,eurRotorArea,eurZ,spezGaskonst);
-[ertragWien,volllaststundenWien,~] = calculateIncomeEurope(' Wien',Wien.WindSpeed,eurHeight,eurRatedPower,eurRatedWind,eurCutInWind,eurCutOutWind,Wien.Pressure,Wien.Temperature,eurRotorArea,eurZ,spezGaskonst);
-[ertragNeapel,volllaststundenNeapel,~] = calculateIncomeEurope(' Neapel',Neapel.WindSpeed,eurHeight,eurRatedPower,eurRatedWind,eurCutInWind,eurCutOutWind,Neapel.Pressure,Neapel.Temperature,eurRotorArea,eurZ,spezGaskonst);
+[ertragHelsinki,volllaststundenHelsinki] = calculateIncomeEurope(' Helsinki',Helsinki.WindSpeed,eurHeight,eurRatedPower,eurRatedWind,eurCutInWind,eurCutOutWind,Helsinki.Pressure,Helsinki.Temperature,eurRotorArea,eurZ,spezGaskonst);
+[ertragWien,volllaststundenWien] = calculateIncomeEurope(' Wien',Wien.WindSpeed,eurHeight,eurRatedPower,eurRatedWind,eurCutInWind,eurCutOutWind,Wien.Pressure,Wien.Temperature,eurRotorArea,eurZ,spezGaskonst);
+[ertragNeapel,volllaststundenNeapel] = calculateIncomeEurope(' Neapel',Neapel.WindSpeed,eurHeight,eurRatedPower,eurRatedWind,eurCutInWind,eurCutOutWind,Neapel.Pressure,Neapel.Temperature,eurRotorArea,eurZ,spezGaskonst);
 
 figure('Name','Der Ertrag unterschiedlicher Standorte in Europa, mit unterschiedlichen Höhen','NumberTitle','off');
 bar(eurHeight, [ertragHelsinki, ertragWien, ertragNeapel]);
@@ -167,7 +167,13 @@ legend('Helsinki','Wien','Neapel');
 % Betriebskosten miteinberechnet werden, müsste auch länderspezifisch der Spotmarktpreis 
 % verwendet werden.
 
-close all
+% UNSORTIERTE LEISTUNG
+but = calculatePowerUnsorted(Butendiek.WindSpeed,comparisonHeight,offRatedPower,offRatedWind,offCutInWind,offCutOutWind,Butendiek.Pressure,Butendiek.Temperature,offRotorArea,offZ,spezGaskonst);
+jol = calculatePowerUnsorted(Joldelund.WindSpeed,comparisonHeight,offRatedPower,offRatedWind,offCutInWind,offCutOutWind,Joldelund.Pressure,Joldelund.Temperature,offRotorArea,onZ,spezGaskonst);
+hel = calculatePowerUnsorted(Helsinki.WindSpeed,eurHeight,eurRatedPower,eurRatedWind,eurCutInWind,eurCutOutWind,Helsinki.Pressure,Helsinki.Temperature,eurRotorArea,eurZ,spezGaskonst);
+wie = calculatePowerUnsorted(Wien.WindSpeed,eurHeight,eurRatedPower,eurRatedWind,eurCutInWind,eurCutOutWind,Wien.Pressure,Wien.Temperature,eurRotorArea,eurZ,spezGaskonst);
+nea = calculatePowerUnsorted(Neapel.WindSpeed,eurHeight,eurRatedPower,eurRatedWind,eurCutInWind,eurCutOutWind,Neapel.Pressure,Neapel.Temperature,eurRotorArea,eurZ,spezGaskonst);
+
 
 % Jährlicher Ertrag Förderdauer
 CF_Butendiek_OEMAG = sum(offP)./4.*1000.*feedInTariff_OEMAG;
@@ -220,7 +226,7 @@ function airDensity = calculateAirDensity(pressure,temperature,rs)
 end
 
 % Funktion zum Berechnen des Ertrags und der Volllaststunden
-function [income,hours,power] = calculateIncomeEurope(location,speed,height,ratedPower,ratedWind,cutin,cutout,pressure,temperature,area,z,spezGaskonst)
+function [income,hours] = calculateIncomeEurope(location,speed,height,ratedPower,ratedWind,cutin,cutout,pressure,temperature,area,z,spezGaskonst)
     volllaststunden = zeros(length(height), 1);
     ertrag = zeros(length(height), 1);
     leistung = zeros(length(height), 35040);
@@ -246,7 +252,19 @@ function [income,hours,power] = calculateIncomeEurope(location,speed,height,rate
     legend(string(height));
     income = ertrag ./ 4;
     hours = volllaststunden ./ 4;
-    power = leistung ./ 4;
+end
+
+function power = calculatePowerUnsorted(speed,height,ratedPower,ratedWind,cutin,cutout,pressure,temperature,area,z,spezGaskonst)
+    for h=1:length(height)
+        effFactor = ratedPower / (0.5 * mean(calculateAirDensity(pressure,temperature,spezGaskonst)) * area * ratedWind ^ 3);
+        windSpeed = convertWindspeedToHeight(speed,2,height(h),z);
+        PWind = 0.5 .* calculateAirDensity(pressure,temperature,spezGaskonst) .* area .* windSpeed .^ 3;
+        P = PWind .* effFactor;
+        P(windSpeed < cutin) = 0;
+        P(windSpeed > ratedWind) = ratedPower;
+        P(windSpeed > cutout) = 0;
+        power = P;
+    end
 end
 
 %% Notizen
