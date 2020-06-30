@@ -144,9 +144,9 @@ legend('Offshore (Butendiek)','Onshore (Joldelund)');
 
 %% Vergleich unterschiedlicher Standorte in Europa, bei unterschiedlichen Höhen
 % Standorte in Europa - Helsinki, Wien, Neapel
-[ertragHelsinki,volllaststundenHelsinki] = calculateIncomeEurope(' Helsinki',Helsinki.WindSpeed,eurHeight,eurRatedPower,eurRatedWind,eurCutInWind,eurCutOutWind,Helsinki.Pressure,Helsinki.Temperature,eurRotorArea,eurZ,spezGaskonst);
-[ertragWien,volllaststundenWien] = calculateIncomeEurope(' Wien',Wien.WindSpeed,eurHeight,eurRatedPower,eurRatedWind,eurCutInWind,eurCutOutWind,Wien.Pressure,Wien.Temperature,eurRotorArea,eurZ,spezGaskonst);
-[ertragNeapel,volllaststundenNeapel] = calculateIncomeEurope(' Neapel',Neapel.WindSpeed,eurHeight,eurRatedPower,eurRatedWind,eurCutInWind,eurCutOutWind,Neapel.Pressure,Neapel.Temperature,eurRotorArea,eurZ,spezGaskonst);
+[ertragHelsinki,volllaststundenHelsinki,~] = calculateIncomeEurope(' Helsinki',Helsinki.WindSpeed,eurHeight,eurRatedPower,eurRatedWind,eurCutInWind,eurCutOutWind,Helsinki.Pressure,Helsinki.Temperature,eurRotorArea,eurZ,spezGaskonst);
+[ertragWien,volllaststundenWien,~] = calculateIncomeEurope(' Wien',Wien.WindSpeed,eurHeight,eurRatedPower,eurRatedWind,eurCutInWind,eurCutOutWind,Wien.Pressure,Wien.Temperature,eurRotorArea,eurZ,spezGaskonst);
+[ertragNeapel,volllaststundenNeapel,~] = calculateIncomeEurope(' Neapel',Neapel.WindSpeed,eurHeight,eurRatedPower,eurRatedWind,eurCutInWind,eurCutOutWind,Neapel.Pressure,Neapel.Temperature,eurRotorArea,eurZ,spezGaskonst);
 
 figure('Name','Der Ertrag unterschiedlicher Standorte in Europa, mit unterschiedlichen Höhen','NumberTitle','off');
 bar(eurHeight, [ertragHelsinki, ertragWien, ertragNeapel]);
@@ -220,9 +220,10 @@ function airDensity = calculateAirDensity(pressure,temperature,rs)
 end
 
 % Funktion zum Berechnen des Ertrags und der Volllaststunden
-function [income,hours] = calculateIncomeEurope(location,speed,height,ratedPower,ratedWind,cutin,cutout,pressure,temperature,area,z,spezGaskonst)
+function [income,hours,power] = calculateIncomeEurope(location,speed,height,ratedPower,ratedWind,cutin,cutout,pressure,temperature,area,z,spezGaskonst)
     volllaststunden = zeros(length(height), 1);
     ertrag = zeros(length(height), 1);
+    leistung = zeros(length(height), 35040);
 
     figure('Name',strcat('Leistungsdauerlinien, für unterschiedliche Höhen, für den Standort',location),'NumberTitle','off');
     for h=1:length(height)
@@ -235,6 +236,7 @@ function [income,hours] = calculateIncomeEurope(location,speed,height,ratedPower
         P(windSpeed > cutout) = 0;
         plot(1:35040, P);
         hold on
+        leistung(h,:) = P;
         ertrag(h) = sum(P);
         volllaststunden(h) = sum(P)/ratedPower;
     end
@@ -244,6 +246,7 @@ function [income,hours] = calculateIncomeEurope(location,speed,height,ratedPower
     legend(string(height));
     income = ertrag ./ 4;
     hours = volllaststunden ./ 4;
+    power = leistung ./ 4;
 end
 
 %% Notizen
