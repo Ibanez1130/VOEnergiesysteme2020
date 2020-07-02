@@ -45,7 +45,7 @@
 
 	\newpage
 	
-	\section{Konzept}
+	\section{Einleitung (Konzept)}
 	Für die 5. Abgabe möchten wir unterschiedlichen Standorte von Windkraftanlagen miteinander vergleichen.\\ \par
 	\noindent Im Speziellen sollen zwei Aspekte mit einander verglichen werden:
 	\begin{itemize}
@@ -71,6 +71,96 @@
 	\end{itemize}
 	Ebenfalls wird auf die vom Institut zur Verfügung gestellten Daten (\href{http://www.sciencedirect.com/}{http://www.sciencedirect.com/}, \href{https://scholar.google.com/}{https://scholar.google.com/}, \href{http://catalogplus.tuwien.ac.at/}{http://catalogplus.tuwien.ac.at/}) zurückgegriffen.
 	
+	\newpage
+	
+	\section{Berechnungen}
+	\subsection{Leistung und Ertrag}
+	Wind stellt strömende Luftmassen dar. Da es sich um eine bewegte Masse handelt, kann die kinetische Energie dieser Masse berechnet werden.\newline
+	Die Formel zur Berechnung der kinetischen Energie einer bewegten Masse $m$ mit einer Geschwindigkeit $v$ ist allgemein
+	\begin{equation}
+	E_{Wind} = \frac{1}{2}*m*v^2
+	\end{equation}
+	\noindent Ersetzt man die Masse durch das Produkt aus dem Volumen und der Dichte und leitet man die Formal nach der Zeit ab, erhält man
+	\begin{equation}
+	P_{Wind} = \frac{1}{2}*\rho_L*\dot{V_L}*v^2
+	\end{equation}
+	Das zeitabhängige Volumen kann nun durch das Produkt aus der Windgeschwindigkeit und der Querschnittsfläche ersetzt werden. Dadurch erhält man schlussendlich
+	\begin{equation}
+	P_{Wind} = \frac{1}{2}*\rho_L*A*v^3
+	\end{equation}
+	Zusätzlich zur Leistung des Windes muss der Leistungsbeiwert berücksichtig werden. Der Leistungsbeiwert gibt den Quotienten aus genutzter zu ankommender Windleistung $c_p = \frac{P}{P_0}$ an. Für Windkraftanlagen generell gilt, dass der Leistungsbeiwert maximal $0.5926$ betragen kann. Es ist also nur möglich knapp unter $60\%$ der Energie des Windes in elektrische Energie umzuwandeln (ohne Berücksichtigung des Wirkungsgrades des Getriebes und des Generators).\newline
+	Die schlussendlich von einer Windkraftanlage produzierte Leistung errechnet sich aus folgender Formel:
+	\begin{equation}
+	P = P_{Wind}*c_p*\eta
+	\end{equation}
+	Mangels genauer Messwerte zum Leistungsbeiwert und dem Wirkungsgrad der Windkraftanlage, haben wir das Produkt aus beide aus den Nennwerten errechnet.\newline
+	Daraus ergibt sich
+	\begin{equation}
+	c_p * \eta = \frac{P_N}{\frac{1}{2}\bar{\rho}*A*v_N^3}
+	\end{equation}
+	Für den Fall der Onshore Windkraftanlage entspricht das einem Faktor von $2.6156e-07$. Im Falle der Offshore Anlage beträgt dieser Faktor $2.6124e-07$.\\ \par
+	Der Ertrag entspricht dem Integral über die Leistung. \newline Demnach gilt\begin{equation}
+	E_A = \sum_{i} E_i = T * \sum_{i} h_i * P_{el, i}
+	\end{equation}
+	\subsection{Windgeschwindigkeit}
+	\subsection{Luftdichte}
+	\subsection{Barwertmethode}
+	Die Barwertmethode ist eine Methode der dynamischen Wirtschaftlichkeitsberechnung bei der der Barwert (= Net Present Value $NPV$) errechnet wird. Sie liefert eine Aussage über die Sinnhaftigkeit einer Investition.\\ \par
+	\noindent Zur Bestimmung des Barwertes einer Investition werden alle Zahlungsströme (= Cash Flows), eines bestimmten Betrachtungszeitraumes, auf den Zeitpunkt $t=0$, mit dem erwarteten Zinssatz $r$, abgezinst und addiert. Damit werden alle Zahlungen auf den Zeitpunkt $0$ bezogen.\\ \par
+	\noindent Die Berechnung des Net Present Values erfolgt mit folgender Formel:
+	\begin{equation}
+	NPV=-I_0+\frac{E_1-A_1}{(1+r)}+\frac{E_2-A_2}{(1+r)^2}+...+\frac{E_n-A_n}{(1+r)^n}+\frac{L}{(1+r)^n}
+	\end{equation}
+	Andere Schreibweisen dieser Formel sind
+	\begin{equation}
+	NPV=-I_0+\frac{CF_1}{(1+r)}+\frac{CF_2}{(1+r)^2}+...+\frac{CF_n}{(1+r)^n}+\frac{L}{(1+r)^n}
+	\end{equation}
+	oder
+	\begin{equation}
+	NPV=-I_0+\sum_{i=1}^n\frac{CF_i}{(1+r)^i}+\frac{L}{(1+r)^n}
+	\end{equation}
+	\begin{itemize}
+		\item $NPV$ entspricht dem Nettobarwert der Investition in Euro.
+		\item $I_0$ sind die Investitionskosten zum Zeitpunkt $0$ in Euro.
+		\item $E_i$ sind die Einnahmen in der Periode $i$ in Euro.
+		\item $A_i$ sind die Ausgaben und Kosten in der Periode $i$ in Euro.
+		\item $CF_i$ entspricht dem Cash Flow in der Periode $i$ in Euro. ($E_i-A_i$ entspricht einem Cash Flow)
+		\item $r$ ist der gewählte Kalkulationszinssatz bei der Barwertrechnung bzw. der gesuchte Zinssatz bei der Berechnung des internen Zinsfuß.
+		\item $L$ ist der Restwert der Investition am Ende des Betrachtungszeitraums in Euro.
+		\item $n$ entspricht der Dauer des Betrachtungszeitraums in Jahren.
+	\end{itemize}
+	Wie bereits eingangs beschrieben, trifft die Barwertmethode eine Aussage über die Sinnhaftigkeit einer Investition.\newline Wenn der Wert $NPV$ größer als $0$ ist, lohnt sich die Investition. Ist der $NPV$ kleiner als $0$, sollte von einer Investition abgesehen werden.
+	
+	\section{Offshore vs. Onshore}
+	Der erste Punkt behandelt den Vergleich von Windkraftanlagen, die an Land (Onshore) gebaut wurden, mit Windkraftanlagen, die im Meer (Offshore) gebaut wurden.\\ \par
+	\noindent Für unseren Vergleich wurden eine Windkraftanlage mit Standort Joldelund (Längengrad: $54.9^{\circ}$/Breitengrad: $9.1^{\circ}$, Onshore) und eine Windkraftanlage mit Standort Butendiek (Längengrad: $54.9^{\circ}$/Breitengrad: $7.75^{\circ}$, Offshore) gewählt. Beide Standorte haben den selben Längengrad um Abweichungen, die nicht durch die Onshore/Offshore Installation bedingt sind, zu minimieren.\\ \par \noindent Da im Windpark Butendiek Windkraftanlagen vom Typ SWT-3.6-120 verbaut sind, werden die Parameter dieser Anlage für den Vergleich verwendet:
+	\begin{itemize}
+		\item Nabenhöhe: $91 Meter$
+		\item Rotordurchmesser: $120 Meter$
+		\item Nennleistung: $3.6MW$
+		\item Einschaltgeschwindigkeit: $3m/s$
+		\item Nennwindgeschwindigkeit: $12.5m/s$
+		\item Ausschaltwindgeschwindigkeit: $25m/s$
+	\end{itemize}
+	\noindent Wie bereits in der Einleitung beschrieben, wird der Vergleich auf Basis von vier unterschiedlichen Betrachtungen stattfinden.
+	\subsection{Ertrag}
+	Im ersten Schritt soll eine Onshore Windkraftanlage mit einer Offshore Windkraftanlage, anhand des Ertrags beider, verglichen werden.\\ \par
+	\noindent Mangels genauer Informationen zum Leistungsbeiwert und zum Gesamtwirkungsgrad der Windkraftanlage, haben wir den Faktor $c_p * \eta$ aus der Nennleistung errechnet.\newline
+	Die Leistung einer Windkraftanlage berechnet sich wie folgt:
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{img/results/Dauerlinie_Offshore}
+		\caption{Dauerlinie der Last.}
+	\end{figure}
+	\subsection{Betriebskosten und Investitionskosten}
+	\subsection{Barwert}
+	\subsection{Lebensdauer}
+	\section{Standort in Europa}
+	\subsection{Ertrag}
+	\subsection{Betriebskosten und Investitionskosten}
+	\subsection{Barwert}
+	\subsection{Lebensdauer}
 	\newpage
 	\listoffigures
 	\end{document}
