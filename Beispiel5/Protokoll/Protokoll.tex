@@ -250,7 +250,7 @@
 	\subsection{Barwert}
 	In diesem Teil soll die Onshore-Windenergieanlage mit der Offshore-Windenergieanlage anhand des Barwertes verglichen werden.\\ \par
 	\noindent Für den Vergleich wird davon ausgegangen, dass die gesamte Produktion am Spotmarkt verkauft wird. Aufgrund mangelnder Informationen zu den genauen Investitionskosten der Offshore- sowie der fiktiven Onshore-Anlage, werden diese Kosten im Barwert-Vergleich nicht berücksichtigt.\newline
-	Die Spotpreise werden der Datei $Spotpreis.m$, von der vierten Abgabe, entnommen. Es wird davon ausgegangen, dass die Spotpreise in den Jahren 2016 und 2018 gleich sind.
+	Die Spotpreise werden der Datei $Spotpreis.m$ entnommen, wobei davon ausgegangen wird, dass die Spotpreise in den Jahren 2016 und 2018 gleich waren.
 	\newline Der Betrachtungszeitraum wird mit $25$ Jahren angenommen. Der Einspeisetarif wird mit $0.082\mbox{\euro}/kWh$ lt. OEMAG einkalkuliert.\\ \par
 	\noindent Die Berechnung des Barwertes erfolgt analog zu dem in Kapitel "Barwertmethode" beschriebenen Vorgehen.\newline
 	Das resultierende Diagramm ist in Abbildung 4 dargestellt.
@@ -356,6 +356,26 @@
 	\end{table}
 	\noindent Ein Grund für den Ausbau der installierten Windkraftkapazität in Italien sind Ziele der EU, die für 2010 einen Windkraftanteil von $25\%$ vorsahen. Seither gibt es in Italien ein jährliches Wachstum der installierten Windkraftkapazität von $30\%$. Bis 2020 soll eine installierte Windkraftkapazität von $12.000MW$ erreicht werden.
 	\subsection{Barwert}
+	Für die Berechnung des Barwertes wird davon ausgegangen, dass die gesamte Produktion am Spotmarkt verkauft wird. Die Investitionskosten werden mit $4$ Millionen $\mbox{\euro}$ angenommen. Die Spotpreise werden der Datei $Spotpreis.m$ entnommen, wobei davon ausgegangen wird, dass die Spotpreise in den Jahren 2016 und 2018 gleich waren.\newline Der Betrachtungszeitraum wird mit $25$ Jahren angenommen. Der Einspeisetarif wird mit $0.082\mbox{\euro}/kWh$ lt. OEMAG einkalkuliert.\\ \par
+	\noindent Die Berechnung des Barwertes erfolgt analog zu dem in Kapitel "Barwertmethode" beschriebenen Vorgehen.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{img/results/BarwertAllerStandorte}
+		\caption{Der Barwert der Windenergieanlage, für die unterschiedlichen Standorte in Europa.}
+	\end{figure}
+	\noindent Abbildung 11 stellt das daraus resultierende Diagramm dar.\newline
+	Die Dauer der einzelnen Standorte, bis sie einen positiven Barwert erreichen, ist folgende:
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|}
+			\hline
+			& Butendiek & Joldelund & Helsinki & Wien & Neapel \\ \hline
+			Jahre bis zu einem positiven NPV & 3         & 2         & 4        & 5    & 6      \\ \hline
+		\end{tabular}
+	\end{table}
+	\noindent Der Vergleich der Barwerte verdeutlicht noch einmal die bereits beim Ertrag festgestellten Unterschiede der Standorte.\\ \par
+	\noindent Küstenstandorte haben gegenüber Binnenstandorte, zusätzlich zu höheren Windgeschwindigkeiten, den Vorteil, dass es aufgrund des thermisches Unterschiedes zwischen Küste und Gewässer zu auflandigen bzw. ablandigen Winden kommt. Diese Winde treten zu den Zeiten auf, zu denen die Spotpreise in der Regel höher sind, da die Nachfrage groß ist (in der Früh bzw. am Abend).\\ \par
+	\noindent Aufgrund der Beobachtungen in den vorangegangen Kapiteln kann man jedoch sagen, dass für den Bau von Windkraftanlagen ein Küstenstandort in Polnähe zu bevorzugen ist.
 	\newpage
 	\listoffigures
 	\end{document}
