@@ -168,11 +168,11 @@ legend('Helsinki','Wien','Neapel');
 % verwendet werden.
 
 % UNSORTIERTE LEISTUNG
-but = calculatePowerUnsorted(Butendiek.WindSpeed,comparisonHeight,offRatedPower,offRatedWind,offCutInWind,offCutOutWind,Butendiek.Pressure,Butendiek.Temperature,offRotorArea,offZ,spezGaskonst);
-jol = calculatePowerUnsorted(Joldelund.WindSpeed,comparisonHeight,offRatedPower,offRatedWind,offCutInWind,offCutOutWind,Joldelund.Pressure,Joldelund.Temperature,offRotorArea,onZ,spezGaskonst);
-hel = calculatePowerUnsorted(Helsinki.WindSpeed,eurHeight,eurRatedPower,eurRatedWind,eurCutInWind,eurCutOutWind,Helsinki.Pressure,Helsinki.Temperature,eurRotorArea,eurZ,spezGaskonst);
-wie = calculatePowerUnsorted(Wien.WindSpeed,eurHeight,eurRatedPower,eurRatedWind,eurCutInWind,eurCutOutWind,Wien.Pressure,Wien.Temperature,eurRotorArea,eurZ,spezGaskonst);
-nea = calculatePowerUnsorted(Neapel.WindSpeed,eurHeight,eurRatedPower,eurRatedWind,eurCutInWind,eurCutOutWind,Neapel.Pressure,Neapel.Temperature,eurRotorArea,eurZ,spezGaskonst);
+but = calculatePowerUnsorted(Butendiek.WindSpeed,[120],offRatedPower,offRatedWind,offCutInWind,offCutOutWind,Butendiek.Pressure,Butendiek.Temperature,offRotorArea,offZ,spezGaskonst);
+jol = calculatePowerUnsorted(Joldelund.WindSpeed,[120],offRatedPower,offRatedWind,offCutInWind,offCutOutWind,Joldelund.Pressure,Joldelund.Temperature,offRotorArea,onZ,spezGaskonst);
+hel = calculatePowerUnsorted(Helsinki.WindSpeed,[120],eurRatedPower,eurRatedWind,eurCutInWind,eurCutOutWind,Helsinki.Pressure,Helsinki.Temperature,eurRotorArea,eurZ,spezGaskonst);
+wie = calculatePowerUnsorted(Wien.WindSpeed,[120],eurRatedPower,eurRatedWind,eurCutInWind,eurCutOutWind,Wien.Pressure,Wien.Temperature,eurRotorArea,eurZ,spezGaskonst);
+nea = calculatePowerUnsorted(Neapel.WindSpeed,[120],eurRatedPower,eurRatedWind,eurCutInWind,eurCutOutWind,Neapel.Pressure,Neapel.Temperature,eurRotorArea,eurZ,spezGaskonst);
 
 
 % Jährlicher Ertrag Förderdauer
@@ -207,11 +207,11 @@ NPV_Nea = zeros(25,1);
 
 for i = 1:25
     if i==1
-        NPV_But(1) = CF_But_OEMAG/(1+interestRate./100);
-        NPV_Jol(1) = CF_Jol_OEMAG/(1+interestRate./100);
-        NPV_Hel(1) = CF_Hel_OEMAG/(1+interestRate./100);
-        NPV_Wie(1) = CF_Wie_OEMAG/(1+interestRate./100);
-        NPV_Nea(1) = CF_Nea_OEMAG/(1+interestRate./100);
+        NPV_But(1) = CF_But_OEMAG/(1+interestRate./100)-4000000;
+        NPV_Jol(1) = CF_Jol_OEMAG/(1+interestRate./100)-4000000;
+        NPV_Hel(1) = CF_Hel_OEMAG/(1+interestRate./100)-4000000;
+        NPV_Wie(1) = CF_Wie_OEMAG/(1+interestRate./100)-4000000;
+        NPV_Nea(1) = CF_Nea_OEMAG/(1+interestRate./100)-4000000;
     elseif i<=13
         NPV_But(i) = NPV_But(i-1) + CF_But_OEMAG./((1+interestRate./100)^i);
         NPV_Jol(i) = NPV_Jol(i-1) + CF_Jol_OEMAG./((1+interestRate./100)^i);
