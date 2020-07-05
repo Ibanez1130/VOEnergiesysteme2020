@@ -247,10 +247,23 @@
 	\noindent Im Vergleich dazu betragen die Kosten für einen Onshore-Windpark circa $61,5\mbox{\euro}$ pro $MWh$. (Kosten des Windparks Großhofen.)\\ \par
 	\noindent Der aktuelle Marktführer für Offshore-Windparks, Siemens, hat sich jedoch die Selbstverpflichtung aufgelegt die Stromgestehungskosten bis 2020 auf $100\mbox{\euro}$ und bis 2025 auf $80\mbox{\euro}$ zu reduzieren. Wesentliche Faktoren für die Umsetzung sind Maßnahmen im Bereich der Anlagentechnik, einschließlich der Fundamente, Kosteneinsparungen durch Innovationen bei Wartung und Betrieb inklusive der Offshore-Logistik sowie verbesserte Netzanbindungslösungen. Durch Innovationen z.B. in der Generatortechnik, Leistungssteigerungen und größere Rotordurchmesser sollen ebenfalls Kosten eingespart werden können.
 	\subsection{Barwert}
+	In diesem Teil soll die Onshore-Windenergieanlage mit der Offshore-Windenergieanlage anhand des Barwertes verglichen werden.\\ \par
+	\noindent Für den Vergleich wird davon ausgegangen, dass die gesamte Produktion am Spotmarkt verkauft wird. Aufgrund mangelnder Informationen zu den genauen Investitionskosten der Offshore- sowie der fiktiven Onshore-Anlage, werden diese Kosten im Barwert-Vergleich nicht berücksichtigt.\newline
+	Die Spotpreise werden der Datei $Spotpreis.m$, von der vierten Abgabe, entnommen. Es wird davon ausgegangen, dass die Spotpreise in den Jahren 2016 und 2018 gleich sind.\newline
+	Der Einspeisetarif wird mit $0.082\mbox{\euro}/kWh$ lt. OEMAG einkalkuliert.\\ \par
+	\noindent Die Berechnung des Barwertes erfolgt analog zu dem in Kapitel "Barwertmethode" beschriebenen Vorgehen.\newline
+	Das resultierende Diagramm ist in Abbildung 4 dargestellt.
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=12cm]{img/results/Dauerlinie_Onshore}
-		\caption{Dauerlinie der Windgeschwindigkeit und der erzeugten Leistung, für den Standort Joldelund.}
+		\includegraphics[width=12cm]{img/results/BarwertOnshoreOffshore}
+		\caption{Vergleich des Barwertes der Offshore- und der fiktiven Onshore-Anlage.}
+	\end{figure}
+	\noindent Wie zu erwarten ist der Barwert der Onshore-Anlage höher, was dem höheren Ertrag der Anlage geschuldet ist.\newline
+	Bei ungefähren Investitionskosten von $4$ Millionen $\mbox{\euro}$ (Referenz vom Windpark Großhofen, mit $22$ Millionen $\mbox{\euro}$ für $6$ Windkraftanlagen) erreicht die Onshore-Windenergieanlage bereits im dritten Jahr einen positiven NPV. Für den Offshore-Standort wird ein positiver NPV erst im vierten Jahr erreicht.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{img/results/BarwertOnshoreOffshoreInvestitionskosten}
+		\caption{Vergleich des Barwertes der Offshore- und der fiktiven Onshore-Anlage mit Investitionskosten von $4$ Millionen $\mbox{\euro}$.}
 	\end{figure}
 	\subsection{Lebensdauer}
 	Eine Windenergieanlage ist während ihrer Laufzeit enormen Belastungen ausgesetzt. Aufgrund diesen Belastungen werden sie für eine technisch machbare Lebensdauer von ungefähr 20 Jahren ausgelegt.\newline
