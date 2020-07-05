@@ -103,7 +103,7 @@
 	E_A = \sum_{i} E_i = T * \sum_{i} h_i * P_{el, i}
 	\end{equation}
 	\subsection{Windgeschwindigkeit}
-	Die für die folgenden Berechnungen notwendigen Winddaten werden aus dem Tool "MERRA 2" (Modern-Era Retrospective analysis for Research and Applications Version 2) exportiert. Da diese Daten in einer Höhe von 2 Metern über dem Erdboden gemessen wurden, muss die Windgeschwindigkeit auf die entsprechende Höhe umgerechnet werden.\\ \par
+	Die für die folgenden Berechnungen notwendigen Winddaten werden aus dem Tool MERRA 2 (Modern-Era Retrospective analysis for Research and Applications Version 2) exportiert. Da diese Daten in einer Höhe von 2 Metern über dem Erdboden gemessen wurden, muss die Windgeschwindigkeit auf die entsprechende Höhe umgerechnet werden.\\ \par
 	\noindent Für die Umrechnung bedienen wir uns der logarithmischen Höhenformel. Mit ihrer Hilfe kann die Windgeschwindigkeit in einer Referenz-Höhe auf eine andere Höhe umgerechnet werden.
 	\newline Die Formel lautet
 	\begin{equation}
@@ -114,7 +114,7 @@
 		\item $v_H$ ist die resultierende Windgeschwindigkeit, auf der Höhe der Windenergieanlage.
 		\item $H_{ref}$ gibt die Höhe an, für die die Referenz-Windgeschwindigkeit $v_{ref}$ gemessen wurde. In unserem Fall ist dieser Wert $2m$.
 		\item $H$ entspricht der Höhe, in welche die Windgeschwindigkeiten umgerechnet werden sollen. Für die Anlage aus dem Onshore/Offshore Vergleich entspricht dieser Wert $91m$.
-		\item $z_0$ gibt die Rauhigkeit der Erdoberfläche an. Der Faktor bezeichnet die Unebenheit der Oberflächenhöhe. Für den Fall der Offshore-Windenergieanlage kann ein Wert von $10^{-4}$ angenommen werden. Für Windenergieanlagen, die Onshore gebaut sind, gehen wir von einem Wert von $0.05$, für landwirtschaftliche Gelände mit offenem Erscheindungsbild, aus. (Beide Werte können der Tabelle 2-1, im Skriptum "Fachvertiefung Energiesysteme 370.007 -  Windenergieanlagen", entnommen werden.)
+		\item $z_0$ gibt die Rauhigkeit der Erdoberfläche an. Der Faktor bezeichnet die Unebenheit der Oberflächenhöhe. Für den Fall der Offshore-Windenergieanlage kann ein Wert von $10^{-4}$ angenommen werden. Für Windenergieanlagen, die Onshore gebaut sind, gehen wir von einem Wert von $0.05$, für landwirtschaftliche Gelände mit offenem Erscheindungsbild, aus. (Beide Werte können der Tabelle 2-1, im Skriptum Fachvertiefung Energiesysteme 370.007 -  Windenergieanlagen, entnommen werden.)
 	\end{itemize}
 	\subsection{Luftdichte}
 	Um die Leistung des Windes und somit, in weiterer Folge, die Leistung einer Windenergieanlage zu berechnen, muss die Luftdichte bekannt sein.\\ \par
@@ -171,9 +171,9 @@
 	\noindent Wie bereits in der Einleitung beschrieben, wird der Vergleich auf Basis von vier unterschiedlichen Betrachtungspunkten stattfinden.
 	\subsection{Ertrag}
 	Im ersten Schritt sollen die Onshore und Offshore Windenergieanlagen anhand des Ertrags verglichen werden. Als Betrachtungszeitraum wird das Jahr 2018, vom ersten Jänner bis zum 31. Dezember, gewählt.\\ \par
-	\noindent Wie bereits in Kapitel "Leistung und Ertrag" beschrieben, wird das Produkt aus Leistungsbeiwert und Gesamtwirkungsgrad auf Basis der Nenndaten angenommen.\\ \par
+	\noindent Wie bereits in Kapitel Leistung und Ertrag beschrieben, wird das Produkt aus Leistungsbeiwert und Gesamtwirkungsgrad auf Basis der Nenndaten angenommen.\\ \par
 	\noindent Das Ziel für den ersten Vergleich ist eine Dauerlinie der Windgeschwindigkeit zu erhalten. In dieses Diagramm soll dann die zum jeweiligen Zeitpunkt erzeugte Leistung eingefügt werden.\\ \par
-	\noindent Um die Windgeschwindigkeiten für die Dauerlinie zu erhalten, müssen diese zuerst umgerechnet werden. Die Umrechnung wird wie in Kapitel "Windgeschwindigkeit" beschrieben, mit der logarithmischen Höhenformel, durchgeführt.\newline
+	\noindent Um die Windgeschwindigkeiten für die Dauerlinie zu erhalten, müssen diese zuerst umgerechnet werden. Die Umrechnung wird wie in Kapitel Windgeschwindigkeit beschrieben, mit der logarithmischen Höhenformel, durchgeführt.\newline
 	Eine mögliche Umsetzung in MATLAB ist folgende:
 	\begin{lstlisting}
 	function speed = convertWindspeedToHeight(data,refHeight,height,z)
@@ -226,7 +226,7 @@
 	\end{figure}
 	\noindent Da die Rauigkeit für Wasserflächen wesentlich geringer ist als für offenes landwirtschaftliches Gelände, steigt der Ertrag der Onshore-Windenergieanlage mit zunehmender Höhe wesentlich stärker, als der Ertrag der Offshore-Windenergieanlage.
 	\subsection{Betriebskosten und Investitionskosten}
-	Die Errichtung von Offshore-Windenergieanlagen bringt signifikat höhere technische und finanzielle Aufwände für die Planung, Errichtung, den Betrieb und den Rückbau mit sich. Die (in den meisten Fällen) höheren Erträge, Anlagennennleistungen und Einspeisevergütungen tragen jedoch dazu bei, dass Offshore Windenergie wirtschaftlich genutzt wird.\newline Ein großer Vorteil von Offshore Windparks ist die Möglichkeit jeweils 50 bis 80 Windenergieanlagen in Einheiten bzw. Clustern zu errichten.\\ \par
+	Die Errichtung von Offshore-Windenergieanlagen bringt signifikant höhere technische und finanzielle Aufwände für die Planung, Errichtung, den Betrieb und den Rückbau mit sich. Die (in den meisten Fällen) höheren Erträge, Anlagennennleistungen und Einspeisevergütungen tragen jedoch dazu bei, dass Offshore Windenergie wirtschaftlich genutzt wird.\newline Ein großer Vorteil von Offshore Windparks ist die Möglichkeit jeweils 50 bis 80 Windenergieanlagen in Einheiten bzw. Clustern zu errichten.\\ \par
 	\noindent Generell setzen sich die Investitionskosten einer Windenergieanlage aus folgenden Faktoren zusammen:
 	\begin{itemize}
 		\item \textbf{Planungskosten}. Die Planung setzt sich zusammen aus der technischen Planung (der Auswahl der geeigneten Anlagen, deren Konzipierung, Fundamentierung und Netzanschluss), der Genehmigungsplanung und der Suche nach einem geeigneten Standort.\newline Der Großteil der Kosten fällt im Bereich der Genehmigungsplanung, für Untersuchungen, Gutachten und Genehmigungen an.
@@ -240,7 +240,7 @@
 		\item \textbf{Wartungskosten}. Windenergieanlagen müssen in regelmäßigen Abständen gewartet werden, um die Funktionstüchtigkeit der Anlage zu gewährleisten.\newline Während die dadurch entstehenden jährlichen Aufwände früher, durch Unsicherheitsfaktoren, noch relativ hoch waren, betragen sie jetzt ungefähr $0.7 - 0.9\%$ des Ab-Werk-Preises der Windkraftanlage.
 		\item \textbf{Reperaturkosten}. Zusätzlich zur Wartung kann es vorkommen, dass Windenergieanlagen repariert werden müssen.\newline
 		Die jährlichen Kosten für Reperaturen können mit $0.5 - 1.0\%$ des Ab-Werk-Preises der Windkraftanlage beziffert werden.
-		\item \textbf{Versicherungen}. Sie verringern das Risiko für den Betreiber zusätzliche Kosten durch Schadenersatzansprüchen Dritter und Maschinenausfälle tragen zu müssen.\newline Die jährlichen Versicherungskosten betragen in etwa $0.5 - 0.6\%$ des Ab-Werk-Preises der Anlage.
+		\item \textbf{Versicherungen}. Sie verringern das Risiko für den Betreiber zusätzliche Kosten durch Schadenersatzansprüche Dritter und Maschinenausfälle tragen zu müssen.\newline Die jährlichen Versicherungskosten betragen in etwa $0.5 - 0.6\%$ des Ab-Werk-Preises der Anlage.
 		\item \textbf{Grundstücksnutzungsentgelte}. Da die Grundstücke, auf denen die Anlagen errichtet werden oftmals nicht im Besitz der Betreiber sind, fallen zusätzlich Kosten für die Pacht an.\newline Je nach Topographie der Standorte können sich diese Kosten bei Onshore-Anlagen auf $10.000$ bis $25.000\mbox{\euro}$ pro Jahr belaufen. Für Offshore-Anlagen sind diese Kosten wesentlich geringer.
 		\item \textbf{Technische Überwachung und Verwaltung}. Um den Betrieb des Windparks zu überwachen, sind eine technische und kaufmännische Betriebsführung notwendig. Tätigkeiten umfassen das Erstellen von Gewinn- und Verlustrechnungen sowie Bilanzen. Weiters muss eine technische Überwachung der Windkraftanlagen stattfinden.\newline Jährliche Kosten können mit circa $0.7 - 1.0\%$ des Ab-Werk-Preises der Windkraftanlage einkalkuliert werden.
 	\end{itemize}
@@ -252,7 +252,7 @@
 	\noindent Für den Vergleich wird davon ausgegangen, dass die gesamte Produktion am Spotmarkt verkauft wird. Aufgrund mangelnder Informationen zu den genauen Investitionskosten der Offshore- sowie der fiktiven Onshore-Anlage, werden diese Kosten im Barwert-Vergleich nicht berücksichtigt.\newline
 	Die Spotpreise werden der Datei $Spotpreis.m$ entnommen, wobei davon ausgegangen wird, dass die Spotpreise in den Jahren 2016 und 2018 gleich waren.
 	\newline Der Betrachtungszeitraum wird mit $25$ Jahren angenommen. Der Einspeisetarif wird mit $0.082\mbox{\euro}/kWh$ lt. OEMAG einkalkuliert.\\ \par
-	\noindent Die Berechnung des Barwertes erfolgt analog zu dem in Kapitel "Barwertmethode" beschriebenen Vorgehen.\newline
+	\noindent Die Berechnung des Barwertes erfolgt analog zu dem in Kapitel Barwertmethode beschriebenen Vorgehen.\newline
 	Das resultierende Diagramm ist in Abbildung 4 dargestellt.
 	\begin{figure}[H]
 		\centering
@@ -289,8 +289,8 @@
 		\item Ausschaltwindgeschwindigkeit: $22m/s$
 	\end{itemize}
 	\subsection{Ertrag}
-	Der Ertrag der Windenergieanlage wird analog zum Vorgehen in Kapitel "Offshore vs. Onshore - Ertrag" berechnet.\newline
-	Die Winddaten werden ebenfalls aus dem Tool "MERRA 2" exportiert, was zur Folge hat, dass die Windgeschwindigkeiten auf die Höhe der Windenergieanlage umgerechnet werden müssen. Die Umrechnung erfolgt ebenfalls gleich wie bei der Berechnung für den Offshore/Onshore Vergleich.\\ \par
+	Der Ertrag der Windenergieanlage wird analog zum Vorgehen in Kapitel Offshore vs. Onshore - Ertrag berechnet.\newline
+	Die Winddaten werden ebenfalls aus dem Tool MERRA 2 exportiert, was zur Folge hat, dass die Windgeschwindigkeiten auf die Höhe der Windenergieanlage umgerechnet werden müssen. Die Umrechnung erfolgt ebenfalls gleich wie bei der Berechnung für den Offshore/Onshore Vergleich.\\ \par
 	\noindent Daraus resultiert folgende Funktion in MATLAB:
 	\begin{lstlisting}
 	function [income,hours] = calculateIncomeEurope(location,speed,height,ratedPower,ratedWind,cutin,cutout,pressure,temperature,area,z,spezGaskonst)
@@ -345,7 +345,7 @@
 	\noindent Abbildung 9 bestätigt die Beobachtung von den Leistungsdauerlinien, dass der Ertrag in Helsinki am höchsten ist, während er in Neapel am geringsten ist.\newline
 	Für eine Höhe von $85m$ beträgt die Differenz zwischen dem Standort Helsinki und dem Standort Wien $1.228GWh$. Die Differenz zwischen Wien und Neapel beträgt $1.429GWh$.\\ \par
 	\noindent Ebenfalls interessant zu sehen ist, dass der Ertrag in Wien zwischen den Erträgen von Helsinki und Neapel liegt, obwohl es sich hierbei um den einzigen Binnenstandort handelt.\\ \par
-	\noindent Der Vergleich der installierte Windkraftkapazität, der jeweiligen Länder, ergibt eine gegenteilige Beobachtung.
+	\noindent Der Vergleich der installierten Windkraftkapazität, der jeweiligen Länder, ergibt eine gegenteilige Beobachtung.
 	\begin{table}[H]
 		\centering
 		\begin{tabular}{|c|c|c|c|}
@@ -357,7 +357,7 @@
 	\noindent Ein Grund für den Ausbau der installierten Windkraftkapazität in Italien sind Ziele der EU, die für 2010 einen Windkraftanteil von $25\%$ vorsahen. Seither gibt es in Italien ein jährliches Wachstum der installierten Windkraftkapazität von $30\%$. Bis 2020 soll eine installierte Windkraftkapazität von $12.000MW$ erreicht werden.
 	\subsection{Barwert}
 	Für die Berechnung des Barwertes wird davon ausgegangen, dass die gesamte Produktion am Spotmarkt verkauft wird. Die Investitionskosten werden mit $4$ Millionen $\mbox{\euro}$ angenommen. Die Spotpreise werden der Datei $Spotpreis.m$ entnommen, wobei davon ausgegangen wird, dass die Spotpreise in den Jahren 2016 und 2018 gleich waren.\newline Der Betrachtungszeitraum wird mit $25$ Jahren angenommen. Der Einspeisetarif wird mit $0.082\mbox{\euro}/kWh$ lt. OEMAG einkalkuliert.\\ \par
-	\noindent Die Berechnung des Barwertes erfolgt analog zu dem in Kapitel "Barwertmethode" beschriebenen Vorgehen.
+	\noindent Die Berechnung des Barwertes erfolgt analog zu dem in Kapitel Barwertmethode beschriebenen Vorgehen.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=12cm]{img/results/BarwertAllerStandorte}
@@ -374,8 +374,8 @@
 		\end{tabular}
 	\end{table}
 	\noindent Der Vergleich der Barwerte verdeutlicht noch einmal die bereits beim Ertrag festgestellten Unterschiede der Standorte.\\ \par
-	\noindent Küstenstandorte haben gegenüber Binnenstandorte, zusätzlich zu höheren Windgeschwindigkeiten, den Vorteil, dass es aufgrund des thermisches Unterschiedes zwischen Küste und Gewässer zu auflandigen bzw. ablandigen Winden kommt. Diese Winde treten zu den Zeiten auf, zu denen die Spotpreise in der Regel höher sind, da die Nachfrage groß ist (in der Früh bzw. am Abend).\\ \par
-	\noindent Aufgrund der Beobachtungen in den vorangegangen Kapiteln kann man jedoch sagen, dass für den Bau von Windkraftanlagen ein Küstenstandort in Polnähe zu bevorzugen ist.
+	\noindent Küstenstandorte haben gegenüber Binnenstandorte, zusätzlich zu höheren Windgeschwindigkeiten, den Vorteil, dass es aufgrund des thermischen Unterschiedes zwischen Küste und Gewässer zu auflandigen bzw. ablandigen Winden kommt. Diese Winde treten zu den Zeiten auf, zu denen die Spotpreise in der Regel höher sind, da die Nachfrage groß ist (in der Früh bzw. am Abend).\\ \par
+	\noindent Aufgrund der Beobachtungen in den vorangegangenen Kapiteln kann man jedoch sagen, dass für den Bau von Windkraftanlagen ein Küstenstandort in Polnähe zu bevorzugen ist.
 	\newpage
 	\listoffigures
 	\end{document}
