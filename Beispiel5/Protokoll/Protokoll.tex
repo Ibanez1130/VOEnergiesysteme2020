@@ -161,7 +161,8 @@
 	Diese sind wie folgt.
 	\begin{itemize}
 		\item Nabenhöhe: $91 Meter$
-		\item Rotordurchmesser: $120 Meter$
+		\item Rotordurchmesser: $120m$
+		\item Nabendurchmesser: $3m$
 		\item Nennleistung: $3.6MW$
 		\item Einschaltgeschwindigkeit: $3m/s$
 		\item Nennwindgeschwindigkeit: $12.5m/s$
@@ -249,8 +250,8 @@
 	\subsection{Barwert}
 	In diesem Teil soll die Onshore-Windenergieanlage mit der Offshore-Windenergieanlage anhand des Barwertes verglichen werden.\\ \par
 	\noindent Für den Vergleich wird davon ausgegangen, dass die gesamte Produktion am Spotmarkt verkauft wird. Aufgrund mangelnder Informationen zu den genauen Investitionskosten der Offshore- sowie der fiktiven Onshore-Anlage, werden diese Kosten im Barwert-Vergleich nicht berücksichtigt.\newline
-	Die Spotpreise werden der Datei $Spotpreis.m$, von der vierten Abgabe, entnommen. Es wird davon ausgegangen, dass die Spotpreise in den Jahren 2016 und 2018 gleich sind.\newline
-	Der Einspeisetarif wird mit $0.082\mbox{\euro}/kWh$ lt. OEMAG einkalkuliert.\\ \par
+	Die Spotpreise werden der Datei $Spotpreis.m$, von der vierten Abgabe, entnommen. Es wird davon ausgegangen, dass die Spotpreise in den Jahren 2016 und 2018 gleich sind.
+	\newline Der Betrachtungszeitraum wird mit $25$ Jahren angenommen. Der Einspeisetarif wird mit $0.082\mbox{\euro}/kWh$ lt. OEMAG einkalkuliert.\\ \par
 	\noindent Die Berechnung des Barwertes erfolgt analog zu dem in Kapitel "Barwertmethode" beschriebenen Vorgehen.\newline
 	Das resultierende Diagramm ist in Abbildung 4 dargestellt.
 	\begin{figure}[H]
@@ -274,7 +275,86 @@
 	\noindent Sowohl für Onshore- als auch für Offshore-Anlagen gilt, dass eine gewissenhafte Wartung und Instandhaltung die Lebensdauer der Anlage verlängern kann.
 	\newpage
 	\section{Standort in Europa}
+	Im diesem Teil sollen mehrere Standorte in Europa verglichen werden. Besonders der Einfluss der geographischen Breite auf den Ertrag soll beleuchtet werden. (Äquatornähe vs. Polnähe)\\ \par
+	\noindent Für den Vergleich wurden die Standorte Helsinki ($60^{\circ}$ $10$' N, $24^{\circ}$ $56$' O), Wien ($48^{\circ}$ $12$' N, $16^{\circ}$ $22$' O) und Neapel ($40^{\circ}$ $50$' N, $14^{\circ}$ $15$' O) gewählt.\newline
+	Die betrachtete Windenergieanlage ist vom Typ Senvion 3.4M122 NES, wie sie zum Beispiel im Windpark Scharndorf vorkommt.\\ \par
+	\noindent Die Parameter der Anlage sind wie folgt:
+	\begin{itemize}
+		\item Nabenhöhe: $85 - 140m$
+		\item Rotordurchmesser: $122m$
+		\item Nabendurchmesser: $2.4m$
+		\item Nennleistung: $3.4MW$
+		\item Einschaltgeschwindigkeit: $3m/s$
+		\item Nennwindgeschwindigkeit: $12.5m/s$
+		\item Ausschaltwindgeschwindigkeit: $22m/s$
+	\end{itemize}
 	\subsection{Ertrag}
+	Der Ertrag der Windenergieanlage wird analog zum Vorgehen in Kapitel "Offshore vs. Onshore - Ertrag" berechnet.\newline
+	Die Winddaten werden ebenfalls aus dem Tool "MERRA 2" exportiert, was zur Folge hat, dass die Windgeschwindigkeiten auf die Höhe der Windenergieanlage umgerechnet werden müssen. Die Umrechnung erfolgt ebenfalls gleich wie bei der Berechnung für den Offshore/Onshore Vergleich.\\ \par
+	\noindent Daraus resultiert folgende Funktion in MATLAB:
+	\begin{lstlisting}
+	function [income,hours] = calculateIncomeEurope(location,speed,height,ratedPower,ratedWind,cutin,cutout,pressure,temperature,area,z,spezGaskonst)
+		volllaststunden = zeros(length(height), 1);
+		ertrag = zeros(length(height), 1);
+		leistung = zeros(length(height), 35040);
+	
+		for h=1:length(height)
+			effFactor = ratedPower / (0.5 * mean(calculateAirDensity(pressure,temperature,spezGaskonst)) * area * ratedWind ^ 3);
+			windSpeed = sort(convertWindspeedToHeight(speed,2,height(h),z), "descend");
+			PWind = 0.5 .* calculateAirDensity(pressure,temperature,spezGaskonst) .* area .* windSpeed .^ 3;
+			P = PWind .* effFactor;
+			P(windSpeed < cutin) = 0;
+			P(windSpeed > ratedWind) = ratedPower;
+			P(windSpeed > cutout) = 0;
+			leistung(h,:) = P;
+			ertrag(h) = sum(P);
+			volllaststunden(h) = sum(P)/ratedPower;
+		end
+		income = ertrag ./ 4;
+		hours = volllaststunden ./ 4;
+	end
+	\end{lstlisting}
+	Die folgenden Abbildungen stellen die Leistungsdauerlinien des jeweiligen Standortes, für unterschiedliche Höhen, dar.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{img/results/LeistungsdauerlinieHelsinki}
+		\caption{Leistungsdauerlinie für unterschiedliche Höhen von $85 - 140m$, für den Standort Helsinki.}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{img/results/LeistungsdauerlinieWien}
+		\caption{Leistungsdauerlinie für unterschiedliche Höhen von $85 - 140m$, für den Standort Wien.}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{img/results/LeistungsdauerlinieNeapel}
+		\caption{Leistungsdauerlinie für unterschiedliche Höhen von $85 - 140m$, für den Standort Neapel.}
+	\end{figure}
+	\noindent In Abbildung 9 ist der Vergleich des jährlichen Ertrags, der unterschiedlichen Standorte, dargestellt.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{img/results/ErtragEuropa}
+		\caption{Der jährliche Ertrag der einzelnen Standorte, bei unterschiedlichen Höhen.}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=12cm]{img/results/VolllaststundenEuropa}
+		\caption{Die jährlichen Volllaststunden der einzelnen Standorte, bei unterschiedlichen Höhen.}
+	\end{figure}
+	\noindent Bereits die Leistungsdauerlinien der einzelnen Standorte zeigen, dass sich die Windenergieanlage am Standort Helsinki mit ungefähr $1450$ Stunden (bei einer Höhe von $140m$) die längste Zeit im Volllastbereich befindet. Im Vergleich dazu läuft die selbe Anlage in Neapel nur circa $1150$ Stunden im Volllastbereich (ebenfalls bei einer Höhe von $140m$).\\ \par
+	\noindent Abbildung 9 bestätigt die Beobachtung von den Leistungsdauerlinien, dass der Ertrag in Helsinki am höchsten ist, während er in Neapel am geringsten ist.\newline
+	Für eine Höhe von $85m$ beträgt die Differenz zwischen dem Standort Helsinki und dem Standort Wien $1.228GWh$. Die Differenz zwischen Wien und Neapel beträgt $1.429GWh$.\\ \par
+	\noindent Ebenfalls interessant zu sehen ist, dass der Ertrag in Wien zwischen den Erträgen von Helsinki und Neapel liegt, obwohl es sich hierbei um den einzigen Binnenstandort handelt.\\ \par
+	\noindent Der Vergleich der installierte Windkraftkapazität, der jeweiligen Länder, ergibt eine gegenteilige Beobachtung.
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			Staat                                        & Finnland & Österreich & Italien \\ \hline
+			Installierte Windkraftkapazität in MW (2019) & 2.284    & 3.159      & 10.512  \\ \hline
+		\end{tabular}
+	\end{table}
+	\noindent Ein Grund für den Ausbau der installierten Windkraftkapazität in Italien sind Ziele der EU, die für 2010 einen Windkraftanteil von $25\%$ vorsahen. Seither gibt es in Italien ein jährliches Wachstum der installierten Windkraftkapazität von $30\%$. Bis 2020 soll eine installierte Windkraftkapazität von $12.000MW$ erreicht werden.
 	\subsection{Barwert}
 	\newpage
 	\listoffigures
